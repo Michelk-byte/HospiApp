@@ -1,20 +1,43 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { Button } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { CardViewWithImage } from "react-native-simple-card-view";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
-// import DayPickerInput from "react-day-picker/DayPickerInput";
-// import "react-day-picker/lib/style.css";
-// import DatePicker from "react-date-picker";
-// import TimePicker from "react-time-picker";
+
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const DoctorProfile = ({ navigation }) => {
-  const [value, onChange] = useState("10:00");
-  const [datevalue, setDate] = useState(new Date());
-  console.log(value);
-  console.log(datevalue);
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState("date");
+  const [show, setShow] = useState(false);
+
+  const [mytime, setmytime] = useState("10:00");
+  const [mydate, setmydate] = useState(new Date());
+
+  // console.log(mytime);
+  // console.log(mydate);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    console.log(selectedDate);
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode("date");
+  };
+
+  const showTimepicker = () => {
+    showMode("time");
+  };
 
   const size_ = 20;
 
@@ -67,14 +90,24 @@ const DoctorProfile = ({ navigation }) => {
           height: 50,
         }}
       >
-        {/* <View style={{ alignItems: "center", zIndex: "-1", marginTop: "5px" }}>
-          <Text style={{ marginBottom: "10px" }}>Pick a Day:</Text>
-          <DatePicker onChange={setDate} value={datevalue} />
+        <View>
+          <Button onPress={showDatepicker} title="Pick a date!" />
         </View>
-        <View style={{ alignItems: "center", zIndex: "-1", marginTop: "5px" }}>
-          <Text style={{ marginBottom: "10px" }}>Pick an Hour:</Text>
-          <TimePicker onChange={onChange} value={value} disableClock={false} />
-        </View> */}
+        <View>
+          <Button onPress={showTimepicker} title="Pick a time!" />
+        </View>
+        {show && (
+          <DateTimePicker
+            timeZoneOffsetInMinutes={0}
+            testID="dateTimePicker"
+            minuteInterval={30}
+            value={date}
+            mode={mode}
+            // is24Hour={true}
+            display="default"
+            onChange={onChange}
+          />
+        )}
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>

@@ -9,11 +9,13 @@ import AppointmentScreen from "../AppointmentScreen";
 const Stack = createStackNavigator();
 
 const ShoppingCartIcon = ({ navigation }) => {
+  const size_ = 35;
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Icon
         name="calendar"
-        size="35px"
+        size={size_}
         style={{
           marginRight: 20,
         }}
@@ -22,10 +24,11 @@ const ShoppingCartIcon = ({ navigation }) => {
     </View>
   );
 };
+
 export default function HomeStack() {
   return (
     <Stack.Navigator
-      initialRouteName="AppointmentScreen"
+      initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: true,
         headerStyle: { backgroundColor: "red" },
@@ -33,14 +36,15 @@ export default function HomeStack() {
         headerTitleStyle: { fontWeight: "bold" },
       }}
     >
-      {/* <Stack.Screen
-        name="Home Screen"
+      <Stack.Screen
+        name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
           headerTitle: () => <View></View>,
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
-      /> */}
+      />
+
       <Stack.Screen
         name="AppointmentScreen"
         component={AppointmentScreen}

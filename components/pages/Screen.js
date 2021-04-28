@@ -4,22 +4,20 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Icon from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeStack from "./Home/HomeStack";
 import LabReserStack from "./LabReservation/LabReserStack";
 import HospiStack from "./Hospital/HospiStack";
 import SettingsStack from "./Setting/SettingsStack";
-
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Screen({ navigation }) {
   return (
     <Tab.Navigator
-      initialRouteName="HomeStack"
+      initialRouteName="HospiStack"
       tabBarOptions={{
         activeTintColor: "red",
       }}

@@ -10,11 +10,13 @@ import AppointmentScreen from "../AppointmentScreen";
 const Stack = createStackNavigator();
 
 const ShoppingCartIcon = ({ navigation }) => {
+  const size_ = 35;
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Icon
         name="calendar"
-        size="35px"
+        size={size_}
         style={{
           marginRight: 20,
         }}
@@ -39,7 +41,7 @@ export default function LabReserStack() {
         name="LabReserScreen"
         component={LabReserScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "Choose a Lab",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -48,7 +50,7 @@ export default function LabReserStack() {
         name="LabTest"
         component={LabTest}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "Choose a Test",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -57,7 +59,7 @@ export default function LabReserStack() {
         name="Test"
         component={Test}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -66,7 +68,7 @@ export default function LabReserStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

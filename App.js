@@ -16,7 +16,7 @@ import { AsyncStorage } from "react-native";
 const Stack = createStackNavigator();
 
 export default function App() {
-  let initial_route = "Home";
+  let initial_route = "Screen";
 
   // const value = AsyncStorage.getItem("sid");
   // if (value != "") {

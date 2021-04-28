@@ -10,11 +10,13 @@ import DoctorProfile from "./DoctorProfile";
 const Stack = createStackNavigator();
 
 const ShoppingCartIcon = ({ navigation }) => {
+  const size_ = 35;
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <Icon
         name="calendar"
-        size="35px"
+        size={size_}
         style={{
           marginRight: 20,
         }}
@@ -39,7 +41,7 @@ export default function HospiStack() {
         name="Hospital"
         component={Hospital}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "Choose a Hospital",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -47,7 +49,7 @@ export default function HospiStack() {
         name="Doctor"
         component={Doctor}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "Choose a Doctor",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

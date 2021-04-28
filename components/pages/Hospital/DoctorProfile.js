@@ -16,16 +16,18 @@ const DoctorProfile = ({ navigation }) => {
   console.log(value);
   console.log(datevalue);
 
+  const size_ = 20;
+
   return (
     <ScrollView>
-      <View style={{ zIndex: "-1" }}>
+      <View style={{ elevation: -1 }}>
         <CardViewWithImage
-          width={90}
+          width="95%"
           source={require("../../../assets/doctor1.jpeg")}
           ima
           content={"Dr A is the best accross town and ...."}
           title={"Dr A - Allergy"}
-          imageWidth={100}
+          imageWidth="100%"
           imageHeight={400}
           roundedImage={false}
         />
@@ -35,7 +37,7 @@ const DoctorProfile = ({ navigation }) => {
           backgroundColor: "white",
           marginLeft: 10,
           marginRight: 10,
-          zIndex: -1,
+          elevation: -1,
         }}
         title="Timing"
         description="Monday - Wednesday - Friday 12am -> 4pm"
@@ -47,7 +49,7 @@ const DoctorProfile = ({ navigation }) => {
           marginLeft: 10,
           marginRight: 10,
           marginTop: 5,
-          zIndex: -1,
+          elevation: -1,
         }}
         title="Fee"
         description="100 000L.L/session"
@@ -75,10 +77,10 @@ const DoctorProfile = ({ navigation }) => {
         </View> */}
       </View>
 
-      <View style={{ width: 100, alignItems: "center" }}>
+      <View style={{ width: "100%", alignItems: "center" }}>
         <Button
-          style={{ zIndex: -1 }}
-          icon={<FontAwesome name="stethoscope" color="#ffffff" size="20px" />}
+          style={{ elevation: -1 }}
+          icon={<FontAwesome name="stethoscope" color="#ffffff" size={size_} />}
           buttonStyle={{
             borderRadius: 10,
             marginLeft: 0,

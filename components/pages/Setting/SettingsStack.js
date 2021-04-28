@@ -1,8 +1,8 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import Pass from "./Pass"
-import Prototype from "./Prototype"
+import Pass from "./Pass";
+import Prototype from "./Prototype";
 
 const Stack = createStackNavigator();
 

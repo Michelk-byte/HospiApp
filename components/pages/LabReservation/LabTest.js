@@ -11,9 +11,17 @@ const LabTest = ({ navigation }) => {
 
   console.log(search);
 
+  const size_ = 20;
+
   return (
     <ScrollView>
-      <View style={{ width: 100, marginLeft: 20 }}>
+      <View
+        style={{
+          width: "80%",
+          marginLeft: "10%",
+          marginTop: "5%",
+        }}
+      >
         <DropDownPicker
           items={[
             {
@@ -51,7 +59,7 @@ const LabTest = ({ navigation }) => {
         />
       </View>
 
-      <Card containerStyle={{ width: 80, marginLeft: 10, zIndex: -1 }}>
+      <Card containerStyle={{ width: "60%", marginLeft: "20%", elevation: -1 }}>
         <Card.Title>Complete Blood Count</Card.Title>
         <Card.Divider />
         <Card.Image
@@ -62,10 +70,10 @@ const LabTest = ({ navigation }) => {
           }}
         ></Card.Image>
         <Card.Divider />
-        <View style={{ width: 100, alignItems: "center" }}>
+        <View style={{ width: "100%", alignItems: "center" }}>
           <Button
             icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size="20px" />
+              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
             }
             buttonStyle={{
               borderRadius: 10,
@@ -81,7 +89,7 @@ const LabTest = ({ navigation }) => {
         </View>
       </Card>
 
-      <Card containerStyle={{ width: 80, marginLeft: 10 }}>
+      <Card containerStyle={{ width: "60%", marginLeft: "20%" }}>
         <Card.Title>Basic Metabolic Panel</Card.Title>
         <Card.Divider />
         <Card.Image
@@ -92,10 +100,10 @@ const LabTest = ({ navigation }) => {
           }}
         ></Card.Image>
         <Card.Divider />
-        <View style={{ width: 100, alignItems: "center" }}>
+        <View style={{ width: "100%", alignItems: "center" }}>
           <Button
             icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size="20px" />
+              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
             }
             buttonStyle={{
               borderRadius: 10,
@@ -110,7 +118,7 @@ const LabTest = ({ navigation }) => {
         </View>
       </Card>
 
-      <Card containerStyle={{ width: 80, marginLeft: 10 }}>
+      <Card containerStyle={{ width: "60%", marginLeft: "20%" }}>
         <Card.Title>Hemoglobin A1C</Card.Title>
         <Card.Divider />
         <Card.Image
@@ -121,10 +129,10 @@ const LabTest = ({ navigation }) => {
           }}
         ></Card.Image>
         <Card.Divider />
-        <View style={{ width: 100, alignItems: "center" }}>
+        <View style={{ width: "100%", alignItems: "center" }}>
           <Button
             icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size="20px" />
+              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
             }
             buttonStyle={{
               borderRadius: 10,

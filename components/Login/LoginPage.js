@@ -76,11 +76,7 @@ export default function Login({ navigation }) {
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.loginBtn}>
-        {/* <Text style={styles.loginText} onPress={() => handleSubmit()}> */}
-        <Text
-          style={styles.loginText}
-          onPress={() => navigation.navigate("Screen")}
-        >
+        <Text style={styles.loginText} onPress={() => handleSubmit()}>
           LOGIN
         </Text>
       </TouchableOpacity>

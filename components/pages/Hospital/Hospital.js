@@ -6,7 +6,6 @@ import { CardViewWithImage } from "react-native-simple-card-view";
 const AppointmentScreen = ({ navigation }) => {
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
-      <Text>Choose a Hospital</Text>
       <CardViewWithImage
         width="95%"
         source={{ uri: "https://placeimg.com/640/480/nature" }}

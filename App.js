@@ -11,23 +11,23 @@ import Screen from "./components/pages/Screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { AsyncStorage } from "react-native";
+import { getData, storeData } from "./Storage";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  let initial_route = "Screen";
-
-  // const value = AsyncStorage.getItem("sid");
-  // if (value != "") {
-  //   initial_route = "Screen";
-  // }
+  getData().then((result) => {
+    console.log(result);
+    if (result !== null) {
+      // console.log("hi");
+    }
+  });
 
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={initial_route}
+          initialRouteName="Home"
           screenOptions={{
             headerShown: false,
           }}

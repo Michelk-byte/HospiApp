@@ -3,7 +3,7 @@ import api from "./index";
 export const CheckLogIn = async (data) => {
   try {
     const res = await api.post("/user/login", data);
-    console.log(res);
+    // console.log(res);
     return res.data;
   } catch (error) {
     return -1;

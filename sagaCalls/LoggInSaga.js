@@ -1,8 +1,14 @@
 import { takeLatest, call, put } from "redux-saga/effects";
-import { CHECK_IN, errorin, datain, errorcred } from "../actions/action";
+import {
+  CHECK_IN,
+  errorin,
+  datain,
+  errorcred,
+  loggedin,
+} from "../actions/action";
 import { CheckLogIn } from "../api/apiCalls";
 
-import { AsyncStorage } from "react-native";
+import { getData, storeData } from "../Storage";
 
 export function* checkInWatcher() {
   yield takeLatest(CHECK_IN, checkInworker);
@@ -11,12 +17,14 @@ export function* checkInWatcher() {
 function* checkInworker(action) {
   let loge;
   try {
-    loge = yield call(CheckLogIn, { action });
-
+    const dat = action.payload;
+    const loge = yield call(CheckLogIn, dat);
+    console.log(loge.status);
     if (loge.status === 200) {
-      AsyncStorage.setItem("sid", loge._id);
+      storeData(loge.sid);
 
       yield put(datain(loge));
+      yield put(loggedin(true));
     } else {
       yield put(errorin(loge.message));
       yield put(errorcred(true));

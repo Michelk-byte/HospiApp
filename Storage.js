@@ -1,21 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-_storeData = async () => {
+export const storeData = async (value) => {
   try {
-    await AsyncStorage.setItem("@MySuperStore:key", "I like to save it.");
-  } catch (error) {
-    // Error saving data
+    await AsyncStorage.setItem("@storage_Key", value);
+  } catch (e) {
+    // saving error
   }
 };
 
-_retrieveData = async () => {
+export const getData = async () => {
   try {
-    const value = await AsyncStorage.getItem("TASKS");
-    if (value !== null) {
-      // We have data!!
-      console.log(value);
-    }
-  } catch (error) {
-    // Error retrieving data
+    const value = await AsyncStorage.getItem("@storage_Key");
+    return value;
+  } catch (e) {
+    // error reading value
   }
 };

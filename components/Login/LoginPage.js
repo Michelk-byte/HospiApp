@@ -12,7 +12,7 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { checkIn, errorcred } from "../../actions/action";
-import { AsyncStorage } from "react-native";
+import { getData, storeData } from "../../Storage";
 import Screen from "../pages/Screen";
 
 export default function Login({ navigation }) {
@@ -20,7 +20,13 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
 
   const message = useSelector((state) => state.Login.status);
-  //console.log(message)
+  const loggedin = useSelector((state) => state.Login.log);
+
+  console.log(loggedin);
+  if (loggedin) {
+    return <Screen />;
+  }
+  // console.log(message);
   const dispatch = useDispatch();
   if (message) {
     alert("invalid credentials");
@@ -36,11 +42,9 @@ export default function Login({ navigation }) {
     dispatch(checkIn(data));
   };
 
-  // const value = AsyncStorage.getItem("sid");
-  // console.log();
-  // if (value !== "") {
-  //   return <Screen />;
-  // }
+  getData().then((result) => {
+    // console.log(result);
+  });
 
   return (
     <View style={styles.container}>

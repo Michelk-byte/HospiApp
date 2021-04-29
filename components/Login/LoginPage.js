@@ -22,11 +22,10 @@ export default function Login({ navigation }) {
   const message = useSelector((state) => state.Login.status);
   const loggedin = useSelector((state) => state.Login.log);
 
-  console.log(loggedin);
   if (loggedin) {
     return <Screen />;
   }
-  // console.log(message);
+
   const dispatch = useDispatch();
   if (message) {
     alert("invalid credentials");

@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import Hospital from "./Hospital";
 import Doctor from "./Doctor";
-import AppointmentScreen from "../AppointmentScreen";
+import AppointmentScreen from "../Appointments/AppointmentScreen";
 import DoctorProfile from "./DoctorProfile";
 
 const Stack = createStackNavigator();

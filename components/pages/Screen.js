@@ -36,7 +36,7 @@ function Screen({ navigation }) {
         name="HospiStack"
         component={HospiStack}
         options={{
-          tabBarLabel: "Appointment",
+          tabBarLabel: "Hospital",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               name="hospital-box"
@@ -50,7 +50,7 @@ function Screen({ navigation }) {
         name="LabReserStack"
         component={LabReserStack}
         options={{
-          tabBarLabel: "LabReservation",
+          tabBarLabel: "Laboratory",
           tabBarIcon: ({ color, size }) => (
             <Fontisto name="injection-syringe" color={color} size={size} />
           ),

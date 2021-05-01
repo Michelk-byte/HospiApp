@@ -40,7 +40,7 @@ export default function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+            title: "Top Headlines",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

@@ -68,7 +68,7 @@ export default function LabReserStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          title: "",
+          title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

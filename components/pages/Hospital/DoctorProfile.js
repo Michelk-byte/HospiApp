@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Platform } from "react-native";
+import { View, Text, Platform, Dimensions } from "react-native";
 import { Button } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { CardViewWithImage } from "react-native-simple-card-view";
@@ -7,6 +7,8 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
+
+const width = Dimensions.get("window").width;
 
 const DoctorProfile = ({ navigation }) => {
   const [date, setDate] = useState(new Date(1598051730000));
@@ -45,12 +47,12 @@ const DoctorProfile = ({ navigation }) => {
     <ScrollView>
       <View style={{ elevation: -1 }}>
         <CardViewWithImage
-          width="95%"
+          width={width - 20}
           source={require("../../../assets/doctor1.jpeg")}
           ima
           content={"Dr A is the best accross town and ...."}
           title={"Dr A - Allergy"}
-          imageWidth="100%"
+          imageWidth={500}
           imageHeight={400}
           roundedImage={false}
         />

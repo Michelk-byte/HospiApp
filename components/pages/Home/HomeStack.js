@@ -40,7 +40,7 @@ export default function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-            title: "Top Headlines",
+          title: "Top Headlines",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -49,7 +49,7 @@ export default function HomeStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

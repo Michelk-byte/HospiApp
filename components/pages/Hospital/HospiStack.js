@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import Hospital from "./Hospital";
 import Doctor from "./Doctor";
-import AppointmentScreen from "../AppointmentScreen";
+import AppointmentScreen from "../Appointments/AppointmentScreen";
 import DoctorProfile from "./DoctorProfile";
 import {getHospitals} from "../../../actions/action"
 import {useDispatch,useSelector} from "react-redux";
@@ -74,7 +74,7 @@ export default function HospiStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

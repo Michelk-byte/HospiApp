@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LabReserScreen from "./LabReserScreen";
 import LabTest from "./LabTest";
 import Test from "./Test";
-import AppointmentScreen from "../AppointmentScreen";
+import AppointmentScreen from "../Appointments/AppointmentScreen";
 
 const Stack = createStackNavigator();
 
@@ -68,7 +68,7 @@ export default function LabReserStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          title: "",
+          title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

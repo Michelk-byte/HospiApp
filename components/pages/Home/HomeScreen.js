@@ -54,9 +54,6 @@ export default class HomeScreen extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={{ fontSize: 35, color: "#fff" }}>Top Headlines</Text>
-          </View>
           <View style={styles.news}>
             <FlatList
               data={this.state.articles}
@@ -83,11 +80,11 @@ export default class HomeScreen extends React.Component {
                             position: "absolute",
                             bottom: 0,
                             color: "#fff",
-                            fontSize: 20,
+                            fontSize: 15,
                             padding: 5,
                           }}
                         >
-                          {item.description || "Read More..."}
+                          {item.title || "Read More..."}
                         </Text>
                         <View
                           style={{
@@ -95,16 +92,6 @@ export default class HomeScreen extends React.Component {
                             justifyContent: "space-between",
                           }}
                         >
-                          <Text
-                            style={{
-                              margin: 5,
-                              fontStyle: "italic",
-                              color: "#b2bec3",
-                              fontSize: 10,
-                            }}
-                          >
-                            {item.title.toUpperCase()}
-                          </Text>
                           <Text
                             style={{
                               margin: 5,
@@ -137,15 +124,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#333",
+      paddingTop: 10,
   },
   bigcontainer: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#333",
-  },
-  header: {
-    padding: 30,
   },
   news: {
     flex: 1,

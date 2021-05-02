@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import HomeScreen from "./HomeScreen";
-import AppointmentScreen from "../AppointmentScreen";
+import AppointmentScreen from "../Appointments/AppointmentScreen";
 
 const Stack = createStackNavigator();
 
@@ -40,7 +40,7 @@ export default function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "Top Headlines",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
@@ -49,7 +49,7 @@ export default function HomeStack() {
         name="AppointmentScreen"
         component={AppointmentScreen}
         options={({ navigation }) => ({
-          headerTitle: () => <View></View>,
+          title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />

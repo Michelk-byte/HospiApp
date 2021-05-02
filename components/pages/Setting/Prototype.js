@@ -1,22 +1,19 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import {loggedOut} from "../../../actions/action"
-
+import { loggedOut } from "../../../actions/action";
+import { Login } from "../../Login/LoginPage";
 export default function Profile({ navigation }) {
+  const dispatch = useDispatch();
 
-  const dispatch=useDispatch();
-
-  function signOut  () {
-    const data={
-      id:1
-    }
+  function signOut() {
+    const data = {
+      id: 1,
+    };
     dispatch(loggedOut(data));
     console.log("SIGN OUT");
-    navigation.navigate("Login");
-   
+    return <Login />;
   }
-
 
   return (
     <View style={styles.container}>
@@ -36,7 +33,7 @@ export default function Profile({ navigation }) {
       </View>
 
       <View style={styles.body}>
-      <View style={styles.item}>
+        <View style={styles.item}>
           <View style={styles.iconContent}>
             <Image
               style={styles.icon}
@@ -66,9 +63,12 @@ export default function Profile({ navigation }) {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}
-            onPress={()=>navigation.navigate("ChangePass")}
-            >Change Password</Text>
+            <Text
+              style={styles.info}
+              onPress={() => navigation.navigate("ChangePass")}
+            >
+              Change Password
+            </Text>
           </View>
         </View>
 
@@ -82,13 +82,11 @@ export default function Profile({ navigation }) {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}
-            onPress={()=>signOut()}
-            >LogOut</Text>
+            <Text style={styles.info} onPress={() => signOut()}>
+              LogOut
+            </Text>
           </View>
         </View>
-
-      
       </View>
     </View>
   );

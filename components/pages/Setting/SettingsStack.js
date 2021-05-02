@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Pass from "./Pass";
 import Prototype from "./Prototype";
+import ChangePass from "./ChangePass"
+import Login from "../../Login/LoginPage"
 
 const Stack = createStackNavigator();
 
@@ -26,6 +28,16 @@ export default function SettingsStack() {
         name="Edit"
         component={Pass}
         options={{ title: "Edit Profile Page" }}
+      />
+        <Stack.Screen
+        name="ChangePass"
+        component={ChangePass}
+        options={{ title: "Change Password" }}
+      />
+       <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ title: "Log in" }}
       />
     </Stack.Navigator>
   );

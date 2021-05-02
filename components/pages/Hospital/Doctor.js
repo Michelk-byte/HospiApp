@@ -5,11 +5,27 @@ import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Fontisto";
 import DropDownPicker from "react-native-dropdown-picker";
+import {getDoctors} from "../../../actions/action"
+import {useDispatch,useSelector} from "react-redux"; 
 
-const Doctor = ({ navigation }) => {
+
+
+const Doctor = ({route,navigation }) => {
   const [search, setSearch] = React.useState("Dermatologie");
 
-  console.log(search);
+  const { id } = route.params;
+  
+  const Doctors=useSelector(state=>state.Ressource.doctors)
+  const dispatch=useDispatch();
+
+  React.useEffect(()=>{
+    console.log(route.params)
+    dispatch(getDoctors(id))
+  },[])
+
+  
+  
+  console.log("Doctors are: ",Doctors);
 
   const size_ = 20;
   return (
@@ -58,12 +74,14 @@ const Doctor = ({ navigation }) => {
         />
       </View>
 
-      <Card containerStyle={{ width: "60%", marginLeft: "20%", elevation: -1 }}>
-        <Card.Title>Dr. A - Allergy and Immunology</Card.Title>
+        {
+          Doctors.map(doct=>(
+            <Card containerStyle={{ width: "60%", marginLeft: "20%", elevation: -1 }}>
+        <Card.Title>Dr.{doct.DoctorName}</Card.Title>
         <Card.Divider />
         <Card.Image
           containerStyle={{ maxheight: "1000000000000" }}
-          source={require("../../../assets/doctor1.jpeg")}
+          source={`https://hospiapp-backend.herokuapp.com/static/images/${doct.DoctorPicture}`}
         ></Card.Image>
         <Card.Divider />
         <View style={{ width: "100%", alignItems: "center" }}>
@@ -84,59 +102,14 @@ const Doctor = ({ navigation }) => {
           />
         </View>
       </Card>
+          ))
+        }
 
-      <Card containerStyle={{ width: "60%", marginLeft: "20%" }}>
-        <Card.Title>Dr. B - Anesthesiology</Card.Title>
-        <Card.Divider />
-        <Card.Image
-          containerStyle={{ maxheight: "1000000000000" }}
-          source={require("../../../assets/doctor2.jpeg")}
-        ></Card.Image>
-        <Card.Divider />
-        <View style={{ width: "100%", alignItems: "center" }}>
-          <Button
-            icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
-            }
-            buttonStyle={{
-              borderRadius: 10,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-              backgroundColor: "red",
-            }}
-            title="BOOK AN APPOINTMENT"
-            titleStyle={{ marginLeft: 10, fontSize: 15 }}
-          />
-        </View>
-      </Card>
+     
 
-      <Card containerStyle={{ width: "60%", marginLeft: "20%" }}>
-        <Card.Title>Dr. C - Dermatology</Card.Title>
-        <Card.Divider />
-        <Card.Image
-          containerStyle={{ maxheight: "1000000000000" }}
-          source={require("../../../assets/doctor3.jpeg")}
-        ></Card.Image>
-        <Card.Divider />
-        <View style={{ width: "100%", alignItems: "center" }}>
-          <Button
-            icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
-            }
-            buttonStyle={{
-              borderRadius: 10,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-              backgroundColor: "red",
-            }}
-            title="BOOK AN APPOINTMENT"
-            onPress={() => navigation.navigate("DoctorProfile")}
-            titleStyle={{ marginLeft: 10, fontSize: 15 }}
-          />
-        </View>
-      </Card>
+     
+
+     
     </ScrollView>
   );
 };

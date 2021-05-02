@@ -27,3 +27,25 @@ export const logOut = async () => {
     console.log(error);
   }
 };
+
+export const getHospitals= async () =>{
+  try{
+    const res=await api.get("/user/hospital");
+    return res.data;
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+export const getDoctors=async (data) =>{
+  try{
+    console.log("data in APIgetDoct : "+ data);
+    const id=data
+    const res=await api.get(`user/hospital/${id}`);
+    return res.data;
+  }
+  catch(error){
+    console.log(error);
+  }
+}

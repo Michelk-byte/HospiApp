@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Platform } from "react-native";
 import { Button } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -7,6 +7,7 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
+
 
 const DoctorProfile = ({ navigation }) => {
   const [date, setDate] = useState(new Date(1598051730000));

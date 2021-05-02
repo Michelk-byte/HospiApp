@@ -6,11 +6,19 @@ import Hospital from "./Hospital";
 import Doctor from "./Doctor";
 import AppointmentScreen from "../AppointmentScreen";
 import DoctorProfile from "./DoctorProfile";
+import {getHospitals} from "../../../actions/action"
+import {useDispatch,useSelector} from "react-redux";
 
 const Stack = createStackNavigator();
 
 const ShoppingCartIcon = ({ navigation }) => {
   const size_ = 35;
+
+  const dispatch = useDispatch();
+  function nav (){
+   
+    navigation.navigate("AppointmentScreen");
+  }
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -20,7 +28,7 @@ const ShoppingCartIcon = ({ navigation }) => {
         style={{
           marginRight: 20,
         }}
-        onPress={() => navigation.navigate("AppointmentScreen")}
+        onPress={() =>nav()}
       />
     </View>
   );

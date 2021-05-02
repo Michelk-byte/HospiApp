@@ -16,7 +16,7 @@ const PickerDemo = ({navigation}) => {
     const data={
       email:email,
       Password:password,
-      height:value,
+      weight:value,
       height:height,
       phone:phone,
       location:location,

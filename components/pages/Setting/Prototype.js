@@ -1,7 +1,23 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import {loggedOut} from "../../../actions/action"
 
 export default function Profile({ navigation }) {
+
+  const dispatch=useDispatch();
+
+  function signOut  () {
+    const data={
+      id:1
+    }
+    dispatch(loggedOut(data));
+    console.log("SIGN OUT");
+    navigation.navigate("Login");
+   
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -20,50 +36,7 @@ export default function Profile({ navigation }) {
       </View>
 
       <View style={styles.body}>
-        <View style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri: "https://img.icons8.com/color/70/000000/cottage.png",
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>Home</Text>
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri:
-                  "https://img.icons8.com/color/70/000000/administrator-male.png",
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>Blah</Text>
-          </View>
-        </View>
-
-        <View style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri: "https://img.icons8.com/color/70/000000/filled-like.png",
-              }}
-            />
-          </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>O+</Text>
-          </View>
-        </View>
-
-        <View style={styles.item}>
+      <View style={styles.item}>
           <View style={styles.iconContent}>
             <Image
               style={styles.icon}
@@ -81,6 +54,41 @@ export default function Profile({ navigation }) {
             </Text>
           </View>
         </View>
+
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri:
+                  "https://img.icons8.com/color/70/000000/administrator-male.png",
+              }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}
+            onPress={()=>navigation.navigate("ChangePass")}
+            >Change Password</Text>
+          </View>
+        </View>
+
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://img.icons8.com/color/70/000000/filled-like.png",
+              }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}
+            onPress={()=>signOut()}
+            >LogOut</Text>
+          </View>
+        </View>
+
+      
       </View>
     </View>
   );

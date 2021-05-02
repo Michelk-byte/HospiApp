@@ -7,8 +7,16 @@ export const DATA_IN = "DATA_IN"; //4
 export const MESSAGE_UP = "MESSAGE_UP"; //5
 export const STATUS = "STATUS"; //6
 export const REGISTER = "REGISTER"; //7
-export const ERROR_CRED = "ERROR_CRED"; //7
-export const LOGGED_IN = "LOGGED_IN"; //7
+export const ERROR_CRED = "ERROR_CRED"; //8
+
+export const LOGGED_IN = "LOGGED_IN"; //9
+export const LOG_OUT="LOG_OUT" //10
+
+export const GET_HOSPITALS="GET_HOSPITALS"//11
+export const SET_HOSPITALS="SET_HOSPITALS"//12
+
+export const GET_DOCTORS="GET_DOCTORS"//13
+export const SET_DOCTORS="SET_DOCTORS"//14
 
 //1
 export const checkIn = (data) => ({
@@ -58,8 +66,39 @@ export const errorcred = (data) => ({
   payload: data,
 });
 
-//8
+//9
 export const loggedin = (data) => ({
   type: LOGGED_IN,
+  payload: data,
+});
+
+//10
+export const loggedOut = (data) => ({
+  type: LOG_OUT,
+  payload: data,
+});
+
+//11
+export const getHospitals = () => ({
+  type: GET_HOSPITALS,
+
+});
+
+
+//12
+export const setHospitals = (data) => ({
+  type: SET_HOSPITALS,
+  payload: data,
+});
+
+//13
+export const getDoctors = (data) => ({
+  type: GET_DOCTORS,
+  payload: data,
+});
+
+//14
+export const setDoctors = (data) => ({
+  type: SET_DOCTORS,
   payload: data,
 });

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { View, Text, Platform, Dimensions } from "react-native";
+
+import React, { useEffect, useState } from "react";
+import { View, Text, Platform } from "react-native";
+
 import { Button } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { CardViewWithImage } from "react-native-simple-card-view";
@@ -8,7 +10,9 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 
+
 const width = Dimensions.get("window").width;
+
 
 const DoctorProfile = ({ navigation }) => {
   const [date, setDate] = useState(new Date(1598051730000));

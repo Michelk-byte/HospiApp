@@ -9,7 +9,11 @@ import {
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp, register } from "../../actions/action";
+import { Picker } from '@react-native-picker/picker'
+import Slider from '@react-native-community/slider';
+
 import Login from "./LoginPage";
+
 
 export default function Signup({ navigation }) {
   const [username, setUName] = useState("");
@@ -18,6 +22,10 @@ export default function Signup({ navigation }) {
   const [pass, SetPassword] = useState("");
   const [pnumber, SetPnumber] = useState("");
   const [verifypass, SetVerifypass] = useState("");
+
+  const [blood, setBlood] = useState('A+');
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(50);
 
   const dispatch = useDispatch();
 
@@ -47,7 +55,10 @@ export default function Signup({ navigation }) {
       password: pass,
       name: username,
       pnumber: pnumber,
-      verifypass: verifypass,
+      verifypass: verifypass, 
+      weight:weight,
+      height:height,
+      blood:blood
     };
     dispatch(signUp(data));
   };
@@ -99,6 +110,48 @@ export default function Signup({ navigation }) {
             keyboardType=""
             onChangeText={(pnumber) => SetPnumber(pnumber)}
           />
+           <TextInput
+            style={styles.inputBox}
+            underlineColorAndroid="rgba(0,0,0,0)"
+            placeholder="Weight Kg"
+            
+            placeholderTextColor="#ffffff"
+            onChangeText={(w) => setWeight(w)}
+          />
+            <TextInput
+            style={styles.inputBox}
+            underlineColorAndroid="rgba(0,0,0,0)"
+            placeholder="height cm"
+            
+            placeholderTextColor="#ffffff"
+            onChangeText={(w) => setHeight(w)}
+          />
+
+<Picker style={{ marginTop:10,}}
+          selectedValue={blood}
+          onValueChange={currentBlood => setBlood(currentBlood)}>
+          <Picker.Item label="A+" value="A+" />
+          <Picker.Item label="A-" value="A-" />
+          <Picker.Item label="B+" value="B+" />
+          <Picker.Item label="B-" value="B-" />
+          <Picker.Item label="O+" value="O+" />
+          <Picker.Item label="O-" value="O-" />
+          <Picker.Item label="AB+" value="AB+" />
+          <Picker.Item label="AB-" value="AB-" />
+        </Picker>
+        <Text
+          style={{
+            fontSize: 30,
+            color: '#fff',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          Blood type: {blood}
+        </Text>
+
+       
+
+
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText} onPress={() => handleS()}>
               Register

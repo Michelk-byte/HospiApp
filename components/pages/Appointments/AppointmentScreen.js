@@ -3,14 +3,6 @@ import {StyleSheet, Alert, Text, View, SafeAreaView, TouchableOpacity} from 'rea
 import {Agenda} from 'react-native-calendars';
 
 const todayDate = new Date();
-//DoctorName
-// location
-// HospitalName
-// checkup or lab test
-// time left
-// DateTime
-// DayLife
-// Type
 
 const AppointmentScreen = ({ navigation }) => {
     const [items, setItems] = useState({})

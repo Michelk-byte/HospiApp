@@ -4,8 +4,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
-import Login from "./components/Login/LoginPage";
-import Signup from "./components/Login/SignupPage";
 import LoginStack from "./components/Login/LoginStack";
 import Screen from "./components/pages/Screen";
 

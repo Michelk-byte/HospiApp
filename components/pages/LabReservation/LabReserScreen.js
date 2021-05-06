@@ -7,7 +7,7 @@ const width = Dimensions.get("window").width;
 
 const LabReserScreen = ({ navigation }) => {
   return (
-    <ScrollView style={{ backgroundColor: "black" }}>
+    <ScrollView style={{ backgroundColor: "white" }}>
       <CardViewWithImage
         width={width - 20}
         source={{

@@ -22,7 +22,9 @@ export default function SettingsStack() {
       <Stack.Screen
         name="Prototype"
         component={Prototype}
-        options={{ title: "Setting Page" }}
+        options={{
+            title: "Setting Page",
+            headerLeft: ()=> null,}}
       />
       <Stack.Screen
         name="Edit"

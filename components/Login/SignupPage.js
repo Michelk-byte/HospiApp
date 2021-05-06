@@ -55,7 +55,7 @@ export default function Signup({ navigation }) {
       password: pass,
       name: username,
       pnumber: pnumber,
-      verifypass: verifypass, 
+      verifypass: verifypass,
       weight:weight,
       height:height,
       blood:blood
@@ -114,7 +114,7 @@ export default function Signup({ navigation }) {
             style={styles.inputBox}
             underlineColorAndroid="rgba(0,0,0,0)"
             placeholder="Weight Kg"
-            
+
             placeholderTextColor="#ffffff"
             onChangeText={(w) => setWeight(w)}
           />
@@ -122,7 +122,7 @@ export default function Signup({ navigation }) {
             style={styles.inputBox}
             underlineColorAndroid="rgba(0,0,0,0)"
             placeholder="height cm"
-            
+
             placeholderTextColor="#ffffff"
             onChangeText={(w) => setHeight(w)}
           />
@@ -149,7 +149,7 @@ export default function Signup({ navigation }) {
           Blood type: {blood}
         </Text>
 
-       
+
 
 
           <TouchableOpacity style={styles.button}>
@@ -165,7 +165,7 @@ export default function Signup({ navigation }) {
           <TouchableOpacity>
             <Text
               style={styles.signupButton}
-              onPress={() => navigation.navigate("Login")}
+              onPress={() => navigation.navigate("LoginScreen")}
             >
               {" "}
               Sign in

@@ -18,6 +18,7 @@ const ShoppingCartIcon = ({ navigation }) => {
         size={size_}
         style={{
           marginRight: 20,
+            color :'white',
         }}
         onPress={() => navigation.navigate("AppointmentScreen")}
       />
@@ -31,7 +32,7 @@ export default function HomeStack() {
       initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "red" },
+        headerStyle: { backgroundColor: "#1498D5" },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
       }}
@@ -40,6 +41,7 @@ export default function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
+            headerLeft: ()=> null,
           title: "Top Headlines",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}

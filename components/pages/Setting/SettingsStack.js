@@ -16,22 +16,25 @@ export default function SettingsStack() {
       initialRouteName="ProfilePage"
       screenOptions={{
         headerShown: true,
-          headerStyle: { backgroundColor: "white" },
-          headerTintColor: "black",
-          headerTitleStyle: { fontWeight: "bold" },
+        headerStyle: { backgroundColor: "white" },
+        headerTintColor: "black",
+        headerTitleStyle: { fontWeight: "bold" },
       }}
     >
-
-        <Stack.Screen
-            name="ProfilePage"
-            component={ProfilePage}
-            options={{ title: "Profile", headerTitleAlign: 'center'}}
-        />
-        <Stack.Screen
-            name="EditPage"
-            component={EditPage}
-            options={{ title: "Edit Profile" }}
-        />
+      <Stack.Screen
+        name="ProfilePage"
+        component={ProfilePage}
+        options={{
+          title: "Profile",
+          headerTitleAlign: "center",
+          headerLeft: () => null,
+        }}
+      />
+      <Stack.Screen
+        name="EditPage"
+        component={EditPage}
+        options={{ title: "Edit Profile" }}
+      />
       {/*<Stack.Screen*/}
       {/*  name="Prototype"*/}
       {/*  component={Prototype}*/}

@@ -17,9 +17,14 @@ const Tab = createBottomTabNavigator();
 function Screen({ navigation }) {
   return (
     <Tab.Navigator
-      initialRouteName="HospiStack"
+      initialRouteName="HomeStack"
       tabBarOptions={{
-        activeTintColor: "red",
+        activeTintColor: "#1498D5",
+          style:{
+              backgroundColor:'white',
+              borderTopWidth:1,
+              borderTopColor:'white'
+          },
       }}
     >
       <Tab.Screen

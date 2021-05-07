@@ -12,17 +12,17 @@ const AppointmentScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
   const Hospitals=useSelector(state=>state.Ressource.hospitals)
-  
+
   useEffect(()=>{
     // dispatch(setPage(1));
-    
+
     console.log("in useEffect");
     dispatch(getHospitals());
 
    },[])
 
   return (
-    <ScrollView style={{ backgroundColor: "black" }}>
+    <ScrollView style={{ backgroundColor: "white" }}>
       {
         Hospitals.map(hosp=>(
           <CardViewWithImage

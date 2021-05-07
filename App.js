@@ -4,8 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
-import Login from "./components/Login/LoginPage";
-import Signup from "./components/Login/SignupPage";
+import LoginStack from "./components/Login/LoginStack";
 import Screen from "./components/pages/Screen";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -32,8 +31,7 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="LogScreen" component={LoginStack} />
           <Stack.Screen name="Screen" component={Screen} />
         </Stack.Navigator>
       </NavigationContainer>

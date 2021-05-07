@@ -16,7 +16,7 @@ const ShoppingCartIcon = ({ navigation }) => {
 
   const dispatch = useDispatch();
   function nav (){
-   
+
     navigation.navigate("AppointmentScreen");
   }
 
@@ -27,6 +27,7 @@ const ShoppingCartIcon = ({ navigation }) => {
         size={size_}
         style={{
           marginRight: 20,
+            color :'white',
         }}
         onPress={() =>nav()}
       />
@@ -40,7 +41,7 @@ export default function HospiStack() {
       initialRouteName="Hospital"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "red" },
+        headerStyle: { backgroundColor: "#1498D5" },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
       }}
@@ -49,6 +50,7 @@ export default function HospiStack() {
         name="Hospital"
         component={Hospital}
         options={({ navigation }) => ({
+            headerLeft: ()=> null,
           title: "Choose a Hospital",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}

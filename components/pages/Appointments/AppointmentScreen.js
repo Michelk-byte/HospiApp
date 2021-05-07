@@ -3,14 +3,6 @@ import {StyleSheet, Alert, Text, View, SafeAreaView, TouchableOpacity} from 'rea
 import {Agenda} from 'react-native-calendars';
 
 const todayDate = new Date();
-//DoctorName
-// location
-// HospitalName
-// checkup or lab test
-// time left
-// DateTime
-// DayLife
-// Type
 
 const AppointmentScreen = ({ navigation }) => {
     const [items, setItems] = useState({})
@@ -40,12 +32,12 @@ const AppointmentScreen = ({ navigation }) => {
                 theme={{
                     agendaDayTextColor: 'white',
                     agendaDayNumColor: 'white',
-                    agendaKnobColor: 'red',
+                    agendaKnobColor: '#1498D5',
                     agendaTodayColor: 'white',
-                    todayTextColor: 'red',
+                    todayTextColor: '#1498D5',
                     dayTextColor: 'white',
-                    dotColor: 'red',
-                    selectedDayBackgroundColor: 'red',
+                    dotColor: '#1498D5',
+                    selectedDayBackgroundColor: '#1498D5',
                     selectedDayTextColor: 'white',
                     backgroundColor: '#333',
                     calendarBackground: '#333',

@@ -21,6 +21,7 @@ export default function SettingsStack() {
           headerTitleStyle: { fontWeight: "bold" },
       }}
     >
+
         <Stack.Screen
             name="ProfilePage"
             component={ProfilePage}
@@ -41,6 +42,7 @@ export default function SettingsStack() {
       {/*  component={Pass}*/}
       {/*  options={{ title: "Edit Profile Page" }}*/}
       {/*/>*/}
+
       <Stack.Screen
         name="ChangePass"
         component={ChangePass}

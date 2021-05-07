@@ -19,6 +19,7 @@ const ShoppingCartIcon = ({ navigation }) => {
         size={size_}
         style={{
           marginRight: 20,
+            color :'white',
         }}
         onPress={() => navigation.navigate("AppointmentScreen")}
       />
@@ -32,7 +33,7 @@ export default function LabReserStack() {
       initialRouteName="LabReserScreen"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "red" },
+        headerStyle: { backgroundColor: "#1498D5" },
         headerTintColor: "#fff",
         headerTitleStyle: { fontWeight: "bold" },
       }}
@@ -41,6 +42,7 @@ export default function LabReserStack() {
         name="LabReserScreen"
         component={LabReserScreen}
         options={({ navigation }) => ({
+            headerLeft: ()=> null,
           title: "Choose a Lab",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}

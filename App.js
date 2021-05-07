@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 
 export default function App() {
   getData().then((result) => {
-    console.log(result);
+    // console.log(result);
     if (result !== null) {
       // console.log("hi");
     }

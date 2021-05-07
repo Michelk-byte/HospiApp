@@ -19,7 +19,7 @@ function* checkInworker(action) {
   try {
     const dat = action.payload;
     const loge = yield call(CheckLogIn, dat);
-    console.log(loge.status);
+    // console.log(loge.status);
     if (loge.status === 200) {
       storeData(loge.sid);
 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { Text, StyleSheet, View, TextInput, Button} from 'react-native';
-
+import {Text, StyleSheet, View, TextInput, Button, TouchableOpacity} from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 
 const ChangePasword = ({navigation}) => {
   const [oldPass, setOldPass] = useState('');
@@ -18,32 +18,58 @@ const ChangePasword = ({navigation}) => {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.formLabel}> Change Password </Text>
-      <View>
-        <TextInput placeholder="Old Password" style={styles.inputStyle} onChangeText={(data)=>setOldPass(data)}  />
-       
-        <TextInput
-          secureTextEntry={true}
-          placeholder="New password"
-          style={styles.inputStyle}
-          onChangeText={(data)=>setNewPass(data)}
-        />
-         <TextInput placeholder="Verify Password" style={styles.inputStyle} onChangeText={(data)=>setVerify(data)} />
-
-     
-        <View style={{marginTop:20}}>
-        <Button
-          
-          title="Submit"
-          color="blue"
-          onPress={() => handleSubmit()}
-        >
-          <Text>SUBMIT</Text>
-          </Button> 
+      <View style={styles.container}>
+        <View style={{alignItems: 'center'}}>
+          <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>Please enter your new password below</Text>
         </View>
-       
-      </View>
+        <View style={styles.action}>
+          <TextInput
+              onChangeText={(data)=>setOldPass(data)}
+              placeholder="Old Password"
+              placeholderTextColor="#666666"
+              autoCorrect={false}
+              style={[
+                styles.textInput,
+                {
+                  color: 'black',
+                },
+              ]}
+          />
+        </View>
+        <View style={styles.action}>
+          <TextInput
+              secureTextEntry={true}
+              onChangeText={(data)=>setNewPass(data)}
+              placeholder="New Password"
+              placeholderTextColor="#666666"
+              autoCorrect={false}
+              style={[
+                styles.textInput,
+                {
+                  color: 'black',
+                },
+              ]}
+          />
+        </View>
+        <View style={styles.action}>
+          <TextInput
+              onChangeText={(data)=>setVerify(data)}
+              placeholder="Verify Password"
+              placeholderTextColor="#666666"
+              autoCorrect={false}
+              style={[
+                styles.textInput,
+                {
+                  color: 'black',
+                },
+              ]}
+          />
+        </View>
+        <View style={{marginTop:20}}>
+          <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()}>
+            <Text style={styles.panelButtonTitle}>Submit</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 };
@@ -51,32 +77,26 @@ const ChangePasword = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DC143C',
+  },
+  action: {
+    flexDirection: 'row',
+    marginTop: 10,
+    marginBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#f2f2f2',
+    paddingBottom: 5,
+  },
+  submitButton: {
+    padding: 15,
+    borderRadius: 10,
+    backgroundColor: '#1498D5',
     alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 10,
   },
-
-  formLabel: {
-    fontSize: 20,
-    color: '#fff',
-  },
-  inputStyle: {
-    marginTop: 20,
-    width: 300,
-    height: 40,
-    paddingHorizontal: 10,
-    borderRadius: 50,
-    backgroundColor: '#b9e4c9',
-  },
-  formText: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: '#fff',
-    fontSize: 20,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 20,
+  panelButtonTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 

@@ -73,7 +73,12 @@ const Doctor = ({ route, navigation }) => {
       {Doctors.map((doct) => (
         <Card
           key={doct._id}
-          containerStyle={{ width: "60%", marginLeft: "20%", elevation: -1 }}
+          containerStyle={{
+            width: "60%",
+            marginLeft: "20%",
+            elevation: -1,
+            zIndex: -1,
+          }}
         >
           <Card.Title>Dr.{doct.DoctorName}</Card.Title>
           <Card.Divider />

@@ -5,33 +5,24 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { CardViewWithImage } from "react-native-simple-card-view";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const width = Dimensions.get("window").width;
 
 const Test = ({ navigation }) => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    console.log(selectedDate);
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
   };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
   };
 
-  const showDatepicker = () => {
-    showMode("date");
-  };
-
-  const showTimepicker = () => {
-    showMode("time");
+  const handleConfirm = (date) => {
+    console.log("A date has been picked: ", date);
+    hideDatePicker();
   };
 
   const size_ = 20;
@@ -77,6 +68,7 @@ const Test = ({ navigation }) => {
         style={{
           alignItems: "center",
           elevation: -1,
+          zIndex: -1,
           marginTop: 10,
           display: "flex",
           justifyContent: "space-around",
@@ -85,28 +77,19 @@ const Test = ({ navigation }) => {
         }}
       >
         <View>
-          <Button onPress={showDatepicker} title="Pick a date!" />
-        </View>
-        <View>
-          <Button onPress={showTimepicker} title="Pick a time!" />
-        </View>
-        {show && (
-          <DateTimePicker
-            timeZoneOffsetInMinutes={0}
-            testID="dateTimePicker"
-            minuteInterval={30}
-            value={date}
-            mode={mode}
-            // is24Hour={true}
-            display="default"
-            onChange={onChange}
+          <Button title="Show Date Time Picker" onPress={showDatePicker} />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="datetime"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
           />
-        )}
+        </View>
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>
         <Button
-          style={{ elevation: -1 }}
+          style={{ elevation: -1, zIndex: -1 }}
           icon={<FontAwesome name="stethoscope" color="#ffffff" size={size_} />}
           buttonStyle={{
             borderRadius: 10,

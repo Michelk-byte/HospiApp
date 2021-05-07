@@ -59,7 +59,14 @@ const LabTest = ({ navigation }) => {
         />
       </View>
 
-      <Card containerStyle={{ width: "60%", marginLeft: "20%", elevation: -1 }}>
+      <Card
+        containerStyle={{
+          width: "60%",
+          marginLeft: "20%",
+          elevation: -1,
+          zIndex: -1,
+        }}
+      >
         <Card.Title>Complete Blood Count</Card.Title>
         <Card.Divider />
         <Card.Image

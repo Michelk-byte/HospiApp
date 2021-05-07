@@ -7,46 +7,31 @@ import { CardViewWithImage } from "react-native-simple-card-view";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 const width = Dimensions.get("window").width;
 
 const DoctorProfile = ({ navigation }) => {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState("date");
-  const [show, setShow] = useState(false);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const [mytime, setmytime] = useState("10:00");
-  const [mydate, setmydate] = useState(new Date());
-
-  // console.log(mytime);
-  // console.log(mydate);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    console.log(selectedDate);
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
   };
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
   };
 
-  const showDatepicker = () => {
-    showMode("date");
-  };
-
-  const showTimepicker = () => {
-    showMode("time");
+  const handleConfirm = (date) => {
+    console.log("A date has been picked: ", date);
+    hideDatePicker();
   };
 
   const size_ = 20;
 
   return (
     <ScrollView>
-      <View style={{ elevation: -1 }}>
+      <View style={{ elevation: -1, zIndex: -1 }}>
         <CardViewWithImage
           width={width - 20}
           source={require("../../../assets/doctor1.jpeg")}
@@ -64,6 +49,7 @@ const DoctorProfile = ({ navigation }) => {
           marginLeft: 10,
           marginRight: 10,
           elevation: -1,
+          zIndex: -1,
         }}
         title="Timing"
         description="Monday - Wednesday - Friday 12am -> 4pm"
@@ -76,6 +62,7 @@ const DoctorProfile = ({ navigation }) => {
           marginRight: 10,
           marginTop: 5,
           elevation: -1,
+          zIndex: -1,
         }}
         title="Fee"
         description="100 000L.L/session"
@@ -94,28 +81,19 @@ const DoctorProfile = ({ navigation }) => {
         }}
       >
         <View>
-          <Button onPress={showDatepicker} title="Pick a date!" />
-        </View>
-        <View>
-          <Button onPress={showTimepicker} title="Pick a time!" />
-        </View>
-        {show && (
-          <DateTimePicker
-            timeZoneOffsetInMinutes={0}
-            testID="dateTimePicker"
-            minuteInterval={30}
-            value={date}
-            mode={mode}
-            // is24Hour={true}
-            display="default"
-            onChange={onChange}
+          <Button title="Show Date Time Picker" onPress={showDatePicker} />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisible}
+            mode="datetime"
+            onConfirm={handleConfirm}
+            onCancel={hideDatePicker}
           />
-        )}
+        </View>
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>
         <Button
-          style={{ elevation: -1 }}
+          style={{ elevation: -1, zIndex: -1 }}
           icon={<FontAwesome name="stethoscope" color="#ffffff" size={size_} />}
           buttonStyle={{
             borderRadius: 10,

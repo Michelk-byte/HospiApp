@@ -84,7 +84,9 @@ const Doctor = ({ route, navigation }) => {
           <Card.Divider />
           <Card.Image
             containerStyle={{ maxheight: "1000000000000" }}
-            source={`https://hospiapp-backend.herokuapp.com/static/images/${doct.DoctorPicture}`}
+            source={{
+              uri: `https://hospiapp-backend.herokuapp.com/static/images/${doct.DoctorPicture}`,
+            }}
           ></Card.Image>
           <Card.Divider />
           <View style={{ width: "100%", alignItems: "center" }}>

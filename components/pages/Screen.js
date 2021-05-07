@@ -65,9 +65,9 @@ function Screen({ navigation }) {
         name="SettingsStack"
         component={SettingsStack}
         options={{
-          tabBarLabel: "Settings",
+          tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="md-settings" color={color} size={size} />
+            <Icon name="person-outline" color={color} size={size} />
           ),
         }}
       />

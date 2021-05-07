@@ -80,7 +80,8 @@ const Doctor = ({ route, navigation }) => {
             zIndex: -1,
           }}
         >
-          <Card.Title>Dr.{doct.DoctorName}</Card.Title>
+          <Card.Title>Dr. {doct.DoctorName}</Card.Title>
+          <Card.Title>{doct.DoctorSpecialty}</Card.Title>
           <Card.Divider />
           <Card.Image
             containerStyle={{ maxheight: "1000000000000" }}

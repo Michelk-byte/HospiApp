@@ -30,18 +30,17 @@ const AppointmentScreen = ({ navigation }) => {
                 selected={todayDate}
                 renderItem={renderItem}
                 theme={{
-                    agendaDayTextColor: 'white',
-                    agendaDayNumColor: 'white',
+                    agendaDayTextColor: 'black',
+                    agendaDayNumColor: 'black',
                     agendaKnobColor: '#1498D5',
-                    agendaTodayColor: 'white',
+                    agendaTodayColor: '#1498D5',
                     todayTextColor: '#1498D5',
-                    dayTextColor: 'white',
+                    dayTextColor: 'black',
                     dotColor: '#1498D5',
                     selectedDayBackgroundColor: '#1498D5',
                     selectedDayTextColor: 'white',
-                    backgroundColor: '#333',
-                    calendarBackground: '#333',
-                    monthTextColor: 'white',
+                    backgroundColor: 'white',
+                    calendarBackground: 'white',
                 }}
             />
         </SafeAreaView>

@@ -1,8 +1,6 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
-// import Pass from "./Pass";
-// import Prototype from "./Prototype";
 import ChangePass from "./ChangePass";
 import ProfilePage from "./ProfilePage";
 import EditPage from "./EditPage";

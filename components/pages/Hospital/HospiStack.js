@@ -27,7 +27,7 @@ const ShoppingCartIcon = ({ navigation }) => {
         size={size_}
         style={{
           marginRight: 20,
-            color :'white',
+            color :'black',
         }}
         onPress={() =>nav()}
       />
@@ -41,8 +41,8 @@ export default function HospiStack() {
       initialRouteName="Hospital"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "#1498D5" },
-        headerTintColor: "#fff",
+        headerStyle: { backgroundColor: "white" },
+        headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold" },
       }}
     >

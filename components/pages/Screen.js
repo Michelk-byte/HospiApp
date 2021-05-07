@@ -19,11 +19,12 @@ function Screen({ navigation }) {
     <Tab.Navigator
       initialRouteName="HomeStack"
       tabBarOptions={{
-        activeTintColor: "#1498D5",
+        activeTintColor: "white",
+          inactiveTintColor:'#c8c8c8',
           style:{
-              backgroundColor:'white',
+              backgroundColor:'#1498D5',
               borderTopWidth:1,
-              borderTopColor:'white'
+              borderTopColor:'#1498D5'
           },
       }}
     >
@@ -67,7 +68,7 @@ function Screen({ navigation }) {
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <Icon name="person-outline" color={color} size={size} />
+            <Icon name="person" color={color} size={size} />
           ),
         }}
       />

@@ -11,8 +11,8 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import OtherIcon from "react-native-vector-icons/Ionicons";
 import { useDispatch } from "react-redux";
 import { loggedOut } from "../../../actions/action";
-import Login from "../../Login/LoginPage";
 import { ScrollView } from "react-native-gesture-handler";
+import * as Updates from "expo-updates";
 
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
@@ -21,9 +21,9 @@ export default function Profile({ navigation }) {
     const data = {
       id: 1,
     };
-    dispatch(loggedOut(data));
+    // dispatch(loggedOut(data));
     console.log("SIGN OUT");
-    return <Login />;
+    Updates.reloadAsync();
   }
 
   return (

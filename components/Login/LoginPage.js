@@ -59,7 +59,7 @@ export default function Login({ navigation }) {
           <TextInput
             placeholder="Example: jbakouny@example.com"
             name="email"
-            placeholderTextColor='#003f5c'
+            placeholderTextColor="#003f5c"
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(email) => setEmail(email)}

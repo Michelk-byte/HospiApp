@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-
 import {
   StyleSheet,
   Text,
   View,
-  Image,
   TextInput,
   TouchableOpacity,
-  Alert,
+  Platform,
 } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
@@ -59,9 +57,9 @@ export default function Login({ navigation }) {
         <View style={styles.action}>
           <FontAwesome name="user-o" color="black" size={20} />
           <TextInput
-            placeholder="Email address..."
+            placeholder="Example: jbakouny@example.com"
             name="email"
-            placeholderTextColor="#666666"
+            placeholderTextColor='#003f5c'
             style={styles.textInput}
             autoCapitalize="none"
             onChangeText={(email) => setEmail(email)}
@@ -75,8 +73,6 @@ export default function Login({ navigation }) {
           <Feather name="lock" color="black" size={20} />
           <TextInput
             secureTextEntry
-            placeholder="Password..."
-            placeholderTextColor="#003f5c"
             style={styles.textInput}
             autoCapitalize="none"
             name="password"
@@ -118,6 +114,9 @@ export default function Login({ navigation }) {
               <Text style={[styles.textSign, { color: "white" }]}>Log In</Text>
             </LinearGradient>
           </TouchableOpacity>
+          <Text style={{ color: "#1498D5", marginTop: 20 }}>
+            Don't have an account? Sign up
+          </Text>
           <TouchableOpacity
             onPress={() => navigation.navigate("SignupScreen")}
             style={styles.signUp}
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: Platform.OS === "ios" ? 0 : -12,
     paddingLeft: 10,
-    color: "#003f5c",
+    color: "black",
   },
   errorMsg: {
     color: "#FF0000",

@@ -11,7 +11,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import OtherIcon from "react-native-vector-icons/Ionicons";
 import { useDispatch } from "react-redux";
 import { loggedOut } from "../../../actions/action";
-import { Login } from "../../Login/LoginPage";
+import Login from "../../Login/LoginPage";
 import { ScrollView } from "react-native-gesture-handler";
 
 export default function Profile({ navigation }) {

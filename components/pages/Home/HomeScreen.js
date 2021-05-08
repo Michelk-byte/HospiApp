@@ -11,7 +11,7 @@ import {
   Linking,
 } from "react-native";
 import moment from "moment";
-
+import * as Animatable from 'react-native-animatable';
 import { getNews } from "./news";
 
 const width = Dimensions.get("window").width;
@@ -47,8 +47,13 @@ export default class HomeScreen extends React.Component {
   render() {
     if (this.state.loading) {
       return (
-        <View style={styles.bigcontainer}>
+        <View style={styles.wrapper}>
           <ActivityIndicator size="large" color="#fff" />
+            <Animatable.Image
+                animation="pulse"
+                source={require('../../../assets/logo2.png')}
+                resizeMode="stretch"
+            />
         </View>
       );
     } else {
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
       paddingTop: 10,
   },
-  bigcontainer: {
+  wrapper: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

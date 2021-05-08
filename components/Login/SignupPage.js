@@ -6,6 +6,8 @@ import {
   StatusBar,
   TextInput,
   TouchableOpacity,
+  ImageBackground,
+    Platform
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp, register } from "../../actions/action";
@@ -17,12 +19,10 @@ import Login from "./LoginPage";
 
 export default function Signup({ navigation }) {
   const [username, setUName] = useState("");
-
   const [Email, SetEmail] = useState("");
   const [pass, SetPassword] = useState("");
   const [pnumber, SetPnumber] = useState("");
   const [verifypass, SetVerifypass] = useState("");
-
   const [blood, setBlood] = useState('A+');
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(50);
@@ -64,9 +64,9 @@ export default function Signup({ navigation }) {
   };
 
   return (
-    <>
       <View style={styles.container}>
-        <View style={styles.container1}>
+        <ImageBackground source={require('../../assets/SignupBG.jpg')} style={styles.image} blurRadius={Platform.OS=="ios"? 30:3}>
+        <View style={styles.container}>
           <TextInput
             style={styles.inputBox}
             underlineColorAndroid="rgba(0,0,0,0)"
@@ -165,25 +165,28 @@ export default function Signup({ navigation }) {
           <TouchableOpacity>
             <Text
               style={styles.signupButton}
-              onPress={() => navigation.navigate("LoginScreen")}
+              onPress={() => navigation.navigate("LoginScreen0")}
             >
               {" "}
               Sign in
             </Text>
           </TouchableOpacity>
         </View>
+        </ImageBackground>
       </View>
-    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container1: {
-    flexGrow: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  image:{
+    flex:1,
+    resizeMode:'cover',
+    justifyContent:'center'
   },
-
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   inputBox: {
     width: 300,
     height: 30,
@@ -207,8 +210,7 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     textAlign: "center",
   },
-  container: {
-    backgroundColor: "#455a64",
+  container1: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",

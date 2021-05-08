@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {
+    Platform,
     Text,
     StyleSheet,
     View,
@@ -38,113 +39,124 @@ const EditPage = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-                <View style={{alignItems: 'center'}}>
-                    <TouchableOpacity>
-                        <View
-                            style={{
-                                marginTop: 10,
-                                height: 100,
-                                width: 100,
-                                borderRadius: 15,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}>
-                            <ImageBackground
-                                source={{
-                                    uri: image,
-                                }}
-                                style={{height: 100, width: 100}}
-                                imageStyle={{borderRadius: 15}}>
-                                <View
+            <View style={{alignItems: 'center'}}>
+                <TouchableOpacity>
+                    <View
+                        style={{
+                            marginTop: 10,
+                            height: 100,
+                            width: 100,
+                            borderRadius: 15,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                        <ImageBackground
+                            source={{
+                                uri: image,
+                            }}
+                            style={{height: 100, width: 100}}
+                            imageStyle={{borderRadius: 15}}>
+                            <View
+                                style={{
+                                    flex: 1,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}>
+                                <Icon
+                                    name="camera"
+                                    size={35}
+                                    color="#fff"
                                     style={{
-                                        flex: 1,
-                                        justifyContent: 'center',
+                                        opacity: 0.7,
                                         alignItems: 'center',
-                                    }}>
-                                    <Icon
-                                        name="camera"
-                                        size={35}
-                                        color="#fff"
-                                        style={{
-                                            opacity: 0.7,
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            borderWidth: 1,
-                                            borderColor: '#fff',
-                                            borderRadius: 10,
-                                        }}
-                                    />
-                                </View>
-                            </ImageBackground>
-                        </View>
-                    </TouchableOpacity>
-                    <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>@username</Text>
-                </View>
-                <View style={styles.action}>
-                    <Icon name="person-outline" color="black" size={20}/>
-                    <TextInput
-                        placeholder="Name"
-                        placeholderTextColor="#666666"
-                        autoCorrect={false}
-                        style={[
-                            styles.textInput,
-                            {
-                                color: 'black',
-                            },
-                        ]}
-                    />
-                </View>
-                <View style={styles.action}>
-                    <Icon name="call-outline" color="black" size={20}/>
-                    <TextInput
-                        onChangeText={(data)=>setPhone(data)}
-                        placeholder="Phone"
-                        placeholderTextColor="#666666"
-                        keyboardType="number-pad"
-                        autoCorrect={false}
-                        style={[
-                            styles.textInput,
-                            {
-                                color: 'black',
-                            },
-                        ]}
-                    />
-                </View>
-                <View style={styles.action}>
-                    <Icon name="mail-outline" color="black" size={20}/>
-                    <TextInput
-                        onChangeText={(data)=>setEmail(data)}
-                        placeholder="Email"
-                        placeholderTextColor="#666666"
-                        keyboardType="email-address"
-                        autoCorrect={false}
-                        style={[
-                            styles.textInput,
-                            {
-                                color: 'black',
-                            },
-                        ]}
-                    />
-                </View>
-                <View style={styles.action}>
-                    <Icon name="location-outline" color="black" size={20}/>
-                    <TextInput
-                        onChangeText={(data)=>setLocation(data)}
-                        placeholder="Address"
-                        placeholderTextColor="#666666"
-                        autoCorrect={false}
-                        style={[
-                            styles.textInput,
-                            {
-                                color: 'black',
-                            },
-                        ]}
-                    />
-                </View>
+                                        justifyContent: 'center',
+                                        borderWidth: 1,
+                                        borderColor: '#fff',
+                                        borderRadius: 10,
+                                    }}
+                                />
+                            </View>
+                        </ImageBackground>
+                    </View>
+                </TouchableOpacity>
+                <Text style={{marginTop: 10, fontSize: 18, fontWeight: 'bold'}}>@username</Text>
+            </View>
+            <View style={styles.action}>
+                <Icon name="person-outline" color="black" size={20}/>
+                <TextInput
+                    placeholder="First Name"
+                    placeholderTextColor="#666666"
+                    autoCorrect={false}
+                    style={[
+                        styles.textInput,
+                        {
+                            color: 'black',
+                        },
+                    ]}
+                />
+                <TextInput
+                    placeholder="Last Name"
+                    placeholderTextColor="#666666"
+                    autoCorrect={false}
+                    style={[
+                        styles.textInput,
+                        {
+                            color: 'black',
+                        },
+                    ]}
+                />
+            </View>
+            <View style={styles.action}>
+                <Icon name="call-outline" color="black" size={20}/>
+                <TextInput
+                    onChangeText={(data)=>setPhone(data)}
+                    placeholder={phone}
+                    placeholderTextColor="#666666"
+                    keyboardType="number-pad"
+                    autoCorrect={false}
+                    style={[
+                        styles.textInput,
+                        {
+                            color: 'black',
+                        },
+                    ]}
+                />
+            </View>
+            <View style={styles.action}>
+                <Icon name="mail-outline" color="black" size={20}/>
+                <TextInput
+                    onChangeText={(data)=>setEmail(data)}
+                    placeholder={email}
+                    placeholderTextColor="#666666"
+                    keyboardType="email-address"
+                    autoCorrect={false}
+                    style={[
+                        styles.textInput,
+                        {
+                            color: 'black',
+                        },
+                    ]}
+                />
+            </View>
+            <View style={styles.action}>
+                <Icon name="location-outline" color="black" size={20}/>
+                <TextInput
+                    onChangeText={(data)=>setLocation(data)}
+                    placeholder={location}
+                    placeholderTextColor="#666666"
+                    autoCorrect={false}
+                    style={[
+                        styles.textInput,
+                        {
+                            color: 'black',
+                        },
+                    ]}
+                />
+            </View>
             <View style={styles.action}>
                 <Icon name="water-outline" color="red" size={20}/>
                 <Text>Blood Type: {blood}</Text>
-                <Picker selectedValue={blood} onValueChange={currentBlood => setBlood(currentBlood)}>
+                <Picker style={styles.picker} selectedValue={blood} onValueChange={currentBlood => setBlood(currentBlood)}>
                     <Picker.Item label="A+" value="A+" />
                     <Picker.Item label="A-" value="A-" />
                     <Picker.Item label="B+" value="B+" />
@@ -157,35 +169,37 @@ const EditPage = ({navigation}) => {
             </View>
             <View style={styles.action}>
                 <Icon name="body-outline" color="black" size={20}/>
-                <Text>Height: {height}cm</Text>
+                <Text>Height: {height} cm</Text>
                 <Slider
+                    style={styles.slider}
                     step={1}
                     minimumValue={50}
                     maximumValue={220}
                     value={height}
                     onValueChange={slideValue => setHeight(slideValue)}
-                    minimumTrackTintColor="#1fb28a"
+                    minimumTrackTintColor="#d3d3d3"
                     maximumTrackTintColor="#d3d3d3"
-                    thumbTintColor="#b9e4c9"
+                    thumbTintColor="#37c9fc"
                 />
             </View>
             <View style={styles.action}>
                 <Icon name= "speedometer-outline" color="black" size={20} />
-                <Text>Weight: {value}kg</Text>
+                <Text>Weight: {value} kg</Text>
                 <Slider
+                    style={styles.slider}
                     step={1}
                     minimumValue={0}
                     maximumValue={400}
                     value={value}
                     onValueChange={slideValue => setValue(slideValue)}
-                    minimumTrackTintColor="#1fb28a"
+                    minimumTrackTintColor="#d3d3d3"
                     maximumTrackTintColor="#d3d3d3"
-                    thumbTintColor="#b9e4c9"
+                    thumbTintColor="#37c9fc"
                 />
             </View>
-                <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()}>
-                    <Text style={styles.panelButtonTitle}>Submit</Text>
-                </TouchableOpacity>
+            <TouchableOpacity style={styles.submitButton} onPress={() => handleSubmit()}>
+                <Text style={styles.panelButtonTitle}>Save Changes</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -269,6 +283,14 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: '#05375a',
     },
+    picker:{
+        marginLeft:30
+    },
+    slider:{
+        marginLeft:5,
+        marginTop: 3,
+        width:'65%'
+    }
 });
 
 export default EditPage;

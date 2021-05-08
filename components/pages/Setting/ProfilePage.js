@@ -76,8 +76,8 @@ export default function Profile({ navigation }) {
             },
           ]}
         >
-          <Title>22</Title>
-          <Caption>Age</Caption>
+          <Title>10-04-1999</Title>
+          <Caption>Birthdate</Caption>
         </View>
         <View style={styles.infoBox}>
           <Title>B-</Title>

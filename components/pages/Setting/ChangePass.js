@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ImageBackground, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
+import * as Animatable from "react-native-animatable";
 
 const ChangePassword = ({navigation}) => {
   const [oldPass, setOldPass] = useState('');
@@ -19,7 +20,7 @@ const ChangePassword = ({navigation}) => {
 
   return (
       <View style={styles.container}>
-          <ImageBackground source={require('../../../assets/ChangePassBG.jpg')} style={styles.image} blurRadius={Platform.OS=="ios"? 30:2}>
+          <ImageBackground source={require('../../../assets/ChangePassBG.jpg')} style={styles.image} blurRadius={Platform.OS=="ios"? 10:1}>
               <View>
                   <Text style={styles.title}>Reset Password</Text>
               </View>
@@ -104,20 +105,20 @@ const styles = StyleSheet.create({
     },
     inputTitle:{
         fontSize:20,
-        alignSelf:'center',
         marginBottom:5,
+        marginLeft:'14%',
         color: '#003f5c',
     },
     input:{
         borderRadius: 10,
-        padding: 10,
+        padding: 8,
         width:'75%',
-        alignSelf: 'center'
+        alignSelf: 'center',
+        opacity:0.7
     },
     textInput:{
         color:'black',
-        alignSelf:'center',
-        fontSize: 25,
+        fontSize: 20,
         fontFamily:'monospace'
     },
     button: {

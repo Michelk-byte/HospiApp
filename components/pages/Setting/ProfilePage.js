@@ -54,16 +54,16 @@ export default function Profile({ navigation }) {
       </View>
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>Address</Text>
+          <Icon name="email" color="#777777" size={20} />
+          <Text style={{ color: "#777777", marginLeft: 20 }}>email</Text>
         </View>
         <View style={styles.row}>
           <Icon name="phone" color="#777777" size={20} />
           <Text style={{ color: "#777777", marginLeft: 20 }}>cell</Text>
         </View>
         <View style={styles.row}>
-          <Icon name="email" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>email</Text>
+          <Icon name="map-marker-radius" color="#777777" size={20} />
+          <Text style={{ color: "#777777", marginLeft: 20 }}>Address</Text>
         </View>
       </View>
       <View style={styles.infoBoxWrapper}>

@@ -53,11 +53,11 @@ export default function Login({ navigation }) {
         <Text style={styles.text_header}>Log in to HospiApp</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <Text style={styles.text_footer}>Email</Text>
+        <Text style={styles.text_footer}>Username or Email</Text>
         <View style={styles.action}>
           <FontAwesome name="user-o" color="black" size={20} />
           <TextInput
-            placeholder="Example: jbakouny@example.com"
+            placeholder="Type your username or email"
             name="email"
             placeholderTextColor="#003f5c"
             style={styles.textInput}
@@ -73,6 +73,8 @@ export default function Login({ navigation }) {
           <Feather name="lock" color="black" size={20} />
           <TextInput
             secureTextEntry
+            placeholder="Type your password"
+            placeholderTextColor="#003f5c"
             style={styles.textInput}
             autoCapitalize="none"
             name="password"
@@ -95,11 +97,6 @@ export default function Login({ navigation }) {
           {/*  }*/}
           {/*</TouchableOpacity>*/}
         </View>
-        {/*{ data.isValidPassword ? null :*/}
-        {/*    <Animatable.View animation="fadeInLeft" duration={500}>*/}
-        {/*      <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>*/}
-        {/*    </Animatable.View>*/}
-        {/*}*/}
         <TouchableOpacity>
           <Text style={{ color: "#1498D5", marginTop: 15 }}>
             Forgot password?
@@ -114,8 +111,8 @@ export default function Login({ navigation }) {
               <Text style={[styles.textSign, { color: "white" }]}>Log In</Text>
             </LinearGradient>
           </TouchableOpacity>
-          <Text style={{ color: "#1498D5", marginTop: 20 }}>
-            Don't have an account? Sign up
+          <Text style={{ color: "#1498D5", marginTop: 30 }}>
+            Don't have an account?
           </Text>
           <TouchableOpacity
             onPress={() => navigation.navigate("SignupScreen")}

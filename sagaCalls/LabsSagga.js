@@ -1,17 +1,18 @@
 import { takeLatest, call, put,all } from "redux-saga/effects";
-import { GET_LABS, setLabs,GET_TEST_LABS,setTestLabs } from "../actions/action";
-import { getLabs ,getTestLabs} from "../api/apiCalls";
+import { GET_LABS, setLabs,GET_TEST_LABS,setTestLabs,GET_TEST_DESC,setTestDesc ,BOOK_TEST, bookTest} from "../actions/action";
+import { getLabs ,getTestLabs,getTestDesc,bookTestLab} from "../api/apiCalls";
 
 export function* LabsWatcher() {
   yield all([
     takeLatest(GET_LABS, Labsworker),
-    takeLatest(GET_TEST_LABS,TestLabsworker)
+    takeLatest(GET_TEST_LABS,TestLabsworker),
+    takeLatest(GET_TEST_DESC,TestDescWoker),
+    takeLatest(BOOK_TEST,BookTestWorker)
   ]);
 }
 
 function* Labsworker() {
-  let loge;
-
+  
   try {
     const loge = yield call(getLabs);
     yield put(setLabs(loge));
@@ -30,6 +31,24 @@ function* TestLabsworker(action) {
     yield put(setTestLabs(loge));
     console.log(loge);
   } catch (error) {
+    console.log(error);
+  }
+}
+
+function* TestDescWoker(action){
+  try{
+    const res=yield call(getTestDesc,action.payload)
+    console.log(res);
+    yield put(setTestDesc(res));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* BookTestWorker(action){
+  try{
+    const res=yield call(bookTestLab,action);
+  }catch (error) {
     console.log(error);
   }
 }

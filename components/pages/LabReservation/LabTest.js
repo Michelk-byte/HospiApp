@@ -12,7 +12,7 @@ const LabTest = ({ route, navigation }) => {
   const [search, setSearch] = React.useState("Dermatologie");
 
 
-
+  
   const { id } = route.params;
 
   const dispatch=useDispatch();
@@ -28,6 +28,7 @@ const LabTest = ({ route, navigation }) => {
 
   return (
     <ScrollView>
+      
       <View
         style={{
           width: "80%",
@@ -103,7 +104,7 @@ const LabTest = ({ route, navigation }) => {
               backgroundColor: "red",
             }}
             title="BOOK AN APPOINTMENT"
-            onPress={() => navigation.navigate("Test")}
+            onPress={() => navigation.navigate("Test",{idT:test._id})}
             titleStyle={{ marginLeft: 10, fontSize: 15 }}
           />
         </View>

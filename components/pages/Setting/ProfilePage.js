@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Image, SafeAreaView } from "react-native";
 import {
   Avatar,
@@ -9,14 +9,23 @@ import {
 } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import OtherIcon from "react-native-vector-icons/Ionicons";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { loggedOut } from "../../../actions/action";
 import { ScrollView } from "react-native-gesture-handler";
 import * as Updates from "expo-updates";
+import {getCredentials} from "../../../actions/action"
 
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
+  const sid=useSelector(state=>state.Login.data.sid)
+  useEffect(()=>{
+
+    dispatch(getCredentials(sid));
+  },[])
+
+  const cred=useSelector(state=>state.Ressource.credentials);
+  console.log(cred+ "In cred");
   function signOut() {
     dispatch(loggedOut());
     console.log("SIGN OUT");
@@ -43,24 +52,24 @@ export default function Profile({ navigation }) {
                 },
               ]}
             >
-              Ahmad EC
+             {cred.firstname +" "+cred.lastname}
             </Title>
-            <Caption style={styles.caption}>@username</Caption>
+            <Caption style={styles.caption}>{"@"+cred.username}</Caption>
           </View>
         </View>
       </View>
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
           <Icon name="email" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>email</Text>
+          <Text style={{ color: "#777777", marginLeft: 20 }}>{cred.email}</Text>
         </View>
         <View style={styles.row}>
           <Icon name="phone" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>cell</Text>
+          <Text style={{ color: "#777777", marginLeft: 20 }}>{cred.pnumber}</Text>
         </View>
         <View style={styles.row}>
           <Icon name="map-marker-radius" color="#777777" size={20} />
-          <Text style={{ color: "#777777", marginLeft: 20 }}>Address</Text>
+          <Text style={{ color: "#777777", marginLeft: 20 }}>{cred.location}</Text>
         </View>
       </View>
       <View style={styles.infoBoxWrapper}>
@@ -73,11 +82,11 @@ export default function Profile({ navigation }) {
             },
           ]}
         >
-          <Title>10-04-1999</Title>
+          <Title>{cred.date_of_birth}</Title>
           <Caption>Birthdate</Caption>
         </View>
         <View style={styles.infoBox}>
-          <Title>B-</Title>
+          <Title>{cred.bloodtype}</Title>
           <Caption>Blood Type</Caption>
         </View>
       </View>
@@ -91,11 +100,11 @@ export default function Profile({ navigation }) {
             },
           ]}
         >
-          <Title>170 cm</Title>
+          <Title>{cred.height+" cm"}</Title>
           <Caption>Height</Caption>
         </View>
         <View style={styles.infoBox}>
-          <Title>70 kg</Title>
+          <Title>{cred.weight+" kg" } </Title>
           <Caption>Weight</Caption>
         </View>
       </View>

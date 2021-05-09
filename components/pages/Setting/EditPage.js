@@ -33,6 +33,18 @@ const EditPage = ({navigation}) => {
     const dispatch=useDispatch();
 
 
+    const clear=()=>{
+        setBlood("");
+        setEmail("");
+        setFname("");
+        setLname("");
+        setHeight(50);
+        setLocation("");
+        setValue(0);
+        setPhone("");
+
+    }
+
     const handleSubmit = () => {
         const data = {
             id:sid,
@@ -43,10 +55,12 @@ const EditPage = ({navigation}) => {
             location: location,
             bloodtype: blood,
             firstname:firstname,
-            lastname:lastname
+            lastname:lastname,
+            date_of_birth:"",
+            gender:""
         }
         dispatch(editProfile(data));
-        alert("sending data: " + data);
+        clear();
     }
 
     const [image, setImage] = useState("https://bootdey.com/img/Content/avatar/avatar6.png");

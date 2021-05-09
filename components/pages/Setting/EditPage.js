@@ -12,6 +12,8 @@ import {
 import { Picker } from '@react-native-picker/picker'
 import Icon from "react-native-vector-icons/Ionicons";
 import Slider from '@react-native-community/slider';
+import {editProfile} from "../../../actions/action"
+import { useDispatch, useSelector } from "react-redux";
 
 const EditPage = ({navigation}) => {
     const [blood, setBlood] = useState('A+');
@@ -20,19 +22,26 @@ const EditPage = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [location, setLocation] = useState('');
-    const [password, setPassword] = useState("");
+    const [firstname, setFname] = useState('');
+    const [lastname, setLname] = useState("");
+
+    const sid=useSelector(state=>state.Login.data.sid)
+    const dispatch=useDispatch();
 
     const handleSubmit = () => {
         const data = {
+            id:sid,
             email: email,
-            Password: password,
             weight: value,
             height: height,
-            phone: phone,
+            pnumber: phone,
             location: location,
-            blood: blood
+            bloodtype: blood,
+            firstname:firstname,
+            lastname:lastname
         }
-        alert("sending data: " + data.email)
+        dispatch(editProfile(data));
+        alert("sending data: " + data);
     }
 
     const [image, setImage] = useState("https://bootdey.com/img/Content/avatar/avatar6.png");
@@ -93,6 +102,7 @@ const EditPage = ({navigation}) => {
                             color: 'black',
                         },
                     ]}
+                    onChangeText={(data)=>setFname(data)}
                 />
                 <TextInput
                     placeholder="Last Name"
@@ -104,6 +114,7 @@ const EditPage = ({navigation}) => {
                             color: 'black',
                         },
                     ]}
+                    onChangeText={(data)=>setLname(data)}
                 />
             </View>
             <View style={styles.action}>

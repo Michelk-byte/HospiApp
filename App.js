@@ -13,7 +13,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import { getData, storeData } from "./Storage";
-import { signUpWatcher } from "./sagaCalls/SignUpReducer";
+
 
 const Stack = createStackNavigator();
 

@@ -1,16 +1,14 @@
 import { call, all } from "redux-saga/effects";
-import { checkInWatcher } from "./LoggInSaga";
-import { signUpWatcher } from "./SignUpReducer";
-import {checkOutWatcher} from "./LogOutSagga"
+import { UserActivityWatcher } from "./UserActivity";
 import {HospitalsWatcher} from "./HospitalsList"
 import {DoctorsWatcher} from "./DoctorsSagga"
+import {LabsWatcher} from "./LabsSagga"
 
 export function* rootSaga() {
   yield all([
-    call(checkInWatcher), 
-    call(signUpWatcher),
-    call(checkOutWatcher),
+    call(UserActivityWatcher), 
     call(HospitalsWatcher),
-    call(DoctorsWatcher)
+    call(DoctorsWatcher),
+    call(LabsWatcher)
   ]);
 }

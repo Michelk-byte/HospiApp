@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
 
   const handleSubmit = () => {
     const data = {
-      email: email,
+      name: email,
       password: password,
     };
     // console.log(data);

@@ -13,8 +13,25 @@ import * as Animatable from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp, register } from "../../actions/action";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import {Button} from "react-native-elements";
 
 export default function Signup({ navigation }) {
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    // Jano hon l variable birthday bado yenaamala save
+    hideDatePicker();
+  };
+
   const [username, setUName] = useState("");
   const [Email, SetEmail] = useState("");
   const [pass, SetPassword] = useState("");
@@ -104,106 +121,42 @@ export default function Signup({ navigation }) {
             <View style={styles.input}>
               <TextInput
                   style={styles.textInput}
-                  placeholder="Password"
+                  placeholder="Birthdate"
                   placeholderTextColor="#003f5c"
-                  autoCapitalize="none"
-                  autoCorrect={false}
+              />
+              <Button title="Select your birthdate" onPress={showDatePicker} />
+              <DateTimePickerModal
+                  isVisible={isDatePickerVisible}
+                  mode="date"
+                  onConfirm={handleConfirm}
+                  onCancel={hideDatePicker}
               />
             </View>
             <View style={styles.input}>
               <TextInput
                   style={styles.textInput}
-                  placeholder="Verify Password"
+                  placeholder="Phone Number"
+                  keyboardType={"phone-pad"}
+                  placeholderTextColor="#003f5c"
+              />
+            </View>
+            <View style={styles.input}>
+              <TextInput
+                  style={styles.textInput}
+                  placeholder="Address"
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
               />
             </View>
             <View>
-              <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen')}>
+              <TouchableOpacity onPress={()=>navigation.navigate("AccountDetailsScreen")}>
                 <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
                   <Text style={styles.buttonText}>Next</Text>
-                  <MaterialIcons name="navigate-next" color='white' size={20}/>
+                  <MaterialIcons name="chevron-right" color='white' size={20}/>
                 </LinearGradient>
               </TouchableOpacity>
             </View>
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="Email"*/}
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    selectionColor="#fff"*/}
-            {/*    keyboardType="email-address"*/}
-            {/*    onChangeText={(email) => SetEmail(email)}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="Password"*/}
-            {/*    secureTextEntry={true}*/}
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    onChangeText={(pass) => SetPassword(pass)}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="Verify Password"*/}
-            {/*    secureTextEntry={true}*/}
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    onChangeText={(verifypass) => SetVerifypass(verifypass)}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="PhoneNumber"*/}
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    selectionColor="#fff"*/}
-            {/*    keyboardType=""*/}
-            {/*    onChangeText={(pnumber) => SetPnumber(pnumber)}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="Weight Kg"*/}
-
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    onChangeText={(w) => setWeight(w)}*/}
-            {/*/>*/}
-            {/*<TextInput*/}
-            {/*    style={styles.inputBox}*/}
-            {/*    underlineColorAndroid="rgba(0,0,0,0)"*/}
-            {/*    placeholder="height cm"*/}
-
-            {/*    placeholderTextColor="#ffffff"*/}
-            {/*    onChangeText={(w) => setHeight(w)}*/}
-            {/*/>*/}
-            {/*<Picker style={{ marginTop:10,}}*/}
-            {/*        selectedValue={blood}*/}
-            {/*        onValueChange={currentBlood => setBlood(currentBlood)}>*/}
-            {/*  <Picker.Item label="A+" value="A+" />*/}
-            {/*  <Picker.Item label="A-" value="A-" />*/}
-            {/*  <Picker.Item label="B+" value="B+" />*/}
-            {/*  <Picker.Item label="B-" value="B-" />*/}
-            {/*  <Picker.Item label="O+" value="O+" />*/}
-            {/*  <Picker.Item label="O-" value="O-" />*/}
-            {/*  <Picker.Item label="AB+" value="AB+" />*/}
-            {/*  <Picker.Item label="AB-" value="AB-" />*/}
-            {/*</Picker>*/}
-            {/*<Text*/}
-            {/*    style={{*/}
-            {/*      fontSize: 30,*/}
-            {/*      color: '#fff',*/}
-            {/*      alignItems: 'center',*/}
-            {/*      justifyContent: 'center',*/}
-            {/*    }}>*/}
-            {/*  Blood type: {blood}*/}
-            {/*</Text>*/}
-            {/*<TouchableOpacity style={styles.button}>*/}
-            {/*  <Text style={styles.buttonText} onPress={() => handleS()}>*/}
-            {/*    Register*/}
-            {/*  </Text>*/}
-            {/*</TouchableOpacity>*/}
-            {/*<Text style={{ color: { messagecolor } }}>{message_show}</Text>*/}
           </Animatable.View>
           <View style={styles.logIn}>
             <Text style={styles.logText}>Already have an account?</Text>
@@ -231,18 +184,19 @@ const styles = StyleSheet.create({
     borderColor:'#1498D5',
     borderRadius:15,
     backgroundColor:'white',
-    height:600,
+    height:550,
     width:350,
     alignSelf:'center',
     alignItems:'center'
   },
   title:{
     fontSize: 30,
-    marginBottom: 10
+    marginBottom: 10,
+    marginTop: 10
   },
   header:{
     fontSize: 11,
-    marginBottom: 50,
+    marginBottom: 40,
     color:'gray'
   },
   input:{
@@ -252,7 +206,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "gray",
     paddingBottom: 2,
-    marginBottom: 50,
+    marginBottom: 30,
   },
   textInput:{
     flex: 1,

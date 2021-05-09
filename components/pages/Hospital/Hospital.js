@@ -5,7 +5,7 @@ import { CardViewWithImage } from "react-native-simple-card-view";
 import { useEffect } from "react";
 import { getHospitals } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
-
+import * as Animatable from "react-native-animatable";
 const width = Dimensions.get("window").width;
 
 const AppointmentScreen = ({ navigation }) => {
@@ -20,25 +20,26 @@ const AppointmentScreen = ({ navigation }) => {
   }, []);
 
   return (
-    <ScrollView style={{ backgroundColor: "white" }}>
-      {Hospitals.map((hosp) => (
-        <CardViewWithImage
-          key={hosp._id}
-          width={width - 20}
-          source={{ uri: hosp.HospitalPhoto }}
-          content={hosp.HospitalDescription}
-          title={hosp.HospitalName}
-          imageWidth={500}
-          imageHeight={180}
-          roundedImage={false}
-          onPress={() =>
-            navigation.navigate("Doctor", {
-              id: hosp._id,
-            })
-          }
-        />
-      ))}
-    </ScrollView>
+      <ScrollView style={{backgroundColor: "white"}}>
+        {Hospitals.map((hosp) => (
+            <Animatable.View animation={'bounceInLeft'} duration={3000} key={hosp._id}>
+              <CardViewWithImage
+                  width={width - 20}
+                  source={{uri: hosp.HospitalPhoto}}
+                  content={hosp.HospitalDescription}
+                  title={hosp.HospitalName}
+                  imageWidth={500}
+                  imageHeight={180}
+                  roundedImage={false}
+                  onPress={() =>
+                      navigation.navigate("Doctor", {
+                        id: hosp._id,
+                      })
+                  }
+              />
+            </Animatable.View>
+        ))}
+      </ScrollView>
   );
 };
 export default AppointmentScreen;

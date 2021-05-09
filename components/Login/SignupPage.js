@@ -53,12 +53,12 @@ export default function Signup({ navigation }) {
     const data = {
       email: Email,
       password: pass,
-      name: username,
+      username: username,
       pnumber: pnumber,
-      verifypass: verifypass,
+      verifypassword: verifypass,
       weight:weight,
       height:height,
-      blood:blood
+      bloodtype:blood
     };
     dispatch(signUp(data));
   };

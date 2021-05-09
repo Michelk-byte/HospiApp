@@ -12,7 +12,12 @@ import {
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Slider from '@react-native-community/slider';
+
+import {editProfile} from "../../../actions/action"
+import { useDispatch, useSelector } from "react-redux";
+
 import {LinearGradient} from "expo-linear-gradient";
+
 
 const EditPage = ({navigation}) => {
     const [blood, setBlood] = useState('A+');
@@ -21,17 +26,27 @@ const EditPage = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [location, setLocation] = useState('');
+    const [firstname, setFname] = useState('');
+    const [lastname, setLname] = useState("");
+
+    const sid=useSelector(state=>state.Login.data.sid)
+    const dispatch=useDispatch();
+
 
     const handleSubmit = () => {
         const data = {
+            id:sid,
             email: email,
             weight: value,
             height: height,
-            phone: phone,
+            pnumber: phone,
             location: location,
-            blood: blood
+            bloodtype: blood,
+            firstname:firstname,
+            lastname:lastname
         }
-        alert("sending data: " + data.email)
+        dispatch(editProfile(data));
+        alert("sending data: " + data);
     }
 
     const [image, setImage] = useState("https://bootdey.com/img/Content/avatar/avatar6.png");
@@ -65,13 +80,19 @@ const EditPage = ({navigation}) => {
                     placeholder="First Name"
                     placeholderTextColor="#003f5c"
                     autoCorrect={false}
+
                     style={styles.textInput}
+                    onChangeText={(data)=>setFname(data)}
+
                 />
                 <TextInput
                     placeholder="Last Name"
                     placeholderTextColor="#003f5c"
                     autoCorrect={false}
+
                     style={styles.textInput}
+                    onChangeText={(data)=>setLname(data)}
+
                 />
             </View>
             <View style={styles.fields}>

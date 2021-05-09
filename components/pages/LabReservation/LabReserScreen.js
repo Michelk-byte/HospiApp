@@ -2,70 +2,45 @@ import * as React from "react";
 import {View, Text, SafeAreaView, StyleSheet, Dimensions} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { CardViewWithImage } from "react-native-simple-card-view";
+import { useEffect } from "react";
+import { getLabs } from "../../../actions/action";
+import { useDispatch, useSelector } from "react-redux";
 
 const width = Dimensions.get("window").width;
 
 const LabReserScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const Labs = useSelector((state) => state.Ressource.labs);
+
+  useEffect(() => {
+    // dispatch(setPage(1));
+
+     console.log("in useEffect");
+    dispatch(getLabs());
+  }, []);
+
+  
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
+        {Labs.map((lab) => (
       <CardViewWithImage
+        key={lab._id}
         width={width - 20}
-        source={{
-          uri: "https://placeimg.com/640/480/nature",
-        }}
+        source={{ uri:lab.LabPicture}}
         content={
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut distinctio!"
+          lab.LabDescription
         }
-        title={"React Nature :D"}
-        imageWidth={500}
-        imageHeight={180}
-        roundedImage={false}
-        onPress={() => navigation.navigate("LabTest")}
-      />
-      <CardViewWithImage
-        width={width - 20}
-        source={{ uri: "https://placeimg.com/640/480/nature" }}
-        content={
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut distinctio!"
-        }
-        title={"React Nature :D"}
+        title={lab.Lab}
         imageWidth={500}
         imageHeight={150}
         roundedImage={false}
+        onPress={() =>
+          navigation.navigate("LabTest", {
+            id: lab._id,
+          })}
+        
       />
-      <CardViewWithImage
-        width={width - 20}
-        source={{ uri: "https://placeimg.com/640/480/nature" }}
-        content={
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut distinctio!"
-        }
-        title={"React Nature :D"}
-        imageWidth={500}
-        imageHeight={150}
-        roundedImage={false}
-      />
-      <CardViewWithImage
-        width={width - 20}
-        source={{ uri: "https://placeimg.com/640/480/nature" }}
-        content={
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut distinctio!"
-        }
-        title={"React Nature :D"}
-        imageWidth={500}
-        imageHeight={150}
-        roundedImage={false}
-      />
-      <CardViewWithImage
-        width={width - 20}
-        source={{ uri: "https://placeimg.com/640/480/nature" }}
-        content={
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit. At aut distinctio!"
-        }
-        title={"React Nature :D"}
-        imageWidth={500}
-        imageHeight={150}
-        roundedImage={false}
-      />
+      ))}
     </ScrollView>
   );
 };

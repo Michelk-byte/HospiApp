@@ -14,16 +14,14 @@ import { loggedOut } from "../../../actions/action";
 import { ScrollView } from "react-native-gesture-handler";
 import * as Updates from "expo-updates";
 
+
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
   function signOut() {
-    const data = {
-      id: 1,
-    };
-    // dispatch(loggedOut(data));
+    dispatch(loggedOut());
     console.log("SIGN OUT");
-    Updates.reloadAsync();
+    
   }
 
   return (

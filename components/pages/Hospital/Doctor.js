@@ -103,7 +103,7 @@ const Doctor = ({ route, navigation }) => {
                 backgroundColor: "red",
               }}
               title="BOOK AN APPOINTMENT"
-              onPress={() => navigation.navigate("DoctorProfile")}
+              onPress={() => navigation.navigate("DoctorProfile",{id:doct._id})}
               titleStyle={{ marginLeft: 10, fontSize: 15 }}
             />
           </View>

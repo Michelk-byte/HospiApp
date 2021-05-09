@@ -18,6 +18,17 @@ export const SET_HOSPITALS="SET_HOSPITALS"//12
 export const GET_DOCTORS="GET_DOCTORS"//13
 export const SET_DOCTORS="SET_DOCTORS"//14
 
+export const GET_LABS="GET_LABS"//15
+export const SET_LABS="SET_LABS"//16
+
+export const GET_TEST_LABS="GET_TEST_LABS"//17
+export const SET_TEST_LABS="SET_TEST_LABS"//18
+
+export const GET_DOCTOR_PROFILE="GET_DOCTOR_PROFILE"//19
+export const SET_DOCTOR_PROFILE="SET_DOCTOR_PROFILE"//20
+
+export const EDIT_PROFILE="EDIT_PROFILE"//21
+
 //1
 export const checkIn = (data) => ({
   type: CHECK_IN,
@@ -102,3 +113,46 @@ export const setDoctors = (data) => ({
   type: SET_DOCTORS,
   payload: data,
 });
+
+//15
+export const getLabs = () => ({
+  type: GET_LABS,
+
+});
+
+
+//16
+export const setLabs = (data) => ({
+  type: SET_LABS,
+  payload:data
+})
+
+//17
+export const getTestLabs=(data)=>({
+  type:GET_TEST_LABS,
+  payload:data
+})
+
+//18
+export const setTestLabs=(data)=>({
+  type:SET_TEST_LABS,
+  payload:data
+})
+
+//19
+export const getProfileD=(data)=>({
+  type:GET_DOCTOR_PROFILE,
+  payload:data
+})
+
+//20
+export const setProfileD=(data)=>({
+  type:SET_DOCTOR_PROFILE,
+  payload:data
+})
+
+//21
+export const editProfile=(data)=>({
+  type:EDIT_PROFILE,
+  payload:data
+})

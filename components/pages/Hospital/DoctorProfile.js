@@ -8,11 +8,25 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { getProfileD } from "../../../actions/action";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const width = Dimensions.get("window").width;
 
-const DoctorProfile = ({ navigation }) => {
+const DoctorProfile = ({ route, navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const { id } = route.params;
+
+  const Profile = useSelector((state) => state.Ressource.profile);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+
+    dispatch(getProfileD(id));
+  }, []);
+
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -31,43 +45,47 @@ const DoctorProfile = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <View style={{ elevation: -1, zIndex: -1 }}>
-        <CardViewWithImage
-          width={width - 20}
-          source={require("../../../assets/doctor1.jpeg")}
-          ima
-          content={"Dr A is the best accross town and ...."}
-          title={"Dr A - Allergy"}
-          imageWidth={500}
-          imageHeight={400}
-          roundedImage={false}
-        />
-      </View>
-      <List.Item
-        style={{
-          backgroundColor: "white",
-          marginLeft: 10,
-          marginRight: 10,
-          elevation: -1,
-          zIndex: -1,
-        }}
-        title="Timing"
-        description="Monday - Wednesday - Friday 12am -> 4pm"
-        left={(props) => <List.Icon {...props} icon="clock" />}
-      />
-      <List.Item
-        style={{
-          backgroundColor: "white",
-          marginLeft: 10,
-          marginRight: 10,
-          marginTop: 5,
-          elevation: -1,
-          zIndex: -1,
-        }}
-        title="Fee"
-        description="100 000L.L/session"
-        left={(props) => <List.Icon {...props} icon="cash" />}
-      />
+      {Profile.map(pro=>(
+        <View key={pro._id}>
+            <View style={{ elevation: -1, zIndex: -1 }}>
+            <CardViewWithImage
+              width={width - 20}
+              source={{ uri: `https://hospiapp-backend.herokuapp.com/static/images/${pro.DoctorPicture}`,}}
+              content={pro.DoctorDescription}
+              title={"Dr "+pro.DoctorName+"--- "+pro.DoctorSpecialty }
+              imageWidth={500}
+              imageHeight={400}
+              roundedImage={false}
+            />
+          </View>
+          <List.Item
+            style={{
+              backgroundColor: "white",
+              marginLeft: 10,
+              marginRight: 10,
+              elevation: -1,
+              zIndex: -1,
+            }}
+            title="Timing"
+            description= {pro.AvailabilityDay+" "+pro.AvailabilityTime}
+            left={(props) => <List.Icon {...props} icon="clock" />}
+          />
+          <List.Item
+            style={{
+              backgroundColor: "white",
+              marginLeft: 10,
+              marginRight: 10,
+              marginTop: 5,
+              elevation: -1,
+              zIndex: -1,
+            }}
+            title="Fee" 
+            description= {pro.Fee+" 000L.L/session"}
+            left={(props) => <List.Icon {...props} icon="cash" />}
+          />
+          </View>
+          ))}
+    
 
       <View
         style={{

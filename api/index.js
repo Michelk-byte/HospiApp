@@ -6,5 +6,6 @@ export default axios.create({
   timeout: 9000,
   headers: {
     "Content-Type": "application/json",
+  
   },
 });

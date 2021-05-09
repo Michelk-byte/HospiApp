@@ -8,7 +8,7 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { getProfileD } from "../../../actions/action";
+import { getProfileD,bookDoct } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -16,8 +16,10 @@ const width = Dimensions.get("window").width;
 
 const DoctorProfile = ({ route, navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
+  const [date,setDate]=useState("")
   const { id } = route.params;
+
+  const sid=useSelector(state=>state.Login.data.sid)
 
   const Profile = useSelector((state) => state.Ressource.profile);
   const dispatch = useDispatch();
@@ -37,9 +39,20 @@ const DoctorProfile = ({ route, navigation }) => {
   };
 
   const handleConfirm = (date) => {
+    setDate(date);
     console.log("A date has been picked: ", date);
     hideDatePicker();
   };
+
+  const bookAppoitment=()=>{
+    const data={
+      _id:sid,
+      DoctorID:id,
+      DateTime:date
+    }
+    dispatch(bookDoct(data));
+    setDate("");
+  }
 
   const size_ = 20;
 
@@ -52,7 +65,7 @@ const DoctorProfile = ({ route, navigation }) => {
               width={width - 20}
               source={{ uri: `https://hospiapp-backend.herokuapp.com/static/images/${pro.DoctorPicture}`,}}
               content={pro.DoctorDescription}
-              title={"Dr "+pro.DoctorName+"--- "+pro.DoctorSpecialty }
+              title={"Dr "+pro.DoctorName+" --- "+pro.DoctorSpecialty }
               imageWidth={500}
               imageHeight={400}
               roundedImage={false}
@@ -110,7 +123,9 @@ const DoctorProfile = ({ route, navigation }) => {
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>
+        
         <Button
+        onPress={()=>bookAppoitment()}
           style={{ elevation: -1, zIndex: -1 }}
           icon={<FontAwesome name="stethoscope" color="#ffffff" size={size_} />}
           buttonStyle={{

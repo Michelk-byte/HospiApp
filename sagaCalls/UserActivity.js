@@ -10,9 +10,12 @@ import {
   status,
   register,
   LOG_OUT,
-  EDIT_PROFILE
+  EDIT_PROFILE,
+  GET_CREDENTIALS,
+  setCredentials,
+  CHANGE_PASS
 } from "../actions/action";
-import { CheckLogIn,SignUp, logOut} from "../api/apiCalls";
+import { changePass,CheckLogIn,SignUp, logOut,editProfile,getCredentials} from "../api/apiCalls";
 
 import { getData, storeData } from "../Storage";
 
@@ -21,7 +24,9 @@ export function* UserActivityWatcher() {
     takeLatest(CHECK_IN, checkInworker),
     takeLatest(LOG_OUT, checkOutworker),
     takeLatest(SIGN_UP, SignUpWorker),
-    takeLatest(EDIT_PROFILE,EditWorker)
+    takeLatest(EDIT_PROFILE,EditWorker),
+    takeLatest(GET_CREDENTIALS,SetCredWorler),
+    takeLatest(CHANGE_PASS,ChangePassWorker)
 
   ]);
 }
@@ -80,8 +85,30 @@ function* EditWorker(action){
     const data=action.payload;
     console.log("in edit worker ")
     console.log(data)
+    yield call(editProfile,data)
   }
   catch (error) {
+    console.log(error);
+  }
+}
+
+function* SetCredWorler(action) {
+  let res;
+  try {
+    const data = action.payload;
+    const res= yield call(getCredentials,data);
+    
+    yield put(setCredentials(res))  ;
+    
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* ChangePassWorker(action){
+  try{
+    yield call(changePass,action.payload);
+  }catch(error){
     console.log(error);
   }
 }

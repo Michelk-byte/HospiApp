@@ -15,7 +15,6 @@ import { ScrollView } from "react-native-gesture-handler";
 import * as Updates from "expo-updates";
 import {getCredentials} from "../../../actions/action"
 
-
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
@@ -30,7 +29,7 @@ export default function Profile({ navigation }) {
   function signOut() {
     dispatch(loggedOut());
     console.log("SIGN OUT");
-    
+    Updates.reloadAsync();
   }
 
   return (

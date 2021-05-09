@@ -11,7 +11,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { getProfileD,bookDoct } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const width = Dimensions.get("window").width;
 
 const DoctorProfile = ({ route, navigation }) => {
@@ -25,10 +24,8 @@ const DoctorProfile = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-
     dispatch(getProfileD(id));
   }, []);
-
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -58,14 +55,22 @@ const DoctorProfile = ({ route, navigation }) => {
 
   return (
     <ScrollView>
-      {Profile.map(pro=>(
+      {Profile.map((pro) => (
         <View key={pro._id}>
-            <View style={{ elevation: -1, zIndex: -1 }}>
+          <View style={{ elevation: -1, zIndex: -1 }}>
             <CardViewWithImage
               width={width - 20}
-              source={{ uri: `https://hospiapp-backend.herokuapp.com/static/images/${pro.DoctorPicture}`,}}
+              source={{
+                uri: `https://hospiapp-backend.herokuapp.com/static/images/${pro.DoctorPicture}`,
+              }}
               content={pro.DoctorDescription}
-              title={"Dr "+pro.DoctorName+" --- "+pro.DoctorSpecialty }
+
+             
+
+              title={"Dr. " + pro.DoctorName + "\n" + pro.DoctorSpecialty}
+              titleTextAlign="right"
+              titleFontFamily="monospace"
+
               imageWidth={500}
               imageHeight={400}
               roundedImage={false}
@@ -80,7 +85,7 @@ const DoctorProfile = ({ route, navigation }) => {
               zIndex: -1,
             }}
             title="Timing"
-            description= {pro.AvailabilityDay+" "+pro.AvailabilityTime}
+            description={pro.AvailabilityDay + " " + pro.AvailabilityTime}
             left={(props) => <List.Icon {...props} icon="clock" />}
           />
           <List.Item
@@ -92,13 +97,12 @@ const DoctorProfile = ({ route, navigation }) => {
               elevation: -1,
               zIndex: -1,
             }}
-            title="Fee" 
-            description= {pro.Fee+" 000L.L/session"}
+            title="Fee"
+            description={pro.Fee + " 000L.L/session"}
             left={(props) => <List.Icon {...props} icon="cash" />}
           />
-          </View>
-          ))}
-    
+        </View>
+      ))}
 
       <View
         style={{

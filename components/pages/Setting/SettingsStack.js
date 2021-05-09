@@ -22,7 +22,7 @@ export default function SettingsStack() {
         name="ProfilePage"
         component={ProfilePage}
         options={{
-          title: "Profile",
+          title: "My Account",
           headerTitleAlign: "center",
           headerLeft: () => null,
         }}
@@ -30,7 +30,10 @@ export default function SettingsStack() {
       <Stack.Screen
         name="EditPage"
         component={EditPage}
-        options={{ title: "Edit Profile" }}
+        options={{ title: "Edit Profile",
+            headerLeft: () => null,
+            headerShown:false,
+        }}
       />
       <Stack.Screen
         name="ChangePass"

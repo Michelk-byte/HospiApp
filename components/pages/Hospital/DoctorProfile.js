@@ -24,6 +24,19 @@ const DoctorProfile = ({ route, navigation }) => {
   
   const dispatch = useDispatch();
 
+  const msg = useSelector((state) => state.Ressource.DrmsgBooked);
+  const [alerM,setAlerM]=React.useState(msg);
+
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+   if(alerM !==""){
+      Alert.alert(alerM);
+      setAlerM("");
+   }
+  },[alerM]);
+
   React.useEffect(() => {
     dispatch(getProfileD(id));
   }, []);
@@ -46,11 +59,12 @@ const DoctorProfile = ({ route, navigation }) => {
     const data={
       _id:sid,
       DoctorID:id,
-      DateTime:date
+      DateTime:"2021-05-10T13:48:02.812Z"
     }
     dispatch(bookDoct(data));
     setDate("");
   }
+
 
   const size_ = 20;
 

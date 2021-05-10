@@ -2,20 +2,29 @@ import React, {useState} from 'react';
 import {ImageBackground, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
 import * as Animatable from "react-native-animatable";
+import { useDispatch, useSelector } from "react-redux";
+import {changePass} from "../../../actions/action"
 
 const ChangePassword = ({navigation}) => {
   const [oldPass, setOldPass] = useState('');
   const [newPas, setNewPass] = useState('');
   const [Verify, setVerify] = useState('');
 
+  const dispatch=useDispatch();
 
+  const sid=useSelector(state=>state.Login.data.sid)
+  
   const handleSubmit=()=>{
     const data={
-      oldPass:oldPass,
-      newPas:newPas,
-      Verify:Verify
+        sid:sid,
+        oldpassword:oldPass,
+        password:newPas,
+        verifypass:Verify
     }
-    alert("sending data: "+data.email)
+    dispatch(changePass(data));
+    setNewPass("");
+    setOldPass("");
+    setVerify("");
   }
 
   return (
@@ -30,6 +39,7 @@ const ChangePassword = ({navigation}) => {
                       <TextInput
                           secureTextEntry={true}
                           onChangeText={(data)=>setOldPass(data)}
+                          value={oldPass}
                           placeholder=""
                           placeholderTextColor="#003f5c"
                           autoCorrect={false}
@@ -41,6 +51,7 @@ const ChangePassword = ({navigation}) => {
                   <Text style={styles.inputTitle}>New Password</Text>
                   <LinearGradient colors={["white", "white"]} style={styles.input}>
                       <TextInput
+                          value={newPas}
                           secureTextEntry={true}
                           onChangeText={(data)=>setNewPass(data)}
                           placeholder=""
@@ -54,6 +65,7 @@ const ChangePassword = ({navigation}) => {
                   <Text style={styles.inputTitle}>Verify Password</Text>
                   <LinearGradient colors={["white", "white"]} style={styles.input}>
                       <TextInput
+                          value={Verify}
                           secureTextEntry={true}
                           onChangeText={(data)=>setVerify(data)}
                           placeholder=""
@@ -64,7 +76,7 @@ const ChangePassword = ({navigation}) => {
                   </LinearGradient>
               </View>
               <View style={{marginTop:5}}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
+                  <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
                       <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
                           <Text style={[styles.buttonText, { color: "white" }]}>Update Password</Text>
                       </LinearGradient>

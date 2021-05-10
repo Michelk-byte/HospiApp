@@ -13,7 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const LabTest = ({ route, navigation }) => {
-  const [search, setSearch] = React.useState("All");
+  const [search, setSearch] = React.useState([]);
 
   const { id } = route.params;
 
@@ -25,7 +25,7 @@ const LabTest = ({ route, navigation }) => {
   }, []);
 
   React.useEffect(() => {
-    if (search === "All") {
+    if (search.length === 0) {
       dispatch(getTestLabs(id));
     } else {
       const data = {

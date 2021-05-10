@@ -21,8 +21,6 @@ const DoctorProfile = ({ route, navigation }) => {
   const sid=useSelector(state=>state.Login.data.sid)
 
   const Profile = useSelector((state) => state.Ressource.profile);
-  
-  const dispatch = useDispatch();
 
   const msg = useSelector((state) => state.Ressource.DrmsgBooked);
   const [alerM,setAlerM]=React.useState(msg);

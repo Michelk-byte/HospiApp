@@ -1,4 +1,4 @@
-import { SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE,SET_CREDENTIALS,SET_TEST_DESC,SET_APPOINTMENTS} from "../actions/action";
+import { SET_MSG_BKDR,SET_MSG_BKTS,SET_SPEC_TEST,SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE,SET_CREDENTIALS,SET_TEST_DESC,SET_APPOINTMENTS,SET_SPECIALTY_HOSP} from "../actions/action";
 
 const initial = {
   hospitals:[],
@@ -9,6 +9,12 @@ const initial = {
   credentials:[],
   testDesc:[],
   appointments:[],
+  specialties:[],
+  testSpec:[],
+  DrmsgBooked:"",
+  TestMsgBooked:"",
+
+
 };
 
 const RessourceReducer = (state = initial, action) => {
@@ -27,8 +33,16 @@ const RessourceReducer = (state = initial, action) => {
       return { ...state, credentials: action.payload };
     case SET_TEST_DESC:
       return { ...state, testDesc: action.payload };
-    case SET_TEST_DESC:
+    case SET_APPOINTMENTS:
       return { ...state, appointments: action.payload };
+    case SET_SPECIALTY_HOSP:
+      return { ...state, specialties: action.payload };
+    case SET_SPEC_TEST:
+        return { ...state, testSpec: action.payload };
+    case SET_MSG_BKDR:
+      return { ...state, DrmsgBooked: action.payload };
+    case SET_MSG_BKTS:
+      return { ...state, TestMsgBooked: action.payload };
     default:
       return state;
   }

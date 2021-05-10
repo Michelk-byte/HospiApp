@@ -21,7 +21,8 @@ const Doctor = ({ route, navigation }) => {
   }, []);
 
   React.useEffect(() => {
-    if (search === "All") {
+    console.log("useEffect:" + search);
+    if (search === "" || search === "All") {
       dispatch(getDoctors(id));
     } else {
       const data = {
@@ -32,9 +33,16 @@ const Doctor = ({ route, navigation }) => {
     }
   }, [search]);
 
-  let specialties = useSelector((state) => state.Ressource.specialties);
-  specialties.push("All");
-  specialties.sort();
+  const specialties = useSelector((state) => state.Ressource.specialties);
+  // specialties.push("All");
+  // specialties.sort();
+  const items_ = specialties.map((spec) => ({
+    key: spec,
+    label: spec,
+    value: spec,
+    icon: () => <Feather name="heartbeat-alt" size={20} color="#900" />,
+  }));
+  console.log(specialties);
   const Doctors = useSelector((state) => state.Ressource.doctors);
 
   const size_ = 20;
@@ -48,15 +56,7 @@ const Doctor = ({ route, navigation }) => {
         }}
       >
         <DropDownPicker
-          items={[
-            {
-              label: "spec",
-              value: "spec",
-              icon: () => (
-                <Feather name="heartbeat-alt" size={20} color="#900" />
-              ),
-            },
-          ]}
+          items={items_}
           multiple={true}
           multipleText="%d items have been selected."
           min={0}

@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     },
     picture:{
         width:300,
-        height:300,
+        height:250,
         alignSelf:'center',
-        marginTop:10,
-        marginBottom:-200
+        marginTop:-10,
+        marginBottom:-220
     },
     form:{
         borderWidth:2,

@@ -28,19 +28,18 @@ export default function Signup({ navigation }) {
   };
 
   const handleConfirm = (date) => {
-    // Jano hon l variable birthday bado yenaamala save
+    SetBirthdate(date);
     hideDatePicker();
   };
 
   const [username, setUName] = useState("");
   const [Email, SetEmail] = useState("");
-  const [pass, SetPassword] = useState("");
-  const [pnumber, SetPnumber] = useState("");
-  const [verifypass, SetVerifypass] = useState("");
-  const [blood, setBlood] = useState('A+');
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(50);
-
+  const [birthdate, SetBirthdate] = useState("");
+  const [fname, SetFname] = useState("");
+  const [lname, SetLname] = useState("");
+  const [pnumber, SetPnumber] = useState('');
+  const [address, setAddress] = useState("");
+ 
   const dispatch = useDispatch();
 
   const [messagecolor, SetMessageColor] = useState("");
@@ -63,19 +62,7 @@ export default function Signup({ navigation }) {
     dispatch(register(false));
   }
 
-  const handleS = () => {
-    const data = {
-      email: Email,
-      password: pass,
-      username: username,
-      pnumber: pnumber,
-      verifypassword: verifypass,
-      weight:weight,
-      height:height,
-      bloodtype:blood
-    };
-    dispatch(signUp(data));
-  };
+  
 
   return (
       <View style={styles.container}>
@@ -90,6 +77,7 @@ export default function Signup({ navigation }) {
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  onChangeText={(data)=>setUName(data)}
               />
             </View>
             <View style={styles.input}>
@@ -99,6 +87,7 @@ export default function Signup({ navigation }) {
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  onChangeText={(data)=>SetFname(data)}
               />
               <TextInput
                   style={styles.textInput}
@@ -106,6 +95,7 @@ export default function Signup({ navigation }) {
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  onChangeText={(data)=>SetLname(data)}
               />
             </View>
             <View style={styles.input}>
@@ -116,6 +106,7 @@ export default function Signup({ navigation }) {
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  onChangeText={(data)=>SetEmail(data)}
               />
             </View>
             <View style={styles.input}>
@@ -123,6 +114,7 @@ export default function Signup({ navigation }) {
                   style={styles.textInput}
                   placeholder="Birthdate"
                   placeholderTextColor="#003f5c"
+                  onChangeText={(data)=>SetBirthdate(data)}
               />
               <Button title="Select your birthdate" onPress={showDatePicker} />
               <DateTimePickerModal
@@ -138,6 +130,7 @@ export default function Signup({ navigation }) {
                   placeholder="Phone Number"
                   keyboardType={"phone-pad"}
                   placeholderTextColor="#003f5c"
+                  onChangeText={(data)=>SetPnumber(data)}
               />
             </View>
             <View style={styles.input}>
@@ -147,10 +140,19 @@ export default function Signup({ navigation }) {
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
+                  onChangeText={(data)=>setAddress(data)}
               />
             </View>
             <View>
-              <TouchableOpacity onPress={()=>navigation.navigate("AccountDetailsScreen")}>
+              <TouchableOpacity onPress={()=>navigation.navigate("AccountDetailsScreen",{
+                                                                   email: Email,
+                                                                   username: username,
+                                                                   pnumber: pnumber,
+                                                                   firstname: fname,
+                                                                   lastname:lname,
+                                                                   location:address,
+                                                                   date_of_birth:birthdate
+               })}>
                 <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
                   <Text style={styles.buttonText}>Next</Text>
                   <MaterialIcons name="chevron-right" color='white' size={20}/>

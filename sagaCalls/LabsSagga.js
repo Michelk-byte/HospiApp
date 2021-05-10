@@ -47,7 +47,7 @@ function* TestDescWoker(action){
 
 function* BookTestWorker(action){
   try{
-    const res=yield call(bookTestLab,action);
+    const res=yield call(bookTestLab,action.payload);
   }catch (error) {
     console.log(error);
   }

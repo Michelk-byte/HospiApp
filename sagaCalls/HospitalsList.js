@@ -32,7 +32,7 @@ function* BookDoctWorker(action) {
 
 function* GetAppWorker(action){
   try{
-    const res=yield call(getAppointments,action);
+    const res=yield call(getAppointments,action.payload);
     console.log(res);
     yield put(setAppointments(res))
   }catch (error) {

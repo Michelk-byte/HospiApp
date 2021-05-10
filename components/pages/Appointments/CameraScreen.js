@@ -74,13 +74,13 @@ export default function CameraScreen() {
             <View style={styles.uploadImage}>
               <Text style={styles.uploadText}>Upload Image</Text>
               <Icon name={'camera-outline'} color='black' size={200} style={styles.icon}/>
+              {image && (
+                  <View style={styles.image}>
+                    <Image source={{uri: image}} style={{width: 200, height: 200}}/>
+                  </View>
+              )}
             </View>
           </TouchableOpacity>
-          {image && (
-              <View style={styles.image}>
-                <Image source={{uri: image}} style={{width: 200, height: 200}}/>
-              </View>
-          )}
           <TouchableOpacity onPress={uploadImage}>
             <LinearGradient
                 colors={["#1567cd", "#1498D5"]}
@@ -98,6 +98,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection:'column'
+  },
+  image:{
+    marginTop:-200,
+    elevation:1,
   },
   background:{
     flex:1,
@@ -120,7 +124,6 @@ const styles = StyleSheet.create({
     borderColor:'black',
     alignSelf:'center',
     alignItems:'center',
-    opacity:0.6,
     borderRadius: 15
   },
   uploadText: {

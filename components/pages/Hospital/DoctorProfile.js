@@ -55,7 +55,7 @@ const DoctorProfile = ({ route, navigation }) => {
   const size_ = 20;
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'#EAEAEA'}}>
       {Profile.map((pro) => (
         <View key={pro._id}>
           <View style={{ elevation: -1, zIndex: -1 }}>
@@ -66,7 +66,7 @@ const DoctorProfile = ({ route, navigation }) => {
               }}
               content={pro.DoctorDescription}
 
-             
+
 
               title={"Dr. " + pro.DoctorName + "\n" + pro.DoctorSpecialty}
               titleTextAlign="right"
@@ -128,7 +128,7 @@ const DoctorProfile = ({ route, navigation }) => {
       </View>
 
       <View style={{ width: "100%", alignItems: "center" }}>
-        
+
         <Button
         onPress={()=>bookAppoitment()}
           style={{ elevation: -1, zIndex: -1 }}

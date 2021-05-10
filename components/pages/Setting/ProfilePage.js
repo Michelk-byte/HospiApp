@@ -18,6 +18,7 @@ import { getCredentials } from "../../../actions/action";
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
+
   const gender = "Male";
   function symbole(gender) {
     if (gender === "Male") {
@@ -62,8 +63,9 @@ export default function Profile({ navigation }) {
                 },
               ]}
             >
-              {symbole(gender)}
-              {cred.firstname + " " + cred.lastname}
+
+              {cred.firstname +" "+cred.lastname} {symbole(cred.gender)}
+
             </Title>
             <Caption style={styles.caption}>{"@" + cred.username}</Caption>
           </View>
@@ -150,6 +152,7 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:'#EAEAEA'
   },
   userInfoSection: {
     paddingHorizontal: 30,
@@ -190,7 +193,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   menuItemText: {
-    color: "#777777",
+    color: "black",
     marginLeft: 20,
     fontWeight: "600",
     fontSize: 16,
@@ -198,7 +201,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    backgroundColor: "#DCDCDC",
+    backgroundColor: "white",
   },
   headerContent: {
     padding: 30,
@@ -219,11 +222,11 @@ const styles = StyleSheet.create({
   },
   userInfo: {
     fontSize: 16,
-    color: "#778899",
+    color: "white",
     fontWeight: "600",
   },
   body: {
-    backgroundColor: "#778899",
+    backgroundColor: "white",
     height: 500,
     alignItems: "center",
   },
@@ -248,6 +251,6 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 18,
     marginTop: 20,
-    color: "#FFFFFF",
+    color: "black",
   },
 });

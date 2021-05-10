@@ -33,7 +33,7 @@ export default function LabReserStack() {
       initialRouteName="LabReserScreen"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "#DFDFDF" },
         headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold"},
       }}

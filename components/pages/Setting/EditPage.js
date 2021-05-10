@@ -31,9 +31,11 @@ const EditPage = ({ navigation }) => {
   const [birthDate, setBirthdate] = useState("");
   const [gender, setGender] = useState("Male");
 
+
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
+
 
   const hideDatePicker = () => {
     setDatePickerVisibility(false);
@@ -41,6 +43,7 @@ const EditPage = ({ navigation }) => {
 
   const handleConfirm = (date) => {
     setBirthdate(date);
+    selectBirthdate = date;
     hideDatePicker();
   };
 
@@ -81,7 +84,7 @@ const EditPage = ({ navigation }) => {
   const [image, setImage] = useState(
     "https://bootdey.com/img/Content/avatar/avatar6.png"
   );
-
+  
   return (
     <ScrollView style={styles.container}>
       <ImageBackground
@@ -130,6 +133,7 @@ const EditPage = ({ navigation }) => {
                     onChangeText={(data) => setFname(data)}
                     value={firstname}
                   />
+
                 </View>
               </View>
               <View style={styles.fields}>
@@ -234,25 +238,21 @@ const EditPage = ({ navigation }) => {
               size={25}
               style={styles.icons}
             />
-            <View style={styles.datePicker}>
-              <TouchableOpacity onPress={showDatePicker}>
-                <LinearGradient
-                  colors={["#FFC0CB", "#FFB6C1"]}
-                  style={styles.birthDate}
-                >
-                  <Text style={[styles.buttonText, { color: "black" }]}>
-                    Select Birthdate
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-              <DateTimePickerModal
-                isVisible={isDatePickerVisible}
-                mode="date"
-                onConfirm={handleConfirm}
-                onCancel={hideDatePicker}
-              />
-            </View>
-          </View>
+            <View style={styles.fields}>
+                        <MaterialCommunityIcons name="cake" color='pink' size={25} style={styles.icons}/>
+                        <Text>Birthdate:</Text>
+                        <View style={styles.datePicker}>
+                            <TouchableOpacity onPress={showDatePicker}>
+                                <Text style={[styles.buttonText, {color: "black"}]}>{selectBirthdate}</Text>
+                            </TouchableOpacity>
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="date"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                            />
+                        </View>
+                    </View>
           <View style={styles.fields}>
             <View style={styles.dropDown}>
               <Icon
@@ -369,128 +369,128 @@ const EditPage = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  info: {
-    marginBottom: -30,
-  },
-  user: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  name: {
-    marginLeft: 60,
-    flex: 1,
-    alignSelf: "flex-end",
-  },
-  form: {
-    borderWidth: 2,
-    borderColor: "#1498D5",
-    borderRadius: 15,
-    backgroundColor: "white",
-    alignSelf: "center",
-    alignItems: "center",
-    marginTop: 30,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-  },
-  title: {
-    color: "black",
-    alignSelf: "center",
-    marginTop: 60,
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 30,
-  },
-  box: {
-    marginTop: 10,
-    height: 100,
-    width: 30,
-    borderRadius: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    marginLeft: 60,
-  },
-  picture: {
-    height: 100,
-    width: 100,
-  },
-  camera: {
-    opacity: 0.7,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#fff",
-    borderRadius: 10,
-  },
-  username: {
-    marginTop: 10,
-    fontSize: 18,
-    fontWeight: "bold",
-    marginLeft: 30,
-  },
-  fields: {
-    flexDirection: "row",
-    marginTop: 20,
-    marginBottom: 30,
-    marginLeft: 5,
-  },
-  picker: {
-    marginLeft: 10,
-  },
-  dropDown: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  icons: {
-    marginRight: 8,
-  },
-  nameInput: {
-    flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
-    paddingLeft: 10,
-    color: "black",
-    fontSize: 20,
-  },
-  textInput: {
-    flex: 1,
-    marginTop: Platform.OS === "ios" ? 0 : -12,
-    paddingLeft: 10,
-    color: "black",
-  },
-  birthDate: {
-    marginLeft: 20,
-    borderRadius: 10,
-    alignItems: "center",
-    padding: 5,
-  },
-  datePicker: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  line: {
-    flex: 1,
-    flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
-    marginRight: 30,
-  },
-  button: {
-    padding: 15,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 5,
-  },
-  buttonText: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "white",
-  },
+    container: {
+        flex: 1,
+    },
+    info:{
+        marginBottom:-30
+    },
+    user:{
+        flex:1,
+        flexDirection:'row'
+    },
+    name:{
+        marginLeft:60,
+        flex:1,
+        alignSelf:'flex-end',
+    },
+    form:{
+        borderWidth:2,
+        borderColor:'#1498D5',
+        borderRadius:15,
+        backgroundColor:'white',
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:30,
+        marginLeft:20,
+        marginRight:20,
+    },
+    image:{
+        flex:1,
+        resizeMode:'cover',
+    },
+    title:{
+        color:'black',
+        alignSelf: 'center',
+        marginTop: 60,
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginBottom:30,
+    },
+    box:{
+        marginTop: 10,
+        height: 100,
+        width: 30,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 60
+    },
+    picture:{
+        height: 100,
+        width: 100,
+    },
+    camera:{
+        opacity: 0.7,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 10,
+    },
+    username:{
+        marginTop: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginLeft:30
+    },
+    fields: {
+        flexDirection: 'row',
+        marginTop: 20,
+        marginBottom: 30,
+        marginLeft:5,
+    },
+    picker:{
+        marginLeft:10,
+    },
+    dropDown:{
+        flex:1,
+        flexDirection:'row',
+    },
+    icons:{
+        marginRight:8,
+    },
+    nameInput:{
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft: 10,
+        color: 'black',
+        fontSize:20
+    },
+    textInput: {
+        flex: 1,
+        paddingLeft: 10,
+        color: 'black',
+    },
+    birthDate:{
+        marginLeft:20,
+        borderRadius: 10,
+        alignItems: 'center',
+        padding: 5,
+    },
+    datePicker:{
+        flex:1,
+        flexDirection: 'row',
+        marginLeft:10
+    },
+    line:{
+        flex:1,
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
+        marginRight:30
+    },
+    button: {
+        padding: 15,
+        borderRadius: 10,
+        alignItems: 'center',
+        marginTop: 5,
+    },
+    buttonText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: 'white',
+    },
 });
 
 export default EditPage;

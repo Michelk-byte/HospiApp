@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import Login from "./components/Login/LoginPage";
+import ForgotPassword from "./components/Login/ForgotPassword";
 import GreetingPage from "./components/Login/GreetingPage";
 import Signup from "./components/Login/SignupPage";
 import AccountDetails from "./components/Login/AccountDetails";
@@ -37,6 +38,7 @@ export default function App() {
         >
           <Stack.Screen name="GreetingScreen" component={GreetingPage} />
           <Stack.Screen name="LoginScreen" component={Login} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
           <Stack.Screen name="SignupScreen" component={Signup} />
           <Stack.Screen name="AccountDetailsScreen" component={AccountDetails}/>
           <Stack.Screen name="Screen" component={Screen} />

@@ -13,7 +13,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const LabTest = ({ route, navigation }) => {
-  const [search, setSearch] = React.useState([]);
+
+
+
+ const [search, setSearch] = React.useState("All");
+
 
   const { id } = route.params;
 
@@ -43,7 +47,10 @@ const LabTest = ({ route, navigation }) => {
   const size_ = 20;
 
   return (
-    <ScrollView>
+
+    <ScrollView style={{backgroundColor:'#EAEAEA'}}>
+
+
       <View
         style={{
           width: "80%",

@@ -128,14 +128,14 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#EAEAEA",
       paddingTop: 10,
   },
   wrapper: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "#EAEAEA",
   },
   news: {
     flex: 1,

@@ -130,6 +130,7 @@ export const bookTestLab = async (data) => {
     console.log("data in book test : ");
     console.log(data);
     const res = await api.post("/appointment/lab", data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }

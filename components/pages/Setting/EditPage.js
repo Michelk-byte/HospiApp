@@ -206,6 +206,7 @@ const EditPage = ({navigation}) => {
                             />
                         </View>
                     </View>
+
                     <View style={styles.fields}>
                         <View style={styles.dropDown}>
                             <Icon name="water-outline" color="red" size={25} style={styles.icons}/>
@@ -285,6 +286,7 @@ const EditPage = ({navigation}) => {
             </ImageBackground>
         </ScrollView>
     );
+
 }
 
 const styles = StyleSheet.create({

@@ -15,18 +15,7 @@ const Doctor = ({ route, navigation }) => {
   const { id } = route.params;
 
 
-  const msg = useSelector((state) => state.Ressource.DrmsgBooked);
-  const [alerM,setAlerM]=React.useState(msg);
-
-
-  const dispatch = useDispatch();
-
-  React.useEffect(() => {
-   if(alerM !==""){
-      Alert.alert(alerM);
-      setAlerM("");
-   }
-  },[alerM]);
+ const dispatch=useDispatch();
 
   React.useEffect(() => {
       dispatch(getSpecialty(id)); 

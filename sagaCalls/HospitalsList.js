@@ -1,5 +1,5 @@
 import { takeLatest, call, put,all } from "redux-saga/effects";
-import { setMsgDr,GET_HOSPITALS, setHospitals,BOOK_DOCTOR,GET_APPOINTMENTS,setAppointments,GET_SPECIALTY_HOSP,setSpecialty } from "../actions/action";
+import { setAlertDr,setMsgDr,GET_HOSPITALS, setHospitals,BOOK_DOCTOR,GET_APPOINTMENTS,setAppointments,GET_SPECIALTY_HOSP,setSpecialty } from "../actions/action";
 import { getHospitals,bookDoctor,getAppointments,getSpecialties } from "../api/apiCalls";
 
 export function* HospitalsWatcher() {
@@ -17,7 +17,6 @@ function* Hospitalsworker() {
   try {
     const loge = yield call(getHospitals);
     yield put(setHospitals(loge));
-    // console.log(loge);
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +25,9 @@ function* Hospitalsworker() {
 function* BookDoctWorker(action) {
   try {
     const res=yield call(bookDoctor,action.payload);
-    yield put(setMsgDr(res.message))
+    console.log(res.message);
+    yield put(setMsgDr(res.message));
+    yield put(setAlertDr(true));
   } catch (error) {
     console.log(error);
   }

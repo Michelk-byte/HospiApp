@@ -1,4 +1,4 @@
-import { SET_MSG_BKDR,SET_MSG_BKTS,SET_SPEC_TEST,SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE,SET_CREDENTIALS,SET_TEST_DESC,SET_APPOINTMENTS,SET_SPECIALTY_HOSP} from "../actions/action";
+import { SET_ALERT_DR,SET_MSG_BKDR,SET_MSG_BKTS,SET_SPEC_TEST,SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE,SET_CREDENTIALS,SET_TEST_DESC,SET_APPOINTMENTS,SET_SPECIALTY_HOSP} from "../actions/action";
 
 const initial = {
   hospitals:[],
@@ -12,6 +12,7 @@ const initial = {
   specialties:[],
   testSpec:[],
   DrmsgBooked:"",
+  alertDr:false,
   TestMsgBooked:"",
 
 
@@ -43,6 +44,8 @@ const RessourceReducer = (state = initial, action) => {
       return { ...state, DrmsgBooked: action.payload };
     case SET_MSG_BKTS:
       return { ...state, TestMsgBooked: action.payload };
+    case SET_ALERT_DR:
+      return { ...state, alertDr: action.payload };
     default:
       return state;
   }

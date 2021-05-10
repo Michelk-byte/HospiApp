@@ -11,8 +11,50 @@ import {
 import {LinearGradient} from "expo-linear-gradient";
 import * as Animatable from "react-native-animatable";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp, register } from "../../actions/action";
 
-export default function AccountDetails({navigation}){
+
+export default function AccountDetails({route,navigation}){
+
+    const dispatch = useDispatch();
+
+    const [gender,setGender]=useState("Male");
+    const [height,setHeight]=useState("50");
+    const [weight,setWeight]=useState('10');
+    const [bloodtype,setBlood]=useState('A+');
+    const [pass,setPass]=useState("");
+    const [vPass,setVpass]=useState("");
+
+    const { email,
+        username,
+        pnumber,
+        firstname,
+        lastname,
+        location,
+        date_of_birth}=route.params
+
+        const handleS = () => {
+            const data = {
+              email: email,
+              username: username,
+              pnumber: pnumber,
+              firstname: firstname,
+              lastname:lastname,
+              location:location,
+              date_of_birth:date_of_birth,
+              password:pass,
+              verifypass:vPass,
+              height:height,
+              weight:weight,
+              bloodtype:bloodtype,
+              gender:gender
+
+            };
+            console.log(data);
+            dispatch(signUp(data));
+          };
+
     return(
         <View style={styles.container}>
             <ImageBackground source={require('../../assets/SignupBG.jpg')} style={styles.image} blurRadius={Platform.OS=="ios"? 10:1}>
@@ -25,6 +67,7 @@ export default function AccountDetails({navigation}){
                             placeholderTextColor="#003f5c"
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={(data)=>setGender(data)}
                         />
                     </View>
                     <View style={styles.input}>
@@ -33,12 +76,14 @@ export default function AccountDetails({navigation}){
                             placeholder="Height (in cm)"
                             placeholderTextColor="#003f5c"
                             keyboardType={"number-pad"}
+                            onChangeText={(data)=>setHeight(data)}
                         />
                         <TextInput
                             style={styles.textInput}
                             placeholder="Weight (in kg)"
                             placeholderTextColor="#003f5c"
                             keyboardType={"number-pad"}
+                            onChangeText={(data)=>setWeight(data)}
                         />
                     </View>
                     <View style={styles.input}>
@@ -46,6 +91,7 @@ export default function AccountDetails({navigation}){
                             style={styles.textInput}
                             placeholder="Blood Type"
                             placeholderTextColor="#003f5c"
+                            onChangeText={(data)=>setBlood(data)}
                         />
                     </View>
                     <View style={styles.input}>
@@ -56,6 +102,7 @@ export default function AccountDetails({navigation}){
                             placeholderTextColor="#003f5c"
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={(data)=>setPass(data)}
                         />
                     </View>
                     <View style={styles.input}>
@@ -66,6 +113,7 @@ export default function AccountDetails({navigation}){
                             placeholderTextColor="#003f5c"
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={(data)=>setVpass(data)}
                         />
                     </View>
                     <View>
@@ -73,6 +121,13 @@ export default function AccountDetails({navigation}){
                             <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
                                 <Text style={styles.buttonText}>Back</Text>
                                 <MaterialIcons name="chevron-left" color='white' size={20}/>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity onPress={()=>handleS()}>
+                            <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
+                                <Text style={styles.buttonText}>Submit</Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>

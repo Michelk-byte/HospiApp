@@ -29,7 +29,7 @@ export default function Profile({ navigation }) {
   function signOut() {
     dispatch(loggedOut());
     console.log("SIGN OUT");
-    Updates.reloadAsync();
+    
   }
 
   return (

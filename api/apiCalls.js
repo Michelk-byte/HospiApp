@@ -164,3 +164,44 @@ export const getAppointments=async(data)=>{
     console.log(error);
   }
 }
+
+export const getSpecialties=async(data)=>{
+  try{
+    const res=await api.get(`user/doctor/specialty/${data}`)
+    return res.data;
+  }catch(error){
+    console.log(error);
+  }
+}
+
+export const getDoctorSpec=async(data)=>{
+  try{
+    const id=data.id;
+    const spec=data.spec;
+    const res=await api.get(`user/doctorbyspeciality?id=${id}&specialty=${spec}`)
+    return res.data;
+  }catch (error){
+    console.log(error);
+  }
+}
+
+export const getSpecTest=async(data)=>{
+  try{
+    const res=await api.get(`user/test/type/${data}`)
+    return res.data;
+  }catch(error){
+    console.log(error);
+  }
+}
+
+
+export const getTestBySpec=async(data)=>{
+  try{
+    const id=data.id;
+    const type=data.type;
+    const res=await api.get(`user/testbytype?id=${id}&type=${type}`)
+    return res.data;
+  }catch (error){
+    console.log(error);
+  }
+}

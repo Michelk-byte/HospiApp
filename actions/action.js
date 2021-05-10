@@ -43,6 +43,17 @@ export const CHANGE_PASS="CHANGE_PASS"//28
 export const GET_APPOINTMENTS="GET_APPOINTMENTS"//29
 export const SET_APPOINTMENTS="SET_APPOINTMENTS"//30
 
+export const GET_SPECIALTY_HOSP="GET_SPECIALTY_HOSP"//31
+export const SET_SPECIALTY_HOSP="SET_SPECIALTY_HOSP"//32
+
+export const GET_DOCT_SPEC="GET_DOC_SPEC"//33
+
+export const GET_SPEC_TEST="GET_SPEC_TEST"//34
+export const SET_SPEC_TEST="SET_SPEC_TEST"//35
+
+export const GET_TEST_BY_SPEC="GET_TEST_BY_SPEC"//36
+
+
 //1
 export const checkIn = (data) => ({
   type: CHECK_IN,
@@ -222,5 +233,41 @@ export const getAppointments=(data)=>({
 //30
 export const setAppointments=(data)=>({
   type:SET_APPOINTMENTS,
+  payload:data
+})
+
+//31
+export const getSpecialty=(data)=>({
+  type:GET_SPECIALTY_HOSP,
+  payload:data
+})
+
+//32
+export const setSpecialty=(data)=>({
+  type:SET_SPECIALTY_HOSP,
+  payload:data
+})
+
+//33
+export const getDoctSpec=(data)=>({
+  type:GET_DOCT_SPEC,
+  payload:data
+})
+
+//34
+export const getTestSpec=(data)=>({
+  type:GET_SPEC_TEST,
+  payload:data
+})
+
+//35
+export const setTestSpec=(data)=>({
+  type:SET_SPEC_TEST,
+  payload:data
+})
+
+//36
+export const getTestBySpec=(data)=>({
+  type:GET_TEST_BY_SPEC,
   payload:data
 })

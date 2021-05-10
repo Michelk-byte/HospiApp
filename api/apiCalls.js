@@ -102,12 +102,16 @@ export const getCredentials = async (data) => {
   }
 };
 
-export const bookDoctor = async (data) => {
-  try {
-    console.log("data in book : " + data);
-    const res = await api.post("/appointment/hospital", data);
-  } catch (error) {
-    console.log(error);
+
+export const bookDoctor=async(data)=>{
+  try{
+    console.log("data in book : "+ data);
+    const res=await api.post("/appointment/hospital",data);
+    return res.data;
+    
+  }
+  catch(error){
+  console.log(error);
   }
 };
 

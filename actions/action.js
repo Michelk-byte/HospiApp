@@ -33,7 +33,9 @@ export const GET_CREDENTIALS="GET_CRENDATIALS"//22
 export const SET_CREDENTIALS="SET_CREDANTIALS"//23
 
 export const BOOK_DOCTOR="BOOK_DOCTOR"//24
+export const SET_MSG_BKDR="SET_MSG_BKDR"//37
 export const BOOK_TEST="BOOK_TEST"//25
+export const SET_MSG_BKTS="SET_MSG_BKTS"//38
 
 export const GET_TEST_DESC="GET_TEST_DESC"//26
 export const SET_TEST_DESC="SET_TEST_DESC"//27
@@ -52,6 +54,7 @@ export const GET_SPEC_TEST="GET_SPEC_TEST"//34
 export const SET_SPEC_TEST="SET_SPEC_TEST"//35
 
 export const GET_TEST_BY_SPEC="GET_TEST_BY_SPEC"//36
+
 
 
 //1
@@ -269,5 +272,17 @@ export const setTestSpec=(data)=>({
 //36
 export const getTestBySpec=(data)=>({
   type:GET_TEST_BY_SPEC,
+  payload:data
+})
+
+//37
+export const setMsgDr=(data)=>({
+  type:SET_MSG_BKDR,
+  payload:data
+})
+
+//38
+export const setMsgTs=(data)=>({
+  type:SET_MSG_BKTS,
   payload:data
 })

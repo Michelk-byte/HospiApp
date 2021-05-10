@@ -63,23 +63,28 @@ const EditPage = ({ navigation }) => {
     setGender("Male");
   };
 
-  const handleSubmit = () => {
-    const data = {
-      id: sid,
-      email: email,
-      weight: value,
-      height: height,
-      pnumber: phone,
-      location: location,
-      bloodtype: blood,
-      firstname: firstname,
-      lastname: lastname,
-      date_of_birth: birthDate,
-      gender: gender,
-    };
-    dispatch(editProfile(data));
-    clear();
-  };
+    }
+
+
+    const handleSubmit = () => {
+        const data = {
+            id:sid,
+            email: email,
+            weight: parseInt(value),
+            height: parseInt(height),
+            pnumber: phone,
+            location: location,
+            bloodtype: blood,
+            firstname:firstname,
+            lastname:lastname,
+            date_of_birth:birthDate,
+            gender:gender
+        }
+        dispatch(editProfile(data));
+        clear();
+
+    }
+
 
   const [image, setImage] = useState(
     "https://bootdey.com/img/Content/avatar/avatar6.png"

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet,Alert } from "react-native";
 import { Card, ListItem, Button, Icon, SearchBar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -14,20 +14,30 @@ const Doctor = ({ route, navigation }) => {
 
   const { id } = route.params;
 
+
+  const msg = useSelector((state) => state.Ressource.DrmsgBooked);
+  const [alerM,setAlerM]=React.useState(msg);
+
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(getSpecialty(id));
-  }, []);
+   if(alerM !==""){
+      Alert.alert(alerM);
+      setAlerM("");
+   }
+  },[alerM]);
 
   React.useEffect(() => {
-    console.log("useEffect:" + search);
-    console.log(search);
+      dispatch(getSpecialty(id)); 
+  },[]);
+
+
+
+  React.useEffect(() => {
     if (search.length === 0) {
-      console.log("XXXXXXXXXXXXXXXX");
       dispatch(getDoctors(id));
     } else {
-      console.log("OOOOOOOOOOOOOOOOOOOOOOOOO");
       const data = {
         id: id,
         spec: search,
@@ -37,8 +47,6 @@ const Doctor = ({ route, navigation }) => {
   }, [search]);
 
   const specialties = useSelector((state) => state.Ressource.specialties);
-  // specialties.push("All");
-  // specialties.sort();
   const items_ = specialties.map((spec) => ({
     key: spec,
     label: spec,

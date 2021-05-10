@@ -35,7 +35,6 @@ export const SET_CREDENTIALS="SET_CREDANTIALS"//23
 export const BOOK_DOCTOR="BOOK_DOCTOR"//24
 export const SET_MSG_BKDR="SET_MSG_BKDR"//37
 export const BOOK_TEST="BOOK_TEST"//25
-export const SET_MSG_BKTS="SET_MSG_BKTS"//38
 
 export const GET_TEST_DESC="GET_TEST_DESC"//26
 export const SET_TEST_DESC="SET_TEST_DESC"//27
@@ -57,6 +56,7 @@ export const GET_TEST_BY_SPEC="GET_TEST_BY_SPEC"//36
 
 export const SET_ALERT_DR="SET_ALERT_DR"//37
 
+export const FORGOT_PASSWORD="FORGOT_PASSWORD"//39
 
 //1
 export const checkIn = (data) => ({
@@ -283,13 +283,13 @@ export const setMsgDr=(data)=>({
 })
 
 //38
-export const setMsgTs=(data)=>({
-  type:SET_MSG_BKTS,
+export const setAlertDr=(data)=>({
+  type:SET_ALERT_DR,
   payload:data
 })
 
 //39
-export const setAlertDr=(data)=>({
-  type:SET_ALERT_DR,
+export const forgotPass=(data)=>({
+  type:FORGOT_PASSWORD,
   payload:data
 })

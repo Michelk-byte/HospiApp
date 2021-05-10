@@ -1,10 +1,35 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Text, View, StyleSheet, Platform, ImageBackground, Image, TextInput, TouchableOpacity} from 'react-native'
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
+import {setAlertDr,forgotPass} from "../../actions/action"
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ForgotPassword({navigation}) {
+    const [email,setEmail]=useState("");
+
+    const dispatch=useDispatch();
+
+    const handleS=()=>{
+        const data={
+            email:email
+        }
+        dispatch(forgotPass(data));
+        setEmail("");
+    }
+
+    const msg = useSelector((state) => state.Ressource.DrmsgBooked);
+  const open = useSelector((state) => state.Ressource.alertDr);
+  
+  
+
+  if(open===true){
+
+    alert(msg);
+    dispatch(setAlertDr(false));
+  }
+
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../../assets/ForgotpassBG.jpg')} style={styles.image}
@@ -25,11 +50,14 @@ export default function ForgotPassword({navigation}) {
                             placeholderTextColor="#003f5c"
                             autoCapitalize="none"
                             autoCorrect={false}
+                            onChangeText={(data)=>setEmail(data)}
+                            value={email}
                         />
                         </View>
                     </View>
-                    <View style={styles.buttons}>
-                        <TouchableOpacity>
+                    <View  
+                    style={styles.buttons}>
+                        <TouchableOpacity onPress={()=>handleS()}>
                             <LinearGradient
                                 colors={["#1567cd", "#1498D5"]}
                                 style={styles.buttonSend}

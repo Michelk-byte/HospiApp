@@ -1,4 +1,5 @@
 import axios from "axios";
+import { TextPropTypes } from "react-native";
 import api from "./index";
 
 export const CheckLogIn = async (data) => {
@@ -86,6 +87,7 @@ export const editProfile = async (data) => {
     console.log("data in editProfile : " + data.id);
     const id = data.id;
     const res = await api.put(`user/editprofile/${id}`, data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -142,6 +144,7 @@ export const changePass = async (data) => {
     console.log(id + " in chanfepass");
     console.log(data);
     const res = await api.put(`/user/changepassword/${id}`, data);
+    return res.data;
   } catch (error) {
     console.log(error);
   }
@@ -199,3 +202,12 @@ export const getTestBySpec = async (data) => {
     console.log(error);
   }
 };
+
+export const forgotPassword=async(data)=>{
+  try{
+    const res=await api.post('/send/mail/link',data)
+    return res.data;
+  }catch(error){
+    console.log(error);
+  }
+}

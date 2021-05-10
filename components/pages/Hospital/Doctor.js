@@ -6,7 +6,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Fontisto";
 import DropDownPicker from "react-native-dropdown-picker";
 
-import { getDoctors,getSpecialty,getDoctSpec } from "../../../actions/action";
+import { getDoctors, getSpecialty, getDoctSpec } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const Doctor = ({ route, navigation }) => {
@@ -14,31 +14,29 @@ const Doctor = ({ route, navigation }) => {
 
   const { id } = route.params;
 
- 
   const dispatch = useDispatch();
- 
-  React.useEffect(() => {
-      dispatch(getSpecialty(id)); 
-  },[]);
 
   React.useEffect(() => {
-    
-    if(search==='All'){
+    dispatch(getSpecialty(id));
+  }, []);
+
+  React.useEffect(() => {
+    if (search === "All") {
       dispatch(getDoctors(id));
-    }else{
-     const data={
-       id:id,
-       spec:search
-     }
-     dispatch(getDoctSpec(data));
+    } else {
+      const data = {
+        id: id,
+        spec: search,
+      };
+      dispatch(getDoctSpec(data));
     }
   }, [search]);
 
   let specialties = useSelector((state) => state.Ressource.specialties);
-  specialties.push('All');
+  specialties.push("All");
   specialties.sort();
   const Doctors = useSelector((state) => state.Ressource.doctors);
- 
+
   const size_ = 20;
   return (
     <ScrollView>
@@ -50,17 +48,14 @@ const Doctor = ({ route, navigation }) => {
         }}
       >
         <DropDownPicker
-          
           items={[
-            specialties.map(spec=>(
-              {
-                label: spec,
-                value: spec,
-                icon: () => (
-                  <Feather name="heartbeat-alt" size={20} color="#900" />
-                ),
-              }
-            ))
+            {
+              label: "spec",
+              value: "spec",
+              icon: () => (
+                <Feather name="heartbeat-alt" size={20} color="#900" />
+              ),
+            },
           ]}
           multiple={true}
           multipleText="%d items have been selected."
@@ -108,7 +103,9 @@ const Doctor = ({ route, navigation }) => {
                 backgroundColor: "red",
               }}
               title="BOOK AN APPOINTMENT"
-              onPress={() => navigation.navigate("DoctorProfile",{id:doct._id})}
+              onPress={() =>
+                navigation.navigate("DoctorProfile", { id: doct._id })
+              }
               titleStyle={{ marginLeft: 10, fontSize: 15 }}
             />
           </View>

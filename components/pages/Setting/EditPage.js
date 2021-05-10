@@ -354,6 +354,7 @@ const EditPage = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
+        </View>
         <View style={{ marginTop: 5 }}>
           <TouchableOpacity
             style={styles.button}
@@ -368,7 +369,6 @@ const EditPage = ({ navigation }) => {
               </Text>
             </LinearGradient>
           </TouchableOpacity>
-        </View>
         </View>
       </ImageBackground>
     </ScrollView>

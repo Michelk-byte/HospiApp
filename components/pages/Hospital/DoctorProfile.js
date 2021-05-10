@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Platform, Dimensions } from "react-native";
+import { View, Text, Platform, Dimensions,Alert } from "react-native";
 
 import { Button } from "react-native-elements";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -8,7 +8,7 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { getProfileD,bookDoct } from "../../../actions/action";
+import { setAlertDr,getProfileD,bookDoct } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const width = Dimensions.get("window").width;
@@ -25,17 +25,16 @@ const DoctorProfile = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   const msg = useSelector((state) => state.Ressource.DrmsgBooked);
-  const [alerM,setAlerM]=React.useState(msg);
+  const open = useSelector((state) => state.Ressource.alertDr);
+  
+  
 
+  if(open===true){
 
-  const dispatch = useDispatch();
+    alert(msg);
+    dispatch(setAlertDr(false));
+  }
 
-  React.useEffect(() => {
-   if(alerM !==""){
-      Alert.alert(alerM);
-      setAlerM("");
-   }
-  },[alerM]);
 
   React.useEffect(() => {
     dispatch(getProfileD(id));
@@ -59,7 +58,7 @@ const DoctorProfile = ({ route, navigation }) => {
     const data={
       _id:sid,
       DoctorID:id,
-      DateTime:"2021-05-10T13:48:02.812Z"
+      DateTime:date
     }
     dispatch(bookDoct(data));
     setDate("");

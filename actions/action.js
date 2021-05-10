@@ -55,6 +55,7 @@ export const SET_SPEC_TEST="SET_SPEC_TEST"//35
 
 export const GET_TEST_BY_SPEC="GET_TEST_BY_SPEC"//36
 
+export const SET_ALERT_DR="SET_ALERT_DR"//37
 
 
 //1
@@ -284,5 +285,11 @@ export const setMsgDr=(data)=>({
 //38
 export const setMsgTs=(data)=>({
   type:SET_MSG_BKTS,
+  payload:data
+})
+
+//39
+export const setAlertDr=(data)=>({
+  type:SET_ALERT_DR,
   payload:data
 })

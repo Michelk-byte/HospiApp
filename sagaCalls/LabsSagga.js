@@ -1,5 +1,5 @@
 import { takeLatest, call, put,all } from "redux-saga/effects";
-import { GET_LABS, setLabs,GET_TEST_LABS,setTestLabs,GET_TEST_DESC,setTestDesc ,BOOK_TEST, GET_TEST_BY_SPEC,GET_SPEC_TEST,setTestSpec} from "../actions/action";
+import { setMsgDr,setAlertDr,GET_LABS, setLabs,GET_TEST_LABS,setTestLabs,GET_TEST_DESC,setTestDesc ,BOOK_TEST, GET_TEST_BY_SPEC,GET_SPEC_TEST,setTestSpec} from "../actions/action";
 import { getLabs ,getTestLabs,getTestDesc,bookTestLab,getSpecTest,getTestBySpec} from "../api/apiCalls";
 
 export function* LabsWatcher() {
@@ -49,6 +49,8 @@ function* TestDescWoker(action){
 function* BookTestWorker(action){
   try{
     const res=yield call(bookTestLab,action.payload);
+    yield put(setMsgDr(res.message));
+    yield put(setAlertDr(true));
   }catch (error) {
     console.log(error);
   }

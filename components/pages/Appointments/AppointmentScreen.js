@@ -39,9 +39,40 @@ const AppointmentScreen = ({ navigation }) => {
   let all_appointments = {};
   let i = 0;
   for (i = 0; i < items_.length; ++i) {
-    all_appointments[items_[0]["Date"]] = [
-      { name: items_[0]["type"] + " Appointment with " + items_[0]["name"] },
-    ];
+    let date = items_[i]["Date"];
+    if (all_appointments[date] === undefined) {
+      all_appointments[date] = [
+        {
+          name:
+            items_[i]["type"] +
+            " Appointment, " +
+            items_[i]["name"] +
+            " at " +
+            items_[i]["Time"] +
+            " " +
+            items_[i]["locationName"] +
+            ", YOU HAVE " +
+            items_[i]["DayLeft"] +
+            " DAYS LEFT",
+          location: "City: " + items_[i]["location"],
+        },
+      ];
+    } else {
+      all_appointments[date].push({
+        name:
+          items_[i]["type"] +
+          " Appointment, " +
+          items_[i]["name"] +
+          " at " +
+          items_[i]["Time"] +
+          " " +
+          items_[i]["locationName"] +
+          ", YOU HAVE " +
+          items_[i]["DayLeft"] +
+          " DAYS LEFT",
+        location: "City: " + items_[i]["location"],
+      });
+    }
   }
 
   console.log(items_);
@@ -54,9 +85,11 @@ const AppointmentScreen = ({ navigation }) => {
         onPress={() =>
           alert(
             item.name,
-            item.location,
+            item.Location,
             item.type,
-            item.DateTime,
+            item.Date,
+            item.Time,
+            item.DayLeft,
             item.locationName
           )
         }

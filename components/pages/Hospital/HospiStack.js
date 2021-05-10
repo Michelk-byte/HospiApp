@@ -77,7 +77,6 @@ export default function HospiStack() {
         component={AppointmentScreen}
         options={({ navigation }) => ({
           title: "My Appointments",
-          headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
     </Stack.Navigator>

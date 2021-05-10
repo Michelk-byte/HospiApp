@@ -87,17 +87,17 @@ export default function HomeStack() {
         component={AppointmentScreen}
         options={({ navigation }) => ({
           title: "My Appointments",
-          headerRight: () => <ShoppingCartIcon navigation={navigation} />,
         })}
       />
 
-      <Stack.Screen
-        name="CameraScreen"
-        component={CameraScreen}
-        options={({ navigation }) => ({
-          title: "Take a Picture",
-        })}
-      />
+        <Stack.Screen
+            name="CameraScreen"
+            component={CameraScreen}
+            options={({navigation}) => ({
+                title: "Medication Description",
+                headerStyle: { backgroundColor: "#c9fffe" },
+            })}
+        />
     </Stack.Navigator>
   );
 }

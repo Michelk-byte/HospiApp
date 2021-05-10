@@ -24,11 +24,18 @@ const AppointmentScreen = ({ navigation }) => {
     dispatch(getAppointments(sid));
   }, []);
 
+  const appointments=useSelector(state=>state.Ressource.appointments);
+  
+  //here to access the value of the appointments
+  const items_=appointments.map((app)=>({
+    type:app.Type, DateTime:app.DateTime,name:app.Name, location:app.Location,locationName:app.locationName 
+  }))
+
   const renderItem = (item) => {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() => Alert.alert(item.name, item.location)}
+        onPress={() => alert(item.name, item.location,item.type,item.DateTime,item.locationName)}
       >
         <Text>{item.name}</Text>
       </TouchableOpacity>
@@ -38,14 +45,10 @@ const AppointmentScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:"#EAEAEA" }}>
       <Agenda
-        items={{
-          "2021-05-01": [
-            { name: "item 1 - any js object", location: "Baabda" },
-          ],
-          "2021-05-02": [{ name: "item 2 - any js object" }],
-          "2021-05-07": [{ name: "item 3 - any js object" }],
-          "2021-05-09": [{ name: "item 4 - any js object" }],
-        }}
+        items={
+          {"2021-05-12": [
+          { name: "item 1 - any js object", location: "Baabda" },
+        ],}}
         selected={todayDate}
         renderItem={renderItem}
         theme={{

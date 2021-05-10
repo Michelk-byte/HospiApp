@@ -11,16 +11,27 @@ import {
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import ModalSelector from 'react-native-modal-selector'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import {editProfile} from "../../../actions/action"
+import {setAlertDr,editProfile} from "../../../actions/action"
 import { useDispatch, useSelector } from "react-redux";
 import RNPickerSelect from 'react-native-picker-select';
 import {LinearGradient} from "expo-linear-gradient";
 
 
 const EditPage = ({navigation}) => {
+    const cred = useSelector((state) => state.Ressource.credentials);
+
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const [blood, setBlood] = useState(cred.bloodtype);
+    const [value, setValue] = useState(cred.weight);
+    const [height, setHeight] = useState(cred.height);
+    const [email, setEmail] = useState(cred.email);
+    const [phone, setPhone] = useState(cred.pnumber);
+    const [location, setLocation] = useState(cred.location);
+    const [firstname, setFname] = useState(cred.firstname);
+    const [lastname, setLname] = useState(cred.lastname);
+    const [birthDate,setBirthdate]=useState(cred.date_of_birth);
+    const [gender,setGender]=useState(cred.gender);
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
@@ -32,19 +43,12 @@ const EditPage = ({navigation}) => {
 
     let selectBirthdate = "Select Birthdate";
     const handleConfirm = (date) => {
-        // Jano hon l new birthday bado yenaamala save
+        
         selectBirthdate = date;
         hideDatePicker();
     };
 
-    const [blood, setBlood] = useState('A+');
-    const [value, setValue] = useState(0);
-    const [height, setHeight] = useState(50);
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [location, setLocation] = useState('');
-    const [firstname, setFname] = useState('');
-    const [lastname, setLname] = useState("");
+   
 
     const sid=useSelector(state=>state.Login.data.sid)
     const dispatch=useDispatch();
@@ -60,9 +64,21 @@ const EditPage = ({navigation}) => {
         setLocation("");
         setValue(0);
         setPhone("");
+        setBirthdate("");
+        setGender("Male");
 
     }
 
+    const msg = useSelector((state) => state.Ressource.DrmsgBooked);
+  const open = useSelector((state) => state.Ressource.alertDr);
+  
+  
+
+  if(open===true){
+
+    alert(msg);
+    dispatch(setAlertDr(false));
+  }
 
     const handleSubmit = () => {
         const data = {
@@ -75,11 +91,11 @@ const EditPage = ({navigation}) => {
             bloodtype: blood,
             firstname:firstname,
             lastname:lastname,
-            date_of_birth:"",
-            gender:""
+            date_of_birth:birthDate,
+            gender:gender
         }
         dispatch(editProfile(data));
-        clear();
+        //clear();
     }
 
     const [image, setImage] = useState("https://bootdey.com/img/Content/avatar/avatar6.png");
@@ -118,6 +134,7 @@ const EditPage = ({navigation}) => {
                                         autoCorrect={false}
                                         style={styles.nameInput}
                                         onChangeText={(data) => setFname(data)}
+                                        value={firstname}
                                     />
                                 </View>
                             </View>
@@ -129,6 +146,7 @@ const EditPage = ({navigation}) => {
                                         autoCorrect={false}
                                         style={styles.nameInput}
                                         onChangeText={(data) => setLname(data)}
+                                        value={lastname}
                                     />
                                 </View>
                             </View>
@@ -146,6 +164,7 @@ const EditPage = ({navigation}) => {
                                 keyboardType="email-address"
                                 autoCorrect={false}
                                 style={styles.textInput}
+                                value={email}
                             />
                         </View>
                     </View>
@@ -159,6 +178,7 @@ const EditPage = ({navigation}) => {
                                 keyboardType='phone-pad'
                                 autoCorrect={false}
                                 style={styles.textInput}
+                                value={phone}
                             />
                         </View>
                     </View>
@@ -171,6 +191,7 @@ const EditPage = ({navigation}) => {
                                 placeholderTextColor="#003f5c"
                                 autoCorrect={false}
                                 style={styles.textInput}
+                                value={location}
                             />
                         </View>
                     </View>
@@ -180,13 +201,14 @@ const EditPage = ({navigation}) => {
                             <Text>Select Gender:</Text>
                             <View style={styles.picker}>
                                 <RNPickerSelect
-                                    onValueChange={(value) => console.log(value)}
+                                    onValueChange={(value) => setGender(value)}
                                     useNativeAndroidPickerStyle={false}
                                     items={[
                                         { label: 'Male', value: 'Male' },
                                         { label: 'Female', value: 'Female' },
                                         { label: 'Prefer not to say', value: 'Prefer not to say' },
                                     ]}
+                                    value={gender}
                                 />
                             </View>
                         </View>
@@ -213,7 +235,7 @@ const EditPage = ({navigation}) => {
                             <Text>Select Blood Type:</Text>
                             <View style={styles.picker}>
                                 <RNPickerSelect
-                                    onValueChange={(value) => console.log(value)}
+                                    onValueChange={(value) => setBlood(value)}
                                     useNativeAndroidPickerStyle={false}
                                     items={[
                                         { label: 'A+', value: 'A+' },
@@ -225,6 +247,7 @@ const EditPage = ({navigation}) => {
                                         { label: 'O+', value: 'O+' },
                                         { label: 'O-', value: 'O-' },
                                     ]}
+                                    value={blood}
                                 />
                                 {/*<Picker*/}
                                 {/*    selectedValue={bloodT}*/}
@@ -252,7 +275,8 @@ const EditPage = ({navigation}) => {
                                 placeholderTextColor="#003f5c"
                                 style={styles.textInput}
                                 keyboardType={"number-pad"}
-                                // onChangeText={(data)=>setFname(data)}
+                                onChangeText={(data)=>setHeight(data)}
+                                value={height}
                             />
                         </View>
                     </View>
@@ -264,7 +288,8 @@ const EditPage = ({navigation}) => {
                                 placeholderTextColor="#003f5c"
                                 style={styles.textInput}
                                 keyboardType={"number-pad"}
-                                // onChangeText={(data)=>setFname(data)}
+                                onChangeText={(data)=>setValue(data)}
+                                value={value}
                             />
                         </View>
                     </View>

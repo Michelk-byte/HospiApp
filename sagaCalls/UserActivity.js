@@ -13,9 +13,10 @@ import {
   EDIT_PROFILE,
   GET_CREDENTIALS,
   setCredentials,
-  CHANGE_PASS
+  setAlertDr,setMsgDr,
+  CHANGE_PASS,FORGOT_PASSWORD
 } from "../actions/action";
-import { changePass,CheckLogIn,SignUp, logOut,editProfile,getCredentials} from "../api/apiCalls";
+import { forgotPassword,changePass,CheckLogIn,SignUp, logOut,editProfile,getCredentials} from "../api/apiCalls";
 
 import { getData, storeData } from "../Storage";
 
@@ -26,7 +27,8 @@ export function* UserActivityWatcher() {
     takeLatest(SIGN_UP, SignUpWorker),
     takeLatest(EDIT_PROFILE,EditWorker),
     takeLatest(GET_CREDENTIALS,SetCredWorler),
-    takeLatest(CHANGE_PASS,ChangePassWorker)
+    takeLatest(CHANGE_PASS,ChangePassWorker),
+    takeLatest(FORGOT_PASSWORD,ForgotWorker)
 
   ]);
 }
@@ -58,10 +60,7 @@ function* checkOutworker(action) {
   yield put(datain(null));
   yield put(loggedin(false));
   try {
-    const dat = action.payload;
-     yield call(logOut);
-      
-    
+     yield call(logOut);   
   } catch (error) {
     console.log(error);
   }
@@ -72,9 +71,9 @@ function* SignUpWorker(action) {
   try {
     const dat = action.payload;
     const signup = yield call(SignUp, dat);
-   // yield put(messageup(signup.message));
-   // yield put(status(signup.status));
-   // yield put(register(true));
+   yield put(messageup(signup.message));
+   yield put(status(signup.status));
+   yield put(register(true));
   } catch (error) {
     console.log(error);
   }
@@ -85,7 +84,9 @@ function* EditWorker(action){
     const data=action.payload;
     console.log("in edit worker ")
     console.log(data)
-    yield call(editProfile,data)
+    const res= yield call(editProfile,data)
+    yield put(setMsgDr(res.message));
+    yield put(setAlertDr(true));
   }
   catch (error) {
     console.log(error);
@@ -107,7 +108,21 @@ function* SetCredWorler(action) {
 
 function* ChangePassWorker(action){
   try{
-    yield call(changePass,action.payload);
+    const res=yield call(changePass,action.payload);
+    console.log("In change pass");
+    console.log(res)
+    yield put(setMsgDr(res.message));
+    yield put(setAlertDr(true));
+  }catch(error){
+    console.log(error);
+  }
+}
+
+function* ForgotWorker(action){
+  try{
+    const res=yield call(forgotPassword,action.payload);
+    yield put(setMsgDr(res.message));
+    yield put(setAlertDr(true));
   }catch(error){
     console.log(error);
   }

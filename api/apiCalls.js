@@ -114,6 +114,7 @@ export const bookDoctor=async(data)=>{
   try{
     console.log("data in book : "+ data);
     const res=await api.post("/appointment/hospital",data);
+    return res.data;
     
   }
   catch(error){

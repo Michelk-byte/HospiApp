@@ -71,8 +71,8 @@ const EditPage = ({navigation}) => {
         const data = {
             id:sid,
             email: email,
-            weight: value,
-            height: height,
+            weight: parseInt(value),
+            height: parseInt(height),
             pnumber: phone,
             location: location,
             bloodtype: blood,

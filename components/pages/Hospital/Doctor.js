@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet,Alert } from "react-native";
 import { Card, ListItem, Button, Icon, SearchBar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -14,9 +14,18 @@ const Doctor = ({ route, navigation }) => {
 
   const { id } = route.params;
 
- 
+  const msg = useSelector((state) => state.Ressource.DrmsgBooked);
+  const [alerM,setAlerM]=React.useState(msg);
+
   const dispatch = useDispatch();
  
+  React.useEffect(() => {
+   if(alerM !==""){
+      Alert.alert(alerM);
+      setAlerM("");
+   }
+  },[alerM]);
+
   React.useEffect(() => {
       dispatch(getSpecialty(id)); 
   },[]);

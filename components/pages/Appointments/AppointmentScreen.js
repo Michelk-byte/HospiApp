@@ -11,31 +11,55 @@ import { Agenda } from "react-native-calendars";
 import { getAppointments } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const todayDate = new Date();
 
 const AppointmentScreen = ({ navigation }) => {
   const [items, setItems] = useState({});
 
-  const sid=useSelector(state=>state.Login.data.sid)
-  const dispatch=useDispatch();
+  const sid = useSelector((state) => state.Login.data.sid);
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log("in use effect appointments")
+    console.log("in use effect appointments");
     dispatch(getAppointments(sid));
   }, []);
 
-  const appointments=useSelector(state=>state.Ressource.appointments);
-  
+  const appointments = useSelector((state) => state.Ressource.appointments);
+
   //here to access the value of the appointments
-  const items_=appointments.map((app)=>({
-    type:app.Type, DateTime:app.DateTime,name:app.Name, location:app.Location,locationName:app.locationName 
-  }))
+  const items_ = appointments.map((app) => ({
+    type: app.Type,
+    Date: app.Date,
+    Time: app.Time,
+    name: app.Name,
+    location: app.Location,
+    locationName: app.locationName,
+    DayLeft: app.DayLeft,
+  }));
+
+  let all_appointments = {};
+  let i = 0;
+  for (i = 0; i < items_.length; ++i) {
+    all_appointments[items_[0]["Date"]] = [
+      { name: items_[0]["type"] + " Appointment with " + items_[0]["name"] },
+    ];
+  }
+
+  console.log(items_);
+  console.log(all_appointments);
 
   const renderItem = (item) => {
     return (
       <TouchableOpacity
         style={styles.item}
-        onPress={() => alert(item.name, item.location,item.type,item.DateTime,item.locationName)}
+        onPress={() =>
+          alert(
+            item.name,
+            item.location,
+            item.type,
+            item.DateTime,
+            item.locationName
+          )
+        }
       >
         <Text>{item.name}</Text>
       </TouchableOpacity>
@@ -43,12 +67,9 @@ const AppointmentScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor:"#EAEAEA" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#EAEAEA" }}>
       <Agenda
-        items={
-          {"2021-05-12": [
-          { name: "item 1 - any js object", location: "Baabda" },
-        ],}}
+        items={all_appointments}
         selected={todayDate}
         renderItem={renderItem}
         theme={{

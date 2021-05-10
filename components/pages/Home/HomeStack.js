@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import HomeScreen from "./HomeScreen";
 import AppointmentScreen from "../Appointments/AppointmentScreen";
+import CameraScreen from "../Appointments/CameraScreen";
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,41 @@ const ShoppingCartIcon = ({ navigation }) => {
         size={size_}
         style={{
           marginRight: 20,
-            color :'black',
+          color: "black",
+        }}
+        onPress={() => navigation.navigate("AppointmentScreen")}
+      />
+    </View>
+  );
+};
+
+const CartIcon = ({ navigation }) => {
+  const size_ = 35;
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+      }}
+    >
+      <Icon
+        name="camera"
+        size={size_}
+        style={{
+          marginRight: 20,
+          color: "black",
+        }}
+        onPress={() => navigation.navigate("CameraScreen")}
+      />
+      <Icon
+        name="calendar"
+        size={size_}
+        style={{
+          marginRight: 20,
+          color: "black",
         }}
         onPress={() => navigation.navigate("AppointmentScreen")}
       />
@@ -32,7 +67,7 @@ export default function HomeStack() {
       initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "#DFDFDF" },
         headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold" },
       }}
@@ -41,9 +76,9 @@ export default function HomeStack() {
         name="HomeScreen"
         component={HomeScreen}
         options={({ navigation }) => ({
-            headerLeft: ()=> null,
+          headerLeft: () => null,
           title: "Top Headlines",
-          headerRight: () => <ShoppingCartIcon navigation={navigation} />,
+          headerRight: () => <CartIcon navigation={navigation} />,
         })}
       />
 
@@ -53,6 +88,14 @@ export default function HomeStack() {
         options={({ navigation }) => ({
           title: "My Appointments",
           headerRight: () => <ShoppingCartIcon navigation={navigation} />,
+        })}
+      />
+
+      <Stack.Screen
+        name="CameraScreen"
+        component={CameraScreen}
+        options={({ navigation }) => ({
+          title: "Take a Picture",
         })}
       />
     </Stack.Navigator>

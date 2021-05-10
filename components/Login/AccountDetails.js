@@ -13,9 +13,29 @@ import * as Animatable from "react-native-animatable";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { signUp, register } from "../../actions/action";
+import {Button} from "react-native-elements";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import RNPickerSelect from "react-native-picker-select";
 
 
 export default function AccountDetails({route,navigation}){
+
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    let selectedDate = "Select Birthdate";
+    const handleConfirm = (date) => {
+        SetBirthdate(date);
+        selectedDate = date;
+        hideDatePicker();
+    };
 
     const dispatch = useDispatch();
 
@@ -23,16 +43,16 @@ export default function AccountDetails({route,navigation}){
     const [height,setHeight]=useState("50");
     const [weight,setWeight]=useState('10');
     const [bloodtype,setBlood]=useState('A+');
-    const [pass,setPass]=useState("");
-    const [vPass,setVpass]=useState("");
+    const [pnumber, SetPnumber] = useState('');
+    const [address, setAddress] = useState("");
+    const [birthdate, SetBirthdate] = useState("");
 
     const { email,
         username,
-        pnumber,
+        pass,
+        vPass,
         firstname,
-        lastname,
-        location,
-        date_of_birth}=route.params
+        lastname,}=route.params
 
         const handleS = () => {
             const data = {
@@ -41,8 +61,8 @@ export default function AccountDetails({route,navigation}){
               pnumber: pnumber,
               firstname: firstname,
               lastname:lastname,
-              location:location,
-              date_of_birth:date_of_birth,
+              location:address,
+              date_of_birth:birthdate,
               password:pass,
               verifypass:vPass,
               height:height,
@@ -59,7 +79,38 @@ export default function AccountDetails({route,navigation}){
         <View style={styles.container}>
             <ImageBackground source={require('../../assets/SignupBG.jpg')} style={styles.image} blurRadius={Platform.OS=="ios"? 10:1}>
                 <Animatable.View animation="fadeInDownBig" style={styles.box}>
-                    <Text style={styles.title}>Additional Details</Text>
+                    <Text style={styles.title}>Account Details</Text>
+                    <View style={styles.input}>
+                        <Text style={styles.pickers}>Birthdate</Text>
+                        <TouchableOpacity onPress={showDatePicker}>
+                        <Text style={styles.textInput}>{selectedDate}</Text>
+                        </TouchableOpacity>
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible}
+                            mode="date"
+                            onConfirm={handleConfirm}
+                            onCancel={hideDatePicker}
+                        />
+                    </View>
+                    <View style={styles.input}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Phone Number"
+                            keyboardType={"phone-pad"}
+                            placeholderTextColor="#003f5c"
+                            onChangeText={(data)=>SetPnumber(data)}
+                        />
+                    </View>
+                    <View style={styles.input}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Address"
+                            placeholderTextColor="#003f5c"
+                            autoCapitalize="none"
+                            autoCorrect={false}
+                            onChangeText={(data)=>setAddress(data)}
+                        />
+                    </View>
                     <View style={styles.input}>
                         <TextInput
                             style={styles.textInput}
@@ -68,6 +119,20 @@ export default function AccountDetails({route,navigation}){
                             autoCapitalize="none"
                             autoCorrect={false}
                             onChangeText={(data)=>setGender(data)}
+                        />
+                        <RNPickerSelect
+                            onValueChange={(value) => console.log(value)}
+                            useNativeAndroidPickerStyle={false}
+                            items={[
+                                { label: 'A+', value: 'A+' },
+                                { label: 'A-', value: 'A-' },
+                                { label: 'B+', value: 'B+' },
+                                { label: 'B-', value: 'B-' },
+                                { label: 'AB+', value: 'AB+' },
+                                { label: 'AB-', value: 'AB-' },
+                                { label: 'O+', value: 'O+' },
+                                { label: 'O-', value: 'O-' },
+                            ]}
                         />
                     </View>
                     <View style={styles.input}>
@@ -94,50 +159,20 @@ export default function AccountDetails({route,navigation}){
                             onChangeText={(data)=>setBlood(data)}
                         />
                     </View>
-                    <View style={styles.input}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Password"
-                            secureTextEntry={true}
-                            placeholderTextColor="#003f5c"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onChangeText={(data)=>setPass(data)}
-                        />
-                    </View>
-                    <View style={styles.input}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Verify Password"
-                            secureTextEntry={true}
-                            placeholderTextColor="#003f5c"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onChangeText={(data)=>setVpass(data)}
-                        />
-                    </View>
-                    <View>
+                    <View style={styles.buttons}>
                         <TouchableOpacity onPress={()=>navigation.navigate("SignupScreen")}>
-                            <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
+                            <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.buttonLeft}>
                                 <Text style={styles.buttonText}>Back</Text>
                                 <MaterialIcons name="chevron-left" color='white' size={20}/>
                             </LinearGradient>
                         </TouchableOpacity>
-                    </View>
-                    <View>
                         <TouchableOpacity onPress={()=>handleS()}>
-                            <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
-                                <Text style={styles.buttonText}>Submit</Text>
+                            <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.buttonRight}>
+                                <Text style={styles.buttonText}>Create Account</Text>
                             </LinearGradient>
                         </TouchableOpacity>
                     </View>
                 </Animatable.View>
-                <View style={styles.logIn}>
-                    <Text style={styles.logText}>Already have an account?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-                        <Text style={styles.signIn}>Sign in</Text>
-                    </TouchableOpacity>
-                </View>
             </ImageBackground>
         </View>
     );
@@ -158,7 +193,7 @@ const styles = StyleSheet.create({
         borderColor:'#1498D5',
         borderRadius:15,
         backgroundColor:'white',
-        height:550,
+        height:600,
         width:350,
         alignSelf:'center',
         alignItems:'center'
@@ -183,19 +218,40 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: "black",
     },
-    button:{
+    pickers:{
+        color:'#003f5c',
+        marginTop: Platform.OS === "ios" ? 0 : -12,
+        paddingLeft: 10,
+        flex: 1,
+    },
+    buttonLeft:{
         marginTop:10,
         width: 100,
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 20,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginRight:30,
+    },
+    buttonRight:{
+        marginTop:10,
+        width: 150,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        flexDirection: 'row',
+        marginLeft:30,
     },
     buttonText: {
         color: 'white',
         fontWeight: 'bold',
         paddingRight:5
+    },
+    buttons:{
+        flex:1,
+        flexDirection:'row',
     },
     logIn:{
         marginTop:20

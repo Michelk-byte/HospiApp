@@ -19,7 +19,7 @@ const Test = ({ route,navigation }) => {
 
   const sid=useSelector(state=>state.Login.data.sid)
 
- 
+
 
   const dispatch=useDispatch();
 
@@ -54,13 +54,13 @@ const Test = ({ route,navigation }) => {
   const size_ = 20;
 
   return (
-    <ScrollView>
+    <ScrollView style={{backgroundColor:'#EAEAEA'}}>
       {TestDesc.map(Desc=>(
         <View key={Desc._id}>
       <CardViewWithImage
         width={width - 20}
         source={{uri: `https://hospiapp-backend.herokuapp.com/static/images/${Desc.testphoto}`,}}
-        
+
         content={Desc.labtestdescription}
         title={Desc.Lab+" -> "+Desc.testtype}
         imageWidth={500}
@@ -130,7 +130,7 @@ const Test = ({ route,navigation }) => {
           titleStyle={{ marginLeft: 10, fontSize: 15 }}
         />
       </View>
-      
+
     </ScrollView>
   );
 };

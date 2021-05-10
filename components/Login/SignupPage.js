@@ -17,29 +17,13 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {Button} from "react-native-elements";
 
 export default function Signup({ navigation }) {
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date) => {
-    SetBirthdate(date);
-    hideDatePicker();
-  };
-
   const [username, setUName] = useState("");
   const [Email, SetEmail] = useState("");
-  const [birthdate, SetBirthdate] = useState("");
   const [fname, SetFname] = useState("");
   const [lname, SetLname] = useState("");
-  const [pnumber, SetPnumber] = useState('');
-  const [address, setAddress] = useState("");
- 
+  const [pass,setPass]=useState("");
+  const [vPass,setVpass]=useState("");
+
   const dispatch = useDispatch();
 
   const [messagecolor, SetMessageColor] = useState("");
@@ -62,7 +46,7 @@ export default function Signup({ navigation }) {
     dispatch(register(false));
   }
 
-  
+
 
   return (
       <View style={styles.container}>
@@ -112,46 +96,33 @@ export default function Signup({ navigation }) {
             <View style={styles.input}>
               <TextInput
                   style={styles.textInput}
-                  placeholder="Birthdate"
-                  placeholderTextColor="#003f5c"
-                  onChangeText={(data)=>SetBirthdate(data)}
-              />
-              <Button title="Select your birthdate" onPress={showDatePicker} />
-              <DateTimePickerModal
-                  isVisible={isDatePickerVisible}
-                  mode="date"
-                  onConfirm={handleConfirm}
-                  onCancel={hideDatePicker}
-              />
-            </View>
-            <View style={styles.input}>
-              <TextInput
-                  style={styles.textInput}
-                  placeholder="Phone Number"
-                  keyboardType={"phone-pad"}
-                  placeholderTextColor="#003f5c"
-                  onChangeText={(data)=>SetPnumber(data)}
-              />
-            </View>
-            <View style={styles.input}>
-              <TextInput
-                  style={styles.textInput}
-                  placeholder="Address"
+                  placeholder="Password"
+                  secureTextEntry={true}
                   placeholderTextColor="#003f5c"
                   autoCapitalize="none"
                   autoCorrect={false}
-                  onChangeText={(data)=>setAddress(data)}
+                  onChangeText={(data)=>setPass(data)}
+              />
+            </View>
+            <View style={styles.input}>
+              <TextInput
+                  style={styles.textInput}
+                  placeholder="Verify Password"
+                  secureTextEntry={true}
+                  placeholderTextColor="#003f5c"
+                  autoCapitalize="none"
+                  autoCorrect={false}
+                  onChangeText={(data)=>setVpass(data)}
               />
             </View>
             <View>
               <TouchableOpacity onPress={()=>navigation.navigate("AccountDetailsScreen",{
                                                                    email: Email,
                                                                    username: username,
-                                                                   pnumber: pnumber,
+                                                                   pass: pass,
                                                                    firstname: fname,
                                                                    lastname:lname,
-                                                                   location:address,
-                                                                   date_of_birth:birthdate
+                                                                   vPass:vPass,
                })}>
                 <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
                   <Text style={styles.buttonText}>Next</Text>
@@ -186,7 +157,7 @@ const styles = StyleSheet.create({
     borderColor:'#1498D5',
     borderRadius:15,
     backgroundColor:'white',
-    height:550,
+    height:500,
     width:350,
     alignSelf:'center',
     alignItems:'center'

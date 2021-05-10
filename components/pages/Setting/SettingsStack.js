@@ -13,7 +13,7 @@ export default function SettingsStack() {
       initialRouteName="ProfilePage"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "#DFDFDF" },
         headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold" },
       }}

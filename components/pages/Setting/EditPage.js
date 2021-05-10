@@ -41,6 +41,7 @@ const EditPage = ({ navigation }) => {
     setDatePickerVisibility(false);
   };
 
+  let selectBirthdate;
   const handleConfirm = (date) => {
     setBirthdate(date);
     selectBirthdate = date;
@@ -63,7 +64,7 @@ const EditPage = ({ navigation }) => {
     setGender("Male");
   };
 
-    }
+    
 
 
     const handleSubmit = () => {
@@ -368,10 +369,12 @@ const EditPage = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
+        </View>
       </ImageBackground>
     </ScrollView>
   );
-};
+}
+
 
 const styles = StyleSheet.create({
     container: {

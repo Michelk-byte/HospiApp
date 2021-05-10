@@ -41,7 +41,7 @@ export default function HospiStack() {
       initialRouteName="Hospital"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "#DFDFDF" },
         headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold" },
       }}

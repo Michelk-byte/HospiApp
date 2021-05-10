@@ -97,7 +97,7 @@ export default function Login({ navigation }) {
           {/*  }*/}
           {/*</TouchableOpacity>*/}
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={{ color: "#1498D5", marginTop: 15 }}>
             Forgot password?
           </Text>

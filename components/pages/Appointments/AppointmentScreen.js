@@ -36,7 +36,7 @@ const AppointmentScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor:"#EAEAEA" }}>
       <Agenda
         items={{
           "2021-05-01": [
@@ -58,8 +58,8 @@ const AppointmentScreen = ({ navigation }) => {
           dotColor: "#1498D5",
           selectedDayBackgroundColor: "#1498D5",
           selectedDayTextColor: "white",
-          backgroundColor: "white",
-          calendarBackground: "white",
+          backgroundColor: "#EAEAEA",
+          calendarBackground: "#EAEAEA",
         }}
       />
     </SafeAreaView>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   item: {
     backgroundColor: "white",
     flex: 1,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: "#1498D5",
     borderRadius: 15,
     padding: 10,

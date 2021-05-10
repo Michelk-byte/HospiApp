@@ -19,9 +19,9 @@ const LabReserScreen = ({ navigation }) => {
     dispatch(getLabs());
   }, []);
 
-  
+
   return (
-    <ScrollView style={{ backgroundColor: "white" }}>
+    <ScrollView style={{ backgroundColor: "#EAEAEA" }}>
         {Labs.map((lab) => (
       <CardViewWithImage
         key={lab._id}
@@ -38,7 +38,7 @@ const LabReserScreen = ({ navigation }) => {
           navigation.navigate("LabTest", {
             id: lab._id,
           })}
-        
+
       />
       ))}
     </ScrollView>

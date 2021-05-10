@@ -32,7 +32,7 @@ export default function HomeStack() {
       initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: true,
-        headerStyle: { backgroundColor: "white" },
+        headerStyle: { backgroundColor: "#DFDFDF" },
         headerTintColor: "black",
         headerTitleStyle: { fontWeight: "bold" },
       }}

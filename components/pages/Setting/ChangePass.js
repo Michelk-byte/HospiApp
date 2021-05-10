@@ -13,7 +13,7 @@ const ChangePassword = ({navigation}) => {
   const dispatch=useDispatch();
 
   const sid=useSelector(state=>state.Login.data.sid)
-  
+
   const handleSubmit=()=>{
     const data={
         sid:sid,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         resizeMode:'cover',
     },
     title:{
-        color:'white',
+        color:'black',
         alignSelf: 'center',
         marginTop: 60,
         fontSize: 30,

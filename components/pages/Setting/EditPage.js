@@ -30,8 +30,10 @@ const EditPage = ({navigation}) => {
         setDatePickerVisibility(false);
     };
 
+    let selectBirthdate = "Select Birthdate";
     const handleConfirm = (date) => {
         // Jano hon l new birthday bado yenaamala save
+        selectBirthdate = date;
         hideDatePicker();
     };
 
@@ -191,11 +193,10 @@ const EditPage = ({navigation}) => {
                     </View>
                     <View style={styles.fields}>
                         <MaterialCommunityIcons name="cake" color='pink' size={25} style={styles.icons}/>
+                        <Text>Birthdate:</Text>
                         <View style={styles.datePicker}>
                             <TouchableOpacity onPress={showDatePicker}>
-                            <LinearGradient colors={["#FFC0CB", "#FFB6C1"]} style={styles.birthDate}>
-                                <Text style={[styles.buttonText, {color: "black"}]}>Select Birthdate</Text>
-                            </LinearGradient>
+                                <Text style={[styles.buttonText, {color: "black"}]}>{selectBirthdate}</Text>
                             </TouchableOpacity>
                             <DateTimePickerModal
                                 isVisible={isDatePickerVisible}
@@ -377,7 +378,6 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        marginTop: Platform.OS === 'ios' ? 0 : -12,
         paddingLeft: 10,
         color: 'black',
     },
@@ -390,6 +390,7 @@ const styles = StyleSheet.create({
     datePicker:{
         flex:1,
         flexDirection: 'row',
+        marginLeft:10
     },
     line:{
         flex:1,

@@ -11,15 +11,30 @@ import {
 } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Slider from '@react-native-community/slider';
-
+import ModalSelector from 'react-native-modal-selector'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import {editProfile} from "../../../actions/action"
 import { useDispatch, useSelector } from "react-redux";
-
+import RNPickerSelect from 'react-native-picker-select';
 import {LinearGradient} from "expo-linear-gradient";
 
 
 const EditPage = ({navigation}) => {
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+    const showDatePicker = () => {
+        setDatePickerVisibility(true);
+    };
+
+    const hideDatePicker = () => {
+        setDatePickerVisibility(false);
+    };
+
+    const handleConfirm = (date) => {
+        // Jano hon l new birthday bado yenaamala save
+        hideDatePicker();
+    };
+
     const [blood, setBlood] = useState('A+');
     const [value, setValue] = useState(0);
     const [height, setHeight] = useState(50);
@@ -31,7 +46,6 @@ const EditPage = ({navigation}) => {
 
     const sid=useSelector(state=>state.Login.data.sid)
     const dispatch=useDispatch();
-
 
     const handleSubmit = () => {
         const data = {
@@ -53,138 +67,203 @@ const EditPage = ({navigation}) => {
 
     return (
         <ScrollView style={styles.container}>
-            <ImageBackground source={require('../../../assets/Editprofile.png')} style={styles.image} blurRadius={Platform.OS=="ios"? 25:2.5}>
-            <View style={{alignItems: 'center'}}>
-                <View>
-                    <Text style={styles.title}>Edit Profile</Text>
+            <ImageBackground source={require('../../../assets/Editprofile.png')} style={styles.image}
+                             blurRadius={Platform.OS == "ios" ? 25 : 2.5}>
+                <View style={styles.info}>
+                    <View>
+                        <Text style={styles.title}>Edit Profile</Text>
+                    </View>
+                    <Text style={styles.username}>@username</Text>
+                    <View style={styles.user}>
+                        <TouchableOpacity>
+                            <View style={styles.box}>
+                                <ImageBackground source={{uri: image}} style={styles.picture}
+                                                 imageStyle={{borderRadius: 15}}>
+                                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}}>
+                                        <Icon
+                                            name="camera"
+                                            size={35}
+                                            color="#fff"
+                                            style={styles.camera}
+                                        />
+                                    </View>
+                                </ImageBackground>
+                            </View>
+                        </TouchableOpacity>
+                        <View style={styles.name}>
+                            <View style={styles.fields}>
+                                <View style={styles.line}>
+                                    <TextInput
+                                        placeholder="First Name"
+                                        placeholderTextColor="#003f5c"
+                                        autoCorrect={false}
+                                        style={styles.nameInput}
+                                        onChangeText={(data) => setFname(data)}
+                                    />
+                                </View>
+                            </View>
+                            <View style={styles.fields}>
+                                <View style={styles.line}>
+                                    <TextInput
+                                        placeholder="Last Name"
+                                        placeholderTextColor="#003f5c"
+                                        autoCorrect={false}
+                                        style={styles.nameInput}
+                                        onChangeText={(data) => setLname(data)}
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                    </View>
                 </View>
-                <TouchableOpacity>
-                    <View style={styles.box}>
-                        <ImageBackground source={{uri: image}} style={styles.picture} imageStyle={{borderRadius:15}}>
-                            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}}>
-                                <Icon
-                                    name="camera"
-                                    size={35}
-                                    color="#fff"
-                                    style={styles.camera}
+                <View style={styles.form}>
+                    <View style={styles.fields}>
+                        <Icon name="mail-outline" color="gold" size={25} style={styles.icons}/>
+                        <View style={styles.line}>
+                            <TextInput
+                                onChangeText={(data) => setEmail(data)}
+                                placeholder={email}
+                                placeholderTextColor="#003f5c"
+                                keyboardType="email-address"
+                                autoCorrect={false}
+                                style={styles.textInput}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <Icon name="call-outline" color="green" size={25} style={styles.icons}/>
+                        <View style={styles.line}>
+                            <TextInput
+                                onChangeText={(data) => setPhone(data)}
+                                placeholder={"+961" + phone}
+                                placeholderTextColor="#003f5c"
+                                keyboardType='phone-pad'
+                                autoCorrect={false}
+                                style={styles.textInput}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <Icon name="location-outline" color="blue" size={25} style={styles.icons}/>
+                        <View style={styles.line}>
+                            <TextInput
+                                onChangeText={(data) => setLocation(data)}
+                                placeholder={location}
+                                placeholderTextColor="#003f5c"
+                                autoCorrect={false}
+                                style={styles.textInput}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <View style={styles.dropDown}>
+                            <Icon name="male-female-outline" color='black' size={25} style={styles.icons}/>
+                            <Text>Select Gender:</Text>
+                            <View style={styles.picker}>
+                                <RNPickerSelect
+                                    onValueChange={(value) => console.log(value)}
+                                    useNativeAndroidPickerStyle={false}
+                                    items={[
+                                        { label: 'Male', value: 'Male' },
+                                        { label: 'Female', value: 'Female' },
+                                        { label: 'Prefer not to say', value: 'Prefer not to say' },
+                                    ]}
                                 />
                             </View>
-                        </ImageBackground>
+                        </View>
                     </View>
-                </TouchableOpacity>
-                <Text style={styles.username}>@username</Text>
-            </View>
-            <View style={styles.fields}>
-                <Icon name="person-outline" color="#1498D5" size={20} style={styles.icons}/>
-                <TextInput
-                    placeholder="First Name"
-                    placeholderTextColor="#003f5c"
-                    autoCorrect={false}
-
-                    style={styles.textInput}
-                    onChangeText={(data)=>setFname(data)}
-
-                />
-                <TextInput
-                    placeholder="Last Name"
-                    placeholderTextColor="#003f5c"
-                    autoCorrect={false}
-
-                    style={styles.textInput}
-                    onChangeText={(data)=>setLname(data)}
-
-                />
-            </View>
-            <View style={styles.fields}>
-                <Icon name="mail-outline" color="gold" size={20} style={styles.icons}/>
-                <TextInput
-                    onChangeText={(data)=>setEmail(data)}
-                    placeholder={email}
-                    placeholderTextColor="#003f5c"
-                    keyboardType="email-address"
-                    autoCorrect={false}
-                    style={styles.textInput}
-                />
-            </View>
-            <View style={styles.fields}>
-                <Icon name="call-outline" color="green" size={20} style={styles.icons}/>
-                <TextInput
-                    onChangeText={(data)=>setPhone(data)}
-                    placeholder={phone}
-                    placeholderTextColor="#003f5c"
-                    keyboardType='phone-pad'
-                    autoCorrect={false}
-                    style={styles.textInput}
-                />
-            </View>
-            <View style={styles.fields}>
-                <Icon name="location-outline" color="blue" size={20} style={styles.icons}/>
-                <TextInput
-                    onChangeText={(data)=>setLocation(data)}
-                    placeholder={location}
-                    placeholderTextColor="#003f5c"
-                    autoCorrect={false}
-                    style={styles.textInput}
-                />
-            </View>
-            <View style={styles.fields}>
-                <Icon name="water-outline" color="red" size={20} style={styles.icons}/>
-                <Text>Blood Type: {blood}</Text>
-                {/*<Picker style={styles.picker} selectedValue={blood} onValueChange={currentBlood => setBlood(currentBlood)}>*/}
-                {/*    <Picker.Item label="A+" value="A+" />*/}
-                {/*    <Picker.Item label="A-" value="A-" />*/}
-                {/*    <Picker.Item label="B+" value="B+" />*/}
-                {/*    <Picker.Item label="B-" value="B-" />*/}
-                {/*    <Picker.Item label="O+" value="O+" />*/}
-                {/*    <Picker.Item label="O-" value="O-" />*/}
-                {/*    <Picker.Item label="AB+" value="AB+" />*/}
-                {/*    <Picker.Item label="AB-" value="AB-" />*/}
-                {/*</Picker>*/}
-            </View>
-            <View style={styles.fields}>
-                <MaterialCommunityIcons name="human-male-height" color='purple' size={20} style={styles.icons}/>
-                <Text>Height: {height} cm</Text>
-                <Slider
-                    style={styles.slider}
-                    step={1}
-                    minimumValue={50}
-                    maximumValue={220}
-                    value={height}
-                    onValueChange={slideValue => setHeight(slideValue)}
-                    minimumTrackTintColor="#d3d3d3"
-                    maximumTrackTintColor="#d3d3d3"
-                    thumbTintColor="#37c9fc"
-                />
-            </View>
-            <View style={styles.fields}>
-                <MaterialCommunityIcons name="scale-bathroom" color='brown' size={20} style={styles.icons} />
-                <Text>Weight: {value} kg</Text>
-                <Slider
-                    style={styles.slider}
-                    step={1}
-                    minimumValue={0}
-                    maximumValue={400}
-                    value={value}
-                    onValueChange={slideValue => setValue(slideValue)}
-                    minimumTrackTintColor="#d3d3d3"
-                    maximumTrackTintColor="#d3d3d3"
-                    thumbTintColor="#37c9fc"
-                />
-            </View>
-            <View style={{marginTop:5}}>
-                <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
-                    <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
-                        <Text style={[styles.buttonText, { color: "white" }]}>Save Changes</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
-            <View style={{marginTop:5}}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
-                    <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
-                        <Text style={[styles.buttonText, { color: "white" }]}>Cancel</Text>
-                    </LinearGradient>
-                </TouchableOpacity>
-            </View>
+                    <View style={styles.fields}>
+                        <MaterialCommunityIcons name="cake" color='pink' size={25} style={styles.icons}/>
+                        <View style={styles.datePicker}>
+                            <TouchableOpacity onPress={showDatePicker}>
+                            <LinearGradient colors={["#FFC0CB", "#FFB6C1"]} style={styles.birthDate}>
+                                <Text style={[styles.buttonText, {color: "black"}]}>Select Birthdate</Text>
+                            </LinearGradient>
+                            </TouchableOpacity>
+                            <DateTimePickerModal
+                                isVisible={isDatePickerVisible}
+                                mode="date"
+                                onConfirm={handleConfirm}
+                                onCancel={hideDatePicker}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <View style={styles.dropDown}>
+                            <Icon name="water-outline" color="red" size={25} style={styles.icons}/>
+                            <Text>Select Blood Type:</Text>
+                            <View style={styles.picker}>
+                                <RNPickerSelect
+                                    onValueChange={(value) => console.log(value)}
+                                    useNativeAndroidPickerStyle={false}
+                                    items={[
+                                        { label: 'A+', value: 'A+' },
+                                        { label: 'A-', value: 'A-' },
+                                        { label: 'B+', value: 'B+' },
+                                        { label: 'B-', value: 'B-' },
+                                        { label: 'AB+', value: 'AB+' },
+                                        { label: 'AB-', value: 'AB-' },
+                                        { label: 'O+', value: 'O+' },
+                                        { label: 'O-', value: 'O-' },
+                                    ]}
+                                />
+                                {/*<Picker*/}
+                                {/*    selectedValue={bloodT}*/}
+                                {/*    style={{height: 20, width: 90}}*/}
+                                {/*    onValueChange={(itemValue, itemIndex) =>*/}
+                                {/*        setBloodT(itemValue)*/}
+                                {/*    }>*/}
+                                {/*    <Picker.Item label="A+" value="A+"/>*/}
+                                {/*    <Picker.Item label="A-" value="A-"/>*/}
+                                {/*    <Picker.Item label="B+" value="B+"/>*/}
+                                {/*    <Picker.Item label="B-" value="B-"/>*/}
+                                {/*    <Picker.Item label="AB+" value="AB+"/>*/}
+                                {/*    <Picker.Item label="AB-" value="AB-"/>*/}
+                                {/*    <Picker.Item label="O+" value="O+"/>*/}
+                                {/*    <Picker.Item label="O-" value="O-"/>*/}
+                                {/*</Picker>*/}
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <MaterialCommunityIcons name="human-male-height" color='purple' size={25} style={styles.icons}/>
+                        <View style={styles.line}>
+                            <TextInput
+                                placeholder="Height (in cm)"
+                                placeholderTextColor="#003f5c"
+                                style={styles.textInput}
+                                keyboardType={"number-pad"}
+                                // onChangeText={(data)=>setFname(data)}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.fields}>
+                        <MaterialCommunityIcons name="scale-bathroom" color='brown' size={25} style={styles.icons}/>
+                        <View style={styles.line}>
+                            <TextInput
+                                placeholder="Weight (in kg)"
+                                placeholderTextColor="#003f5c"
+                                style={styles.textInput}
+                                keyboardType={"number-pad"}
+                                // onChangeText={(data)=>setFname(data)}
+                            />
+                        </View>
+                    </View>
+                </View>
+                <View style={{marginTop: 5}}>
+                    <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
+                        <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
+                            <Text style={[styles.buttonText, {color: "white"}]}>Save Changes</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
+                <View style={{marginTop: 5}}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
+                        <LinearGradient colors={["#d11a2a", "#800000"]} style={styles.button}>
+                            <Text style={[styles.buttonText, {color: "white"}]}>Cancel</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
         </ScrollView>
     );
@@ -193,6 +272,29 @@ const EditPage = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    info:{
+        marginBottom:-30
+    },
+    user:{
+        flex:1,
+        flexDirection:'row'
+    },
+    name:{
+        marginLeft:60,
+        flex:1,
+        alignSelf:'flex-end',
+    },
+    form:{
+        borderWidth:2,
+        borderColor:'#1498D5',
+        borderRadius:15,
+        backgroundColor:'white',
+        alignSelf:'center',
+        alignItems:'center',
+        marginTop:30,
+        marginLeft:20,
+        marginRight:20,
     },
     image:{
         flex:1,
@@ -209,10 +311,11 @@ const styles = StyleSheet.create({
     box:{
         marginTop: 10,
         height: 100,
-        width: 100,
+        width: 30,
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft: 60
     },
     picture:{
         height: 100,
@@ -230,18 +333,30 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 18,
         fontWeight: 'bold',
-        marginBottom:30
+        marginLeft:30
     },
     fields: {
         flexDirection: 'row',
-        marginTop: 15,
-        marginBottom: 15,
-        borderBottomWidth: 1,
-        borderBottomColor: '#f2f2f2',
+        marginTop: 20,
+        marginBottom: 30,
         marginLeft:5,
+    },
+    picker:{
+        marginLeft:10,
+    },
+    dropDown:{
+        flex:1,
+        flexDirection:'row',
     },
     icons:{
         marginRight:8,
+    },
+    nameInput:{
+        flex: 1,
+        marginTop: Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft: 10,
+        color: 'black',
+        fontSize:20
     },
     textInput: {
         flex: 1,
@@ -249,9 +364,22 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         color: 'black',
     },
-    slider:{
-        marginLeft:5,
-        width:'60%'
+    birthDate:{
+        marginLeft:20,
+        borderRadius: 10,
+        alignItems: 'center',
+        padding: 5,
+    },
+    datePicker:{
+        flex:1,
+        flexDirection: 'row',
+    },
+    line:{
+        flex:1,
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
+        marginRight:30
     },
     button: {
         padding: 15,

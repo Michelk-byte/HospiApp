@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, View, Image, SafeAreaView } from "react-native";
 import {
   Avatar,
@@ -16,6 +16,17 @@ import * as Updates from "expo-updates";
 
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
+
+  const gender = 'Male'
+  function symbole(gender){
+    if (gender === 'Male'){
+      return <OtherIcon name="male-sharp" color="black" size={20}/>
+  }
+    if (gender === 'Female'){
+      return <OtherIcon name="female-sharp" color="black" size={20}/>
+    }
+  return <OtherIcon name="paw-sharp" color="black" size={20} />
+  }
 
   function signOut() {
     dispatch(loggedOut());
@@ -43,7 +54,7 @@ export default function Profile({ navigation }) {
                 },
               ]}
             >
-              Ahmad EC
+              Ahmad EC  {symbole(gender)}
             </Title>
             <Caption style={styles.caption}>@username</Caption>
           </View>

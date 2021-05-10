@@ -43,6 +43,7 @@ const EditPage = ({ navigation }) => {
   let selectBirthdate = "Select Birthdate";
   const handleConfirm = (date) => {
     selectBirthdate = date;
+    setBirthdate(date);
     hideDatePicker();
   };
 

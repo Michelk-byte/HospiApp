@@ -8,11 +8,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Agenda } from "react-native-calendars";
+import { getAppointments } from "../../../actions/action";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const todayDate = new Date();
 
 const AppointmentScreen = ({ navigation }) => {
   const [items, setItems] = useState({});
+
+  const sid=useSelector(state=>state.Login.data.sid)
+  const dispatch=useDispatch();
+  useEffect(() => {
+    console.log("in use effect appointments")
+    dispatch(getAppointments(sid));
+  }, []);
 
   const renderItem = (item) => {
     return (

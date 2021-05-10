@@ -2,20 +2,29 @@ import React, {useState} from 'react';
 import {ImageBackground, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
 import * as Animatable from "react-native-animatable";
+import { useDispatch, useSelector } from "react-redux";
+import {changePass} from "../../../actions/action"
 
 const ChangePassword = ({navigation}) => {
   const [oldPass, setOldPass] = useState('');
   const [newPas, setNewPass] = useState('');
   const [Verify, setVerify] = useState('');
 
+  const dispatch=useDispatch();
 
+  const sid=useSelector(state=>state.Login.data.sid)
+  
   const handleSubmit=()=>{
     const data={
-      oldPass:oldPass,
-      newPas:newPas,
-      Verify:Verify
+        sid:sid,
+        oldpassword:oldPass,
+        password:newPas,
+        verifypassword:Verify
     }
-    alert("sending data: "+data.email)
+    dispatch(changePass(data));
+    setNewPass("");
+    setOldPass("");
+    setVerify("");
   }
 
   return (
@@ -64,7 +73,7 @@ const ChangePassword = ({navigation}) => {
                   </LinearGradient>
               </View>
               <View style={{marginTop:5}}>
-                  <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ProfilePage')}>
+                  <TouchableOpacity style={styles.button} onPress={() => handleSubmit()}>
                       <LinearGradient colors={["#37c9fc", "#1498D5"]} style={styles.button}>
                           <Text style={[styles.buttonText, { color: "white" }]}>Update Password</Text>
                       </LinearGradient>

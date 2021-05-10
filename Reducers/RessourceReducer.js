@@ -1,11 +1,14 @@
-import { SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE} from "../actions/action";
+import { SET_HOSPITALS, SET_DOCTORS,SET_LABS,SET_TEST_LABS,SET_DOCTOR_PROFILE,SET_CREDENTIALS,SET_TEST_DESC,SET_APPOINTMENTS} from "../actions/action";
 
 const initial = {
   hospitals:[],
   doctors:[],
   labs:[],
   testLabs:[],
-  profile:[]
+  profile:[],
+  credentials:[],
+  testDesc:[],
+  appointments:[],
 };
 
 const RessourceReducer = (state = initial, action) => {
@@ -20,6 +23,12 @@ const RessourceReducer = (state = initial, action) => {
       return { ...state, testLabs: action.payload };
     case SET_DOCTOR_PROFILE:
       return { ...state, profile: action.payload };
+    case SET_CREDENTIALS:
+      return { ...state, credentials: action.payload };
+    case SET_TEST_DESC:
+      return { ...state, testDesc: action.payload };
+    case SET_TEST_DESC:
+      return { ...state, appointments: action.payload };
     default:
       return state;
   }

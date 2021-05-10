@@ -22,7 +22,7 @@ const AppointmentScreen = ({ navigation }) => {
   return (
       <ScrollView style={{backgroundColor: "white"}}>
         {Hospitals.map((hosp) => (
-            <Animatable.View animation={'bounceInLeft'} duration={3000} key={hosp._id}>
+            <Animatable.View animation={'bounceInLeft'} duration={2000} key={hosp._id}>
               <CardViewWithImage
                   width={width - 20}
                   source={{uri: hosp.HospitalPhoto}}

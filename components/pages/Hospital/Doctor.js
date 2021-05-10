@@ -5,23 +5,37 @@ import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Fontisto";
 import DropDownPicker from "react-native-dropdown-picker";
-import { getDoctors } from "../../../actions/action";
+
+import { getDoctors, getSpecialty, getDoctSpec } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const Doctor = ({ route, navigation }) => {
-  const [search, setSearch] = React.useState("Dermatologie");
+  const [search, setSearch] = React.useState("All");
 
   const { id } = route.params;
 
-  const Doctors = useSelector((state) => state.Ressource.doctors);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // console.log(route.params)
-    dispatch(getDoctors(id));
+    dispatch(getSpecialty(id));
   }, []);
 
-  // console.log("Doctors are: ",Doctors);
+  React.useEffect(() => {
+    if (search === "All") {
+      dispatch(getDoctors(id));
+    } else {
+      const data = {
+        id: id,
+        spec: search,
+      };
+      dispatch(getDoctSpec(data));
+    }
+  }, [search]);
+
+  let specialties = useSelector((state) => state.Ressource.specialties);
+  specialties.push("All");
+  specialties.sort();
+  const Doctors = useSelector((state) => state.Ressource.doctors);
 
   const size_ = 20;
   return (
@@ -36,22 +50,8 @@ const Doctor = ({ route, navigation }) => {
         <DropDownPicker
           items={[
             {
-              label: "Allergy and Immunology",
-              value: "allergy",
-              icon: () => (
-                <Feather name="heartbeat-alt" size={20} color="#900" />
-              ),
-            },
-            {
-              label: "Anesthesiology",
-              value: "anesthesiology",
-              icon: () => (
-                <Feather name="heartbeat-alt" size={20} color="#900" />
-              ),
-            },
-            {
-              label: "Dermatology",
-              value: "dermatology",
+              label: "spec",
+              value: "spec",
               icon: () => (
                 <Feather name="heartbeat-alt" size={20} color="#900" />
               ),
@@ -103,7 +103,9 @@ const Doctor = ({ route, navigation }) => {
                 backgroundColor: "red",
               }}
               title="BOOK AN APPOINTMENT"
-              onPress={() => navigation.navigate("DoctorProfile",{id:doct._id})}
+              onPress={() =>
+                navigation.navigate("DoctorProfile", { id: doct._id })
+              }
               titleStyle={{ marginLeft: 10, fontSize: 15 }}
             />
           </View>

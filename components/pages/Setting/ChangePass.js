@@ -19,7 +19,7 @@ const ChangePassword = ({navigation}) => {
         sid:sid,
         oldpassword:oldPass,
         password:newPas,
-        verifypassword:Verify
+        verifypass:Verify
     }
     dispatch(changePass(data));
     setNewPass("");
@@ -39,6 +39,7 @@ const ChangePassword = ({navigation}) => {
                       <TextInput
                           secureTextEntry={true}
                           onChangeText={(data)=>setOldPass(data)}
+                          value={oldPass}
                           placeholder=""
                           placeholderTextColor="#003f5c"
                           autoCorrect={false}
@@ -50,6 +51,7 @@ const ChangePassword = ({navigation}) => {
                   <Text style={styles.inputTitle}>New Password</Text>
                   <LinearGradient colors={["white", "white"]} style={styles.input}>
                       <TextInput
+                          value={newPas}
                           secureTextEntry={true}
                           onChangeText={(data)=>setNewPass(data)}
                           placeholder=""
@@ -63,6 +65,7 @@ const ChangePassword = ({navigation}) => {
                   <Text style={styles.inputTitle}>Verify Password</Text>
                   <LinearGradient colors={["white", "white"]} style={styles.input}>
                       <TextInput
+                          value={Verify}
                           secureTextEntry={true}
                           onChangeText={(data)=>setVerify(data)}
                           placeholder=""

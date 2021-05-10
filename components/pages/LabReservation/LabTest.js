@@ -5,46 +5,51 @@ import { ScrollView } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Fontisto";
 import DropDownPicker from "react-native-dropdown-picker";
-import { getTestLabs,getTestBySpec,getTestSpec } from "../../../actions/action";
+import {
+  getTestLabs,
+  getTestBySpec,
+  getTestSpec,
+} from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const LabTest = ({ route, navigation }) => {
 
 
+
  const [search, setSearch] = React.useState("All");
+
 
   const { id } = route.params;
 
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   console.log(search);
 
   React.useEffect(() => {
-     
     dispatch(getTestSpec(id));
   }, []);
 
   React.useEffect(() => {
-    
-    if(search==='All'){
+    if (search.length === 0) {
       dispatch(getTestLabs(id));
-    }else{
-     const data={
-       id:id,
-       type:search
-     }
-     dispatch(getTestBySpec(data));
+    } else {
+      const data = {
+        id: id,
+        type: search,
+      };
+      dispatch(getTestBySpec(data));
     }
   }, [search]);
 
   let specialties = useSelector((state) => state.Ressource.testSpec);
-  specialties.push('All');
   specialties.sort();
 
   const Tests = useSelector((state) => state.Ressource.testLabs);
   const size_ = 20;
 
   return (
+
     <ScrollView style={{backgroundColor:'#EAEAEA'}}>
+
 
       <View
         style={{
@@ -54,17 +59,11 @@ const LabTest = ({ route, navigation }) => {
         }}
       >
         <DropDownPicker
-          items={[
-            specialties.map(spec=>(
-              {
-                label: spec,
-                value: spec,
-                icon: () => (
-                  <Feather name="heartbeat-alt" size={20} color="#900" />
-                ),
-              }
-            ))
-          ]}
+          items={specialties.map((spec) => ({
+            label: spec,
+            value: spec,
+            icon: () => <Feather name="heartbeat-alt" size={20} color="#900" />,
+          }))}
           multiple={true}
           multipleText="%d items have been selected."
           min={0}
@@ -78,44 +77,43 @@ const LabTest = ({ route, navigation }) => {
         />
       </View>
       {Tests.map((test) => (
-      <Card
-      key={test._id}
-        containerStyle={{
-          width: "60%",
-          marginLeft: "20%",
-          elevation: -1,
-          zIndex: -1,
-        }}
-      >
-        <Card.Title>{test.testtype}</Card.Title>
-        <Card.Divider />
-        <Card.Image
-          containerStyle={{ maxheight: "1000000000000" }}
-          source={{
-            uri: `https://hospiapp-backend.herokuapp.com/static/images/${test.testphoto}`,
+        <Card
+          key={test._id}
+          containerStyle={{
+            width: "60%",
+            marginLeft: "20%",
+            elevation: -1,
+            zIndex: -1,
           }}
-        ></Card.Image>
-        <Card.Divider />
-        <View style={{ width: "100%", alignItems: "center" }}>
-          <Button
-            icon={
-              <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
-            }
-            buttonStyle={{
-              borderRadius: 10,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0,
-              backgroundColor: "red",
+        >
+          <Card.Title>{test.testtype}</Card.Title>
+          <Card.Divider />
+          <Card.Image
+            containerStyle={{ maxheight: "1000000000000" }}
+            source={{
+              uri: `https://hospiapp-backend.herokuapp.com/static/images/${test.testphoto}`,
             }}
-            title="BOOK AN APPOINTMENT"
-            onPress={() => navigation.navigate("Test",{idT:test._id})}
-            titleStyle={{ marginLeft: 10, fontSize: 15 }}
-          />
-        </View>
-      </Card>
+          ></Card.Image>
+          <Card.Divider />
+          <View style={{ width: "100%", alignItems: "center" }}>
+            <Button
+              icon={
+                <FontAwesome name="stethoscope" color="#ffffff" size={size_} />
+              }
+              buttonStyle={{
+                borderRadius: 10,
+                marginLeft: 0,
+                marginRight: 0,
+                marginBottom: 0,
+                backgroundColor: "red",
+              }}
+              title="BOOK AN APPOINTMENT"
+              onPress={() => navigation.navigate("Test", { idT: test._id })}
+              titleStyle={{ marginLeft: 10, fontSize: 15 }}
+            />
+          </View>
+        </Card>
       ))}
-
     </ScrollView>
   );
 };

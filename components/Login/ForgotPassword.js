@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Text, View, StyleSheet, Platform, ImageBackground, Image, TextInput, TouchableOpacity} from 'react-native'
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -9,8 +9,8 @@ export default function ForgotPassword({navigation}) {
         <View style={styles.container}>
             <ImageBackground source={require('../../assets/ForgotpassBG.jpg')} style={styles.image}
                              blurRadius={Platform.OS == "ios" ? 5 : 1}>
+                <Image source={require('../../assets/forgot.png')} style={styles.picture}/>
                 <Animatable.View animation="fadeInUpBig" style={styles.form}>
-                    <Image></Image>
                     <Text style={styles.title}>Forgot Password</Text>
                     <View style={styles.header}>
                         <Text style={styles.headerText}>Enter your account's email address and we will send you</Text>
@@ -61,12 +61,19 @@ const styles = StyleSheet.create({
         flex:1,
         resizeMode:'cover',
     },
+    picture:{
+        width:300,
+        height:250,
+        alignSelf:'center',
+        marginTop:-10,
+        marginBottom:-220
+    },
     form:{
         borderWidth:2,
         borderColor:'#1567cd',
         borderRadius:15,
         backgroundColor:'white',
-        height:300,
+        height:350,
         width:350,
         alignSelf:'center',
         alignItems:'center',
@@ -93,7 +100,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width:300,
         height:40,
-        marginBottom:20
+        marginBottom:40
     },
     icon:{
         paddingLeft:10,
@@ -120,14 +127,15 @@ const styles = StyleSheet.create({
     buttonText:{
         fontSize:18,
         fontWeight:'bold',
-        color:'white'
+        color:'white',
+        paddingTop:2
     },
     buttonSend:{
         borderRadius: 15,
         width:160,
         height:30,
         alignItems:'center',
-        marginBottom:20
+        marginBottom:30
     },
     buttonCancel:{
         borderRadius: 15,

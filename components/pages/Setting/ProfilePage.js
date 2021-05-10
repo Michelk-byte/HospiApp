@@ -18,13 +18,11 @@ import { getCredentials } from "../../../actions/action";
 export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
-
-  const gender = "Male";
   function symbole(gender) {
-    if (gender === "Male") {
+    if (gender === "male") {
       return <OtherIcon name="male-sharp" color="black" size={20} />;
     }
-    if (gender === "Female") {
+    if (gender === "female") {
       return <OtherIcon name="female-sharp" color="black" size={20} />;
     }
     return <OtherIcon name="paw-sharp" color="black" size={20} />;

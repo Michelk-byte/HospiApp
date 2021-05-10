@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Text, View, StyleSheet, Platform, ImageBackground, Image, TextInput, TouchableOpacity} from 'react-native'
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/Ionicons";

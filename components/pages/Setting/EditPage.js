@@ -49,7 +49,8 @@ const EditPage = ({ navigation }) => {
   const handleConfirm = (date) => {
     setBirthdate(date);
     date = new Date(date);
-    date = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+    let month = date.getMonth() + 1
+    date = month + "/" + date.getDate() + "/" + date.getFullYear();
     setDateSelected(date);
     hideDatePicker();
   };
@@ -257,7 +258,7 @@ const EditPage = ({ navigation }) => {
             <View style={styles.datePicker}>
               <TouchableOpacity onPress={showDatePicker}>
                 <Text style={[styles.buttonText, { color: "black" }]}>
-                  {JSON.stringify(dateSelected)}
+                  {dateSelected}
                 </Text>
               </TouchableOpacity>
               <DateTimePickerModal

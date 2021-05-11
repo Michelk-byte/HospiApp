@@ -42,6 +42,7 @@ const Test = ({ route, navigation }) => {
     dispatch(getTestDesc(idT));
   }, []);
 
+  const [dateSelected, setDateSelected] = useState("Select Date and Time");
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -51,9 +52,12 @@ const Test = ({ route, navigation }) => {
   };
 
   const handleConfirm = (date) => {
-    setDate(date);
-    console.log("A date has been picked: ", date);
-    hideDatePicker();
+      setDate(date);
+      date = new Date(date);
+      let month = date.getMonth() + 1
+      date = "A date and time have been picked: " + date.getDate() + "/" + month + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
+      setDateSelected(date);
+      hideDatePicker();
   };
 
   const bookTestL = () => {
@@ -118,7 +122,7 @@ const Test = ({ route, navigation }) => {
         }}
       >
         <View>
-          <Button title="Show Date Time Picker" onPress={showDatePicker} />
+          <Button title={dateSelected} onPress={showDatePicker} />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="datetime"

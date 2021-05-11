@@ -6,34 +6,39 @@ import { CardViewWithImage } from "react-native-simple-card-view";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { getTestDesc,bookTest,setAlertDr,getCredentials } from "../../../actions/action";
+import {
+  getTestDesc,
+  bookTest,
+  setAlertDr,
+  getCredentials,
+  getAppointments,
+} from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const width = Dimensions.get("window").width;
 
-const Test = ({ route,navigation }) => {
+const Test = ({ route, navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [date,setDate]=useState("");
+  const [date, setDate] = useState("");
 
   const { idT } = route.params;
 
-  const sid=useSelector(state=>state.Login.data.sid)
+  const sid = useSelector((state) => state.Login.data.sid);
 
-
-
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const msg = useSelector((state) => state.Ressource.DrmsgBooked);
   const open = useSelector((state) => state.Ressource.alertDr);
-  
-  if(open===true){
+
+  if (open === true) {
     alert(msg);
     dispatch(setAlertDr(false));
     dispatch(getCredentials(sid));
+    dispatch(getAppointments(sid));
   }
 
   React.useEffect(() => {
-    console.log("in effect"+idT);
+    console.log("in effect" + idT);
     dispatch(getTestDesc(idT));
   }, []);
 
@@ -51,53 +56,54 @@ const Test = ({ route,navigation }) => {
     hideDatePicker();
   };
 
-  const bookTestL = ()=>{
-    const data={
-      _id:sid,
-      TestID:idT,
-      DateTime:date
-    }
+  const bookTestL = () => {
+    const data = {
+      _id: sid,
+      TestID: idT,
+      DateTime: date,
+    };
     dispatch(bookTest(data));
-  }
-  const TestDesc=useSelector(state=>state.Ressource.testDesc);
+  };
+  const TestDesc = useSelector((state) => state.Ressource.testDesc);
   const size_ = 20;
 
   return (
-    <ScrollView style={{backgroundColor:'#EAEAEA'}}>
-      {TestDesc.map(Desc=>(
+    <ScrollView style={{ backgroundColor: "#EAEAEA" }}>
+      {TestDesc.map((Desc) => (
         <View key={Desc._id}>
-      <CardViewWithImage
-        width={width - 20}
-        source={{uri: `https://hospiapp-backend.herokuapp.com/static/images/${Desc.testphoto}`,}}
-
-        content={Desc.labtestdescription}
-        title={Desc.Lab+" -> "+Desc.testtype}
-        imageWidth={500}
-        imageHeight={400}
-        roundedImage={false}
-      />
-      <List.Item
-        style={{
-          backgroundColor: "white",
-          marginLeft: 10,
-          marginRight: 10,
-        }}
-        title="Timing"
-        description={Desc.testday+" "+Desc.testtime}
-        left={(props) => <List.Icon {...props} icon="clock" />}
-      />
-      <List.Item
-        style={{
-          backgroundColor: "white",
-          marginLeft: 10,
-          marginRight: 10,
-          marginTop: 5,
-        }}
-        title="Fee"
-        description={Desc.testfee +" 000L.L/test"}
-        left={(props) => <List.Icon {...props} icon="cash" />}
-      />
-      </View>
+          <CardViewWithImage
+            width={width - 20}
+            source={{
+              uri: `https://hospiapp-backend.herokuapp.com/static/images/${Desc.testphoto}`,
+            }}
+            content={Desc.labtestdescription}
+            title={Desc.Lab + " -> " + Desc.testtype}
+            imageWidth={500}
+            imageHeight={400}
+            roundedImage={false}
+          />
+          <List.Item
+            style={{
+              backgroundColor: "white",
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+            title="Timing"
+            description={Desc.testday + " " + Desc.testtime}
+            left={(props) => <List.Icon {...props} icon="clock" />}
+          />
+          <List.Item
+            style={{
+              backgroundColor: "white",
+              marginLeft: 10,
+              marginRight: 10,
+              marginTop: 5,
+            }}
+            title="Fee"
+            description={Desc.testfee + " 000L.L/test"}
+            left={(props) => <List.Icon {...props} icon="cash" />}
+          />
+        </View>
       ))}
       <View
         style={{
@@ -124,7 +130,7 @@ const Test = ({ route,navigation }) => {
 
       <View style={{ width: "100%", alignItems: "center" }}>
         <Button
-          onPress={()=>bookTestL()}
+          onPress={() => bookTestL()}
           style={{ elevation: -1, zIndex: -1 }}
           icon={<FontAwesome name="stethoscope" color="#ffffff" size={size_} />}
           buttonStyle={{
@@ -139,7 +145,6 @@ const Test = ({ route,navigation }) => {
           titleStyle={{ marginLeft: 10, fontSize: 15 }}
         />
       </View>
-
     </ScrollView>
   );
 };

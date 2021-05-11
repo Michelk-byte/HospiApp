@@ -33,6 +33,8 @@ export default function Profile({ navigation }) {
     dispatch(getCredentials(sid));
   }, []);
 
+  
+
   const cred = useSelector((state) => state.Ressource.credentials);
 
   function signOut() {
@@ -61,7 +63,9 @@ export default function Profile({ navigation }) {
                 },
               ]}
             >
-              {cred.firstname + " " + cred.lastname} {symbole(cred.gender)}
+
+              {cred.firstname +" "+cred.lastname} {symbole(cred.gender)}
+
             </Title>
             <Caption style={styles.caption}>{"@" + cred.username}</Caption>
           </View>
@@ -148,7 +152,7 @@ export default function Profile({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#EAEAEA",
+    backgroundColor:'#EAEAEA'
   },
   userInfoSection: {
     paddingHorizontal: 30,

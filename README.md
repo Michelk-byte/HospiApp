@@ -4,7 +4,7 @@ Hospiapp is a checkup and labtest appointment booking platform. Users can sign u
 
 The frontend is implemented using React-Native framework.
 
-The backend is implemented using Python-Flask, you can check the reposatory using the link below, and integrated with MongoDB-Atlas to store the data:
+The backend is implemented using Python-Flask and deployed on Heroku, you can check the reposatory using the link below, and integrated with MongoDB-Atlas to store the data:
 https://github.com/Michelk-byte/MobileDev
 
 <p align="center">
@@ -18,9 +18,12 @@ https://github.com/Michelk-byte/MobileDev
 
 # Special Feature
 
-Patients can take a picture of a medication and will receive a glimpse about the description. However, this project is just a proof of concept, we would be glad if some young talented programmers contribute to it. 
+Patients can take a picture of a medication and will receive a glimpse about the description. However, this project is just a proof of concept, we would be glad if some young talented programmers contribute to it.
 
 <p align="center">
   <img src="project_images/5.jpeg" width="230" height="450" title="hover text">
   <img src="project_images/6.jpeg" width="230" height="450" alt="accessibility text">
 </p>
+
+We applied Convolutional Neural Network for image classifaction, for more references check the CNN folder in the backend repo.
+Data is not confidential, and can be populated to expand the categories classified by the model.

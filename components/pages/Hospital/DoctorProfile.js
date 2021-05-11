@@ -121,7 +121,7 @@ const DoctorProfile = ({ route, navigation }) => {
         }}
       >
         <View>
-          <Button title="Show Date Time Picker" onPress={showDatePicker} />
+          <Button title="Pick a date and a time" onPress={showDatePicker} />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="datetime"

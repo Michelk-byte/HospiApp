@@ -32,6 +32,8 @@ const EditPage = ({ navigation }) => {
   const [birthDate, setBirthdate] = useState(cred.date_of_birth);
   const [gender, setGender] = useState(cred.gender);
 
+  const [dateSelected, setDateSelected] = useState(birthDate);
+
   const showDatePicker = () => {
     setDatePickerVisibility(true);
   };
@@ -40,10 +42,9 @@ const EditPage = ({ navigation }) => {
     setDatePickerVisibility(false);
   };
 
-  let selectBirthdate = "Select Birthdate";
   const handleConfirm = (date) => {
-    selectBirthdate = date;
     setBirthdate(date);
+    setDateSelected(date)
     hideDatePicker();
   };
 
@@ -188,7 +189,7 @@ const EditPage = ({ navigation }) => {
             <View style={styles.line}>
               <TextInput
                 onChangeText={(data) => setPhone(data)}
-                placeholder={"+961" + phone}
+                placeholder={"+961 " + phone}
                 placeholderTextColor="#003f5c"
                 keyboardType="phone-pad"
                 autoCorrect={false}
@@ -249,7 +250,7 @@ const EditPage = ({ navigation }) => {
             <View style={styles.datePicker}>
               <TouchableOpacity onPress={showDatePicker}>
                 <Text style={[styles.buttonText, { color: "black" }]}>
-                  {selectBirthdate}
+                  {JSON.stringify(dateSelected)}
                 </Text>
               </TouchableOpacity>
               <DateTimePickerModal
@@ -286,21 +287,6 @@ const EditPage = ({ navigation }) => {
                   ]}
                   value={blood}
                 />
-                {/*<Picker*/}
-                {/*    selectedValue={bloodT}*/}
-                {/*    style={{height: 20, width: 90}}*/}
-                {/*    onValueChange={(itemValue, itemIndex) =>*/}
-                {/*        setBloodT(itemValue)*/}
-                {/*    }>*/}
-                {/*    <Picker.Item label="A+" value="A+"/>*/}
-                {/*    <Picker.Item label="A-" value="A-"/>*/}
-                {/*    <Picker.Item label="B+" value="B+"/>*/}
-                {/*    <Picker.Item label="B-" value="B-"/>*/}
-                {/*    <Picker.Item label="AB+" value="AB+"/>*/}
-                {/*    <Picker.Item label="AB-" value="AB-"/>*/}
-                {/*    <Picker.Item label="O+" value="O+"/>*/}
-                {/*    <Picker.Item label="O-" value="O-"/>*/}
-                {/*</Picker>*/}
               </View>
             </View>
           </View>
@@ -313,8 +299,8 @@ const EditPage = ({ navigation }) => {
             />
             <View style={styles.line}>
               <TextInput
-                placeholder="Height (in cm)"
-                placeholderTextColor="#003f5c"
+                placeholder={height + " cm"}
+                placeholderTextColor="black"
                 style={styles.textInput}
                 keyboardType={"number-pad"}
                 onChangeText={(data) => setHeight(data)}
@@ -331,8 +317,8 @@ const EditPage = ({ navigation }) => {
             />
             <View style={styles.line}>
               <TextInput
-                placeholder="Weight (in kg)"
-                placeholderTextColor="#003f5c"
+                placeholder={value + " kg"}
+                placeholderTextColor="black"
                 style={styles.textInput}
                 keyboardType={"number-pad"}
                 onChangeText={(data) => setValue(data)}
@@ -495,9 +481,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   buttonText: {
-    fontSize: 17,
-    fontWeight: "bold",
-    color: "white",
+    fontSize: 15,
   },
 });
 

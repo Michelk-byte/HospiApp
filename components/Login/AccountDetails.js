@@ -22,6 +22,9 @@ export default function AccountDetails({route,navigation}){
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
+    const todayDate = new Date();
+    const [dateSelected, setDateSelected] = useState(todayDate);
+
     const showDatePicker = () => {
         setDatePickerVisibility(true);
     };
@@ -30,10 +33,9 @@ export default function AccountDetails({route,navigation}){
         setDatePickerVisibility(false);
     };
 
-    let selectedDate = "Select Birthdate";
     const handleConfirm = (date) => {
         SetBirthdate(date);
-        selectedDate = date;
+        setDateSelected(date);
         hideDatePicker();
     };
 
@@ -83,11 +85,11 @@ export default function AccountDetails({route,navigation}){
                     <View style={styles.input}>
                         <Text style={styles.pickers}>Birthdate</Text>
                         <TouchableOpacity onPress={showDatePicker}>
-                        <Text style={styles.textInput}>{selectedDate}</Text>
+                        <Text style={styles.textInput}>{JSON.stringify(dateSelected)}</Text>
                         </TouchableOpacity>
                         <DateTimePickerModal
                             isVisible={isDatePickerVisible}
-                            mode="date"
+                            mode='date'
                             onConfirm={handleConfirm}
                             onCancel={hideDatePicker}
                         />
@@ -112,14 +114,8 @@ export default function AccountDetails({route,navigation}){
                         />
                     </View>
                     <View style={styles.input}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Gender"
-                            placeholderTextColor="#003f5c"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            onChangeText={(data)=>setGender(data)}
-                        />
+                        <Text style={styles.pickers}>Blood Type</Text>
+                        <Text style={styles.textInput}>
                         <RNPickerSelect
                             onValueChange={(value) => console.log(value)}
                             useNativeAndroidPickerStyle={false}
@@ -134,6 +130,7 @@ export default function AccountDetails({route,navigation}){
                                 { label: 'O-', value: 'O-' },
                             ]}
                         />
+                        </Text>
                     </View>
                     <View style={styles.input}>
                         <TextInput
@@ -152,12 +149,18 @@ export default function AccountDetails({route,navigation}){
                         />
                     </View>
                     <View style={styles.input}>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Blood Type"
-                            placeholderTextColor="#003f5c"
-                            onChangeText={(data)=>setBlood(data)}
-                        />
+                        <Text style={styles.pickers}>Gender</Text>
+                        <Text style={styles.textInput}>
+                            <RNPickerSelect
+                                onValueChange={(value) => console.log(value)}
+                                useNativeAndroidPickerStyle={false}
+                                items={[
+                                    { label: 'Male', value: 'Male' },
+                                    { label: 'Female', value: 'Female' },
+                                    { label: 'Prefer not to say', value: 'Prefer not to say' },
+                                ]}
+                            />
+                        </Text>
                     </View>
                     <View style={styles.buttons}>
                         <TouchableOpacity onPress={()=>navigation.navigate("SignupScreen")}>

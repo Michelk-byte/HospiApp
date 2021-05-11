@@ -4,10 +4,18 @@ import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { LinearGradient } from "expo-linear-gradient";
 import Icon from "react-native-vector-icons/Ionicons";
+import Modal from 'react-native-modal';
 
 export default function CameraScreen() {
   const [image, setImage] = useState(null);
   const [singleFile, setSingleFile] = useState(null);
+
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [caplets, setCaplets] = useState('');
+  const [doses, setDoses] = useState('');
+  const [effects, setEffects] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -22,25 +30,43 @@ export default function CameraScreen() {
     })();
   }, []);
 
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const uploadImage = () => {
-    const Mydata = new FormData();
-    console.log(singleFile);
-    Mydata.append("file", "data:image/jpeg;base64," + singleFile);
-    axios({
-      method: "post",
-      url: "https://hospiapp-backend.herokuapp.com/predict",
-      data: Mydata,
-    })
-      .then((res) => {
-        console.log(res.data);
-        // let RESI = JSON.stringify(res);
-        // console.log(RESI);
-        alert(res.data.prediction);
+    if(singleFile === null){
+      alert('You need to upload an image first !')
+    }
+    else{
+      const Mydata = new FormData();
+      console.log(singleFile);
+      Mydata.append("file", "data:image/jpeg;base64," + singleFile);
+      axios({
+        method: "post",
+        url: "https://hospiapp-backend.herokuapp.com/predict",
+        data: Mydata,
       })
-      .catch((error) => {
-        let ERRR = JSON.stringify(error);
-        console.log(ERRR);
-      });
+          .then((res) => {
+            console.log(res.data);
+            // let RESI = JSON.stringify(res);
+            // console.log(RESI);
+            let data = res.data
+            setName(data.Medicament_Name)
+            setDescription(data.description)
+            setPrice(data.price)
+            setCaplets(data.number_of_caplets)
+            setDoses(data.doses_per_day)
+            setEffects(data.side_effects)
+            // alert(res.data.prediction);
+            toggleModal()
+          })
+          .catch((error) => {
+            let ERRR = JSON.stringify(error);
+            console.log(ERRR);
+          });
+
+    }
   };
 
   const pickImage = async () => {
@@ -89,6 +115,28 @@ export default function CameraScreen() {
               <Text style={styles.buttonText}>Get detailed description</Text>
             </LinearGradient>
           </TouchableOpacity>
+          <Modal isVisible={isModalVisible} style={styles.modal}>
+            <View style={{flex: 1}}>
+              <View style={styles.text}>
+                <Text style={styles.medName}>{name}</Text>
+                <Text style={styles.description}>{'\u2022'} Description: {description}</Text>
+                <Text style={styles.description}>{'\u2022'} Price: {price}</Text>
+                <Text style={styles.description}>{'\u2022'} Caplets: {caplets}</Text>
+                <Text style={styles.description}>{'\u2022'} Doses: {doses}</Text>
+                <Text style={styles.description}>{'\u2022'} Side Effects: {effects}</Text>
+              </View>
+              <View style={styles.modalButton}>
+                <TouchableOpacity onPress={toggleModal}>
+                  <LinearGradient
+                      colors={["#1567cd", "#1498D5"]}
+                      style={styles.buttonModal}
+                  >
+                    <Text style={styles.buttonText}>Close</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
         </ImageBackground>
       </View>
   );
@@ -149,5 +197,38 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     marginTop: 50
+  },
+  buttonModal: {
+    alignSelf: 'center',
+    borderRadius: 15,
+    width: 80,
+    height: 30,
+    alignItems: 'center',
+    marginTop: 30
+  },
+  modal:{
+    backgroundColor:'white',
+    width:300,
+    maxHeight:400,
+    borderRadius:15,
+    alignSelf:'center',
+    marginTop:'30%'
+  },
+  text:{
+  },
+  modalButton:{
+    borderRadius:15,
+    alignSelf:'center',
+    width:100
+  },
+  medName:{
+    fontSize:25,
+    marginTop:10,
+    alignSelf:'center'
+  },
+  description:{
+    marginTop:10,
+    fontSize:13,
+    marginLeft:15
   },
 });

@@ -45,9 +45,13 @@ const DoctorProfile = ({ route, navigation }) => {
     setDatePickerVisibility(false);
   };
 
+    const [dateSelected, setDateSelected] = useState("Select Date and Time");
   const handleConfirm = (date) => {
     setDate(date);
-    console.log("A date has been picked: ", date);
+      date = new Date(date);
+      let month = date.getMonth() + 1
+      date = "A date and time have been picked: " + date.getDate() + "/" + month + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
+      setDateSelected(date)
     hideDatePicker();
   };
 
@@ -122,7 +126,7 @@ const DoctorProfile = ({ route, navigation }) => {
         }}
       >
         <View>
-          <Button title="Pick a date and a time" onPress={showDatePicker} />
+          <Button title={dateSelected} onPress={showDatePicker} />
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="datetime"

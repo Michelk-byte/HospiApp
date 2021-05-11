@@ -159,7 +159,7 @@ export default function CameraScreen() {
             <View style={styles.modalButton}>
               <TouchableOpacity onPress={toggleModal}>
                 <LinearGradient
-                  colors={["#1567cd", "#1498D5"]}
+                  colors={["#d11a2a", "#800000"]}
                   style={styles.buttonModal}
                 >
                   <Text style={styles.buttonText}>Close</Text>

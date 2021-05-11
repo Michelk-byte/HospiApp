@@ -20,7 +20,6 @@ import RNPickerSelect from "react-native-picker-select";
 export default function AccountDetails({ route, navigation }) {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const todayDate = new Date();
   const [dateSelected, setDateSelected] = useState("Select Date");
 
   const showDatePicker = () => {
@@ -34,7 +33,8 @@ export default function AccountDetails({ route, navigation }) {
   const handleConfirm = (date) => {
     SetBirthdate(date);
     date = new Date(date);
-    date = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+    let month = date.getMonth() + 1
+    date = month + "/" + date.getDate() + "/" + date.getFullYear();
     setDateSelected(date);
     hideDatePicker();
   };
@@ -84,7 +84,7 @@ export default function AccountDetails({ route, navigation }) {
             <Text style={styles.pickers}>Birthdate</Text>
             <TouchableOpacity onPress={showDatePicker}>
               <Text style={styles.textInput}>
-                {JSON.stringify(dateSelected)}
+                {dateSelected}
               </Text>
             </TouchableOpacity>
             <DateTimePickerModal

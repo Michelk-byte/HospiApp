@@ -1,6 +1,6 @@
 # HospiApp
 
-Hospiapp is an appointment booking platform for doctors and labs. Users can sign up and login using their credentials and reserve a date for a consultation with a doctor based on the doctor's availibility day and hour.
+Hospiapp is a checkup and labtest appointment booking platform. Users can sign up and login using their credentials and reserve a date for a consultation with a doctor based on the doctor's availibility day and hour, as well as schedule a lab test at specific location, date and time.
 
 The frontend is implemented using React-Native framework.
 

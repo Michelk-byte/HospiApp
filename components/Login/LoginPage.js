@@ -64,9 +64,6 @@ export default function Login({ navigation }) {
             autoCapitalize="none"
             onChangeText={(email) => setEmail(email)}
           />
-          <Animatable.View animation="bounceIn">
-            <Feather name="check-circle" color="green" size={20} />
-          </Animatable.View>
         </View>
         <Text style={styles.text_footer}>Password</Text>
         <View style={styles.action}>
@@ -81,21 +78,6 @@ export default function Login({ navigation }) {
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
           />
-          {/*<TouchableOpacity onPress={updateSecureTextEntry}>*/}
-          {/*  {data.secureTextEntry ?*/}
-          {/*      <Feather*/}
-          {/*          name="eye-off"*/}
-          {/*          color="grey"*/}
-          {/*          size={20}*/}
-          {/*      />*/}
-          {/*      :*/}
-          {/*      <Feather*/}
-          {/*          name="eye"*/}
-          {/*          color="grey"*/}
-          {/*          size={20}*/}
-          {/*      />*/}
-          {/*  }*/}
-          {/*</TouchableOpacity>*/}
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword')}>
           <Text style={{ color: "#1498D5", marginTop: 15 }}>

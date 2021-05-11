@@ -3,7 +3,7 @@ import {ImageBackground, Platform, StyleSheet, Text, TextInput, TouchableOpacity
 import {LinearGradient} from "expo-linear-gradient";
 import * as Animatable from "react-native-animatable";
 import { useDispatch, useSelector } from "react-redux";
-import {setAlertDr,changePass} from "../../../actions/action"
+import {setAlertDr,changePass,getCredentials} from "../../../actions/action"
 
 const ChangePassword = ({navigation}) => {
   const [oldPass, setOldPass] = useState('');
@@ -36,6 +36,7 @@ const ChangePassword = ({navigation}) => {
 
     alert(msg);
     dispatch(setAlertDr(false));
+    getCredentials(sid);
   }
 
   return (

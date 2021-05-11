@@ -8,7 +8,7 @@ import { List } from "react-native-paper";
 import { ScrollView } from "react-native-gesture-handler";
 
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { setAlertDr, getProfileD, bookDoct } from "../../../actions/action";
+import { setAlertDr, getProfileD, bookDoct,getCredentials } from "../../../actions/action";
 import { useDispatch, useSelector } from "react-redux";
 
 const width = Dimensions.get("window").width;
@@ -30,6 +30,7 @@ const DoctorProfile = ({ route, navigation }) => {
   if (open === true) {
     alert(msg);
     dispatch(setAlertDr(false));
+    dispatch(getCredentials(sid));
   }
 
   React.useEffect(() => {

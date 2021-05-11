@@ -109,7 +109,7 @@ const EditPage = ({navigation}) => {
                     <View>
                         <Text style={styles.title}>Edit Profile</Text>
                     </View>
-                    <Text style={styles.username}>@username</Text>
+                    <Text style={styles.username}>{"@"+cred.username}</Text>
                     <View style={styles.user}>
                         <TouchableOpacity>
                             <View style={styles.box}>

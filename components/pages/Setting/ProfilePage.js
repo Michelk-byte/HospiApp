@@ -19,10 +19,10 @@ export default function Profile({ navigation }) {
   const dispatch = useDispatch();
 
   function symbole(gender) {
-    if (gender === "male") {
+    if (gender === "Male") {
       return <OtherIcon name="male-sharp" color="black" size={20} />;
     }
-    if (gender === "female") {
+    if (gender === "Female") {
       return <OtherIcon name="female-sharp" color="black" size={20} />;
     }
     return <OtherIcon name="paw-sharp" color="black" size={20} />;

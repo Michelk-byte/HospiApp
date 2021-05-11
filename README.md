@@ -10,6 +10,8 @@ https://github.com/Michelk-byte/MobileDev
 <p align="center">
   <img src="project_images/1.jpeg" width="230" height="450" title="hover text">
   <img src="project_images/2.jpeg" width="230" height="450" alt="accessibility text">
+</p>
+<p align="center">
   <img src="project_images/3.jpeg" width="230" height="450" alt="accessibility text">
   <img src="project_images/4.jpeg" width="230" height="450" alt="accessibility text">
 </p>
